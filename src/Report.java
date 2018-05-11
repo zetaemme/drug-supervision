@@ -14,7 +14,7 @@ public class Report {
     }
 
     @Override
-    int hashCode() {
+    public int hashCode() {
         return patient.hashCode() ^ reaction.hashCode() ^ report_date.hashCode() ^ reaction_date.hashCode() ^ therapy.hashCode();
     }
 
