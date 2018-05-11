@@ -81,10 +81,20 @@ public class Report {
         return report_date;
     }
 
+    /**
+     * Metodo getReaction_date
+     *
+     * @return La data della reazione
+     */
     public Date getReaction_date() {
         return reaction_date;
     }
 
+    /**
+     * Metodo getTherapy
+     *
+     * @return La terapia farmacologica
+     */
     public Therapy getTherapy() {
         return therapy;
     }
