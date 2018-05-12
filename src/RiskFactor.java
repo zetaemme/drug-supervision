@@ -1,6 +1,9 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
+import Exceptions.IllegalRiskValueException;
+import Exceptions.NullStringException;
+
 public class RiskFactor {
     /**
      * Descrizione
@@ -22,7 +25,13 @@ public class RiskFactor {
      * @param description
      * @param risk_level
      */
-    private RiskFactor(String description, int risk_level) {
+    private RiskFactor(String description, int risk_level) throws NullStringException, IllegalRiskValueException {
+        if(description.length() == 0) {
+            throw new NullStringException();
+        } else if(risk_level < 1 || risk_level > 4) {
+            throw new IllegalRiskValueException();
+        }
+
         this.description = description;
         this.risk_level = risk_level;
     }

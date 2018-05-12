@@ -1,6 +1,10 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
+import Exceptions.NullDailyFrequencyException;
+import Exceptions.NullDoseException;
+import Exceptions.NullStringException;
+
 public class Therapy {
     /**
      * Il paziente a cui si riferisce
@@ -42,7 +46,15 @@ public class Therapy {
      * @param starting_date
      * @param ending_date
      */
-    private Therapy(Patient patient, Report report, String drug, double dose, int daily_frequency, Date starting_date, Date ending_date) {
+    private Therapy(Patient patient, Report report, String drug, double dose, int daily_frequency, Date starting_date, Date ending_date) throws NullStringException, NullDoseException, NullDailyFrequencyException {
+        if(drug.length() == 0) {
+            throw new NullStringException();
+        } else if(dose < 1) {
+            throw new NullDoseException();
+        } else if(daily_frequency < 1) {
+            throw new NullDailyFrequencyException();
+        }
+
         this.patient = patient;
         this.report = report;
         this.drug = drug;

@@ -1,6 +1,7 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
+import Exceptions.NullStringException;
 
 public class Patient {
     /**
@@ -28,7 +29,11 @@ public class Patient {
      * @param profession
      * @param risk_factor
      */
-    private Patient(Date birthday, String province, String profession, RiskFactor risk_factor) {
+    private Patient(Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
+        if(province.length() == 0 || profession.length() == 0) {
+            throw new NullStringException();
+        }
+
         this.birthday = birthday;
         this.province = province;
         this.profession = profession;

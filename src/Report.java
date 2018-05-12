@@ -41,7 +41,6 @@ public class Report {
         this.report_date = report_date;
         this.reaction_date = reaction_date;
         this.therapy = therapy;
-        this.risk_factor = risk_factor;
     }
 
     /**
