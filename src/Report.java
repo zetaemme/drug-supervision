@@ -1,5 +1,5 @@
 /**
- * @author Andrea Soglieri & Mattia Zorzan
+ * @author Andrea Soglieri e Mattia Zorzan
  *
  * Classe che gestisce la segnalazione
  */
@@ -25,7 +25,6 @@ public class Report {
      * Dati della terapia farmacologica
      */
     private final Therapy therapy;
-    //TODO Gestione fattori di rischio
 
     /**
      * Metodo costruttore
