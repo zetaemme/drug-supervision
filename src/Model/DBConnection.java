@@ -13,7 +13,7 @@ public class DBConnection {
     Connection connection = null;
     Statement statement = null;
 
-    DBConnection() {
+    public DBConnection() {
         try {
             Class.forName("org.sqlite.JBDC");
             connection = DriverManager.getConnection("jdbc:DB:DrugDB.db");
@@ -23,7 +23,7 @@ public class DBConnection {
         }
     }
 
-    public void closeConnection(Connection connection) throws SQLException {
+    public void closeConnection() throws SQLException {
         connection.close();
     }
 }
