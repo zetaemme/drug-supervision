@@ -1,7 +1,7 @@
-/**
+package Controller; /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.IllegalDateException;
+import Controller.Exceptions.IllegalDateException;
 
 public class Date {
     /**

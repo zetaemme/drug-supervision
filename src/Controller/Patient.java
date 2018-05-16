@@ -1,7 +1,7 @@
-/**
+package Controller; /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.NullStringException;
+import Controller.Exceptions.NullStringException;
 
 public class Patient {
     /**
