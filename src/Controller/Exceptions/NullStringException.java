@@ -1,4 +1,4 @@
-package Model.Exceptions;
+package Controller.Exceptions;
 
 /**
  * @author Andrea Soglieri e Mattia Zorzan

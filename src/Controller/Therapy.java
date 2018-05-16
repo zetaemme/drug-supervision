@@ -1,9 +1,9 @@
-/**
+package Controller; /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Model.Exceptions.NullDailyFrequencyException;
-import Model.Exceptions.NullDoseException;
-import Model.Exceptions.NullStringException;
+import Controller.Exceptions.NullDailyFrequencyException;
+import Controller.Exceptions.NullDoseException;
+import Controller.Exceptions.NullStringException;
 
 public class Therapy {
     /**
