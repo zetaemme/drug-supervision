@@ -1,7 +1,7 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.IllegalDateException;
+import Model.Exceptions.IllegalDateException;
 
 public class Date {
     /**

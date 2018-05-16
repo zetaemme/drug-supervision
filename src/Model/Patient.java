@@ -1,7 +1,7 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.NullStringException;
+import Model.Exceptions.NullStringException;
 
 public class Patient {
     /**

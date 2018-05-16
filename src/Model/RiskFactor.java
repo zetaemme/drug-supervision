@@ -1,8 +1,8 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.IllegalRiskValueException;
-import Exceptions.NullStringException;
+import Model.Exceptions.IllegalRiskValueException;
+import Model.Exceptions.NullStringException;
 
 public class RiskFactor {
     /**

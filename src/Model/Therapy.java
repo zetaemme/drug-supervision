@@ -1,9 +1,9 @@
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Exceptions.NullDailyFrequencyException;
-import Exceptions.NullDoseException;
-import Exceptions.NullStringException;
+import Model.Exceptions.NullDailyFrequencyException;
+import Model.Exceptions.NullDoseException;
+import Model.Exceptions.NullStringException;
 
 public class Therapy {
     /**
