@@ -1,4 +1,4 @@
-package View;
+package View.Login;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +15,6 @@ public class Login {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Drug Supervision - Login");
 
-        initRootLayout();
         showOverview();
     }
 
@@ -24,19 +23,8 @@ public class Login {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Login.class.getResource("Overview.fxml"));
             AnchorPane overwiew = loader.load();
-        } catch(IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
-    public void initRootLayout() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Login.class.getResource("rootLayout.fxml"));
-            rootLayout = loader.load();
-
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
+            primaryStage.setScene(new Scene(overwiew));
             primaryStage.show();
         } catch(IOException e) {
             System.out.println(e.getMessage());
