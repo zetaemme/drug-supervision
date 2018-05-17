@@ -46,7 +46,7 @@ public class DBConnection {
                 insertQuery.executeUpdate();
                 break;
             case "Report":
-                insertQuery = connection.prepareStatement("INSERT INTO " + tableName + "(idReport, reaction_date, report_date)" +
+                insertQuery = connection.prepareStatement("INSERT INTO " + tableName + "(idReport, reactionDate, reportDate)" +
                         "VALUES (" + buffer + ")");
                 insertQuery.executeUpdate();
                 break;
