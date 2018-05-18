@@ -1,21 +1,20 @@
-package View.History;
+package View.AddPatient;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class History {
+public class AddPatient {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    public History(Stage primaryStage) {
+    public AddPatient(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Drug Supervision - History");
+        primaryStage.setTitle("Drug Supervision - Add Patient");
 
         initRootLayout();
         showOverview();
@@ -24,7 +23,7 @@ public class History {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(History.class.getResource("rootLayout.fxml"));
+            loader.setLocation(AddPatient.class.getResource("rootLayout.fxml"));
             rootLayout = loader.load();
 
             primaryStage.setScene(new Scene(rootLayout));
@@ -37,16 +36,12 @@ public class History {
     public void showOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(History.class.getResource("Overview.fxml"));
+            loader.setLocation(AddPatient.class.getResource("Overview.fxml"));
             AnchorPane overview = loader.load();
 
             rootLayout.setCenter(overview);
         } catch(IOException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
     }
 }
