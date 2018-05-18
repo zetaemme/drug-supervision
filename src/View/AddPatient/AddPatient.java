@@ -1,5 +1,9 @@
 package View.AddPatient;
 
+/**
+ * @author Andrea Soglieri e Mattia Zorzan
+ */
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -9,17 +13,31 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AddPatient {
+    /**
+     * Stage primario della finestra
+     */
     private Stage primaryStage;
+    /**
+     * Barra dei menù
+     */
     private BorderPane rootLayout;
 
+    /**
+     * Metodo costruttore
+     *
+     * @param primaryStage
+     */
     public AddPatient(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("Drug Supervision - Add Patient");
+        this.primaryStage.setTitle("Drug Supervision - Add Patient");
 
         initRootLayout();
         showOverview();
     }
 
+    /**
+     * Metodo che inizializza la finestra
+     */
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -33,6 +51,9 @@ public class AddPatient {
         }
     }
 
+    /**
+     * Metodo che visualizza l'overview
+     */
     public void showOverview() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -45,6 +66,11 @@ public class AddPatient {
         }
     }
 
+    /**
+     * Metodo getPrimaryStage
+     *
+     * @return Lo stage primario
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
