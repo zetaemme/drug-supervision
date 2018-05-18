@@ -44,4 +44,8 @@ public class AddPatient {
             System.out.println(e.getMessage());
         }
     }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 }
