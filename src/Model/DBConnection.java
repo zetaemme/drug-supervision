@@ -7,11 +7,11 @@ import java.sql.*;
  */
 
 public class DBConnection {
-    private Connection connection = null;
-    private Statement statement = null;
-    private ResultSet rs = null;
+    private Connection connection;
+    private Statement statement;
+    private ResultSet rs;
 
-    public void openConnection() {
+    private void openConnection() {
         try {
             Class.forName("org.sqlite.JBDC");
             connection = DriverManager.getConnection("jdbc:DB:DrugDB.db");
@@ -21,7 +21,7 @@ public class DBConnection {
         }
     }
 
-    public void closeConnection() throws SQLException {
+    private void closeConnection() throws SQLException {
         connection.close();
     }
 
@@ -48,16 +48,6 @@ public class DBConnection {
         return String.valueOf(rs);
     }
 
-
-    private void insert(String buffer, String tableName) throws SQLException {
-        openConnection();
-
-        statement = connection.createStatement();
-        statement.executeQuery("INSERT INTO " + tableName + " VALUES " + buffer + ";");
-
-        closeConnection();
-    }
-
     public boolean login(String username, String password) throws SQLException {
         openConnection();
 
@@ -74,7 +64,17 @@ public class DBConnection {
         return count != 0;
     }
 
-    private void logged(String username) throws SQLException {
+
+    private void insert(String buffer, String tableName) throws SQLException {
+        openConnection();
+
+        statement = connection.createStatement();
+        statement.executeQuery("INSERT INTO " + tableName + " VALUES " + buffer + ";");
+
+        closeConnection();
+    }
+
+    protected void logged(String username) throws SQLException {
         openConnection();
         statement = connection.createStatement();
         statement.executeQuery("UPDATE Users SET logged = true WHERE username = '" + username + "';");
