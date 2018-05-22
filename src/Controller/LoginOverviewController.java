@@ -26,10 +26,7 @@ public class LoginOverviewController {
 
 
     public void handleLogin(ActionEvent actionEvent) throws SQLException {
-        String usr = String.valueOf(username);
-        String pwd = String.valueOf(password);
-
-        if(conn.login(usr, pwd)){
+        if(conn.login(username.getText(), password.getText())){
             System.out.println("Login succesful!");
         }
     }
