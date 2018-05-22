@@ -11,6 +11,9 @@ public class DBConnection {
     private Statement statement = null;
     private ResultSet rs = null;
 
+    /**
+     * Metodo openConnection
+     */
     public void openConnection() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -21,11 +24,23 @@ public class DBConnection {
         }
     }
 
-    private void closeConnection() throws SQLException {
+    /**
+     * Metodo closeConnection
+     *
+     * @throws SQLException
+     */
+    public void closeConnection() throws SQLException {
         connection.close();
     }
 
 
+    /**
+     * Metodo getType
+     *
+     * @param username
+     * @return Se l'utente è medico o farmacologo
+     * @throws SQLException
+     */
     private String getType(String username) throws SQLException {
         openConnection();
 
@@ -37,6 +52,13 @@ public class DBConnection {
         return String.valueOf(rs);
     }
 
+    /**
+     * Metodo getUsername
+     *
+     * @param username
+     * @return Lo username dell'utente
+     * @throws SQLException
+     */
     private String getUsername(String username) throws SQLException {
         openConnection();
 
@@ -48,7 +70,17 @@ public class DBConnection {
         return String.valueOf(rs);
     }
 
+    
+    /**
+     * Metodo login
+     *
+     * @param username
+     * @param password
+     * @return true: Nome utente/password  corretti. false: Nome utente/password  errati.
+     * @throws SQLException
+     */
     public boolean login(String username, String password) throws SQLException {
+    
         openConnection();
 
         statement = connection.createStatement();
@@ -69,9 +101,15 @@ public class DBConnection {
         System.out.println("Username non presente nel database");
         return false;
     }
-
-
-    private void insert(String buffer, String tableName) throws SQLException {
+     
+    /**
+    * Metodo insert
+    *
+    * @param buffer
+    * @param tableName
+    * @throws SQLException
+    */
+    private void insert(String buffer, String tableName) throws SQLException {    
         openConnection();
 
         statement = connection.createStatement();
@@ -80,6 +118,13 @@ public class DBConnection {
         closeConnection();
     }
 
+    
+    /**
+     * Metodo logged
+     *
+     * @param username
+     * @throws SQLException
+     */
     protected void logged(String username) throws SQLException {
         openConnection();
         statement = connection.createStatement();
@@ -87,6 +132,12 @@ public class DBConnection {
         closeConnection();
     }
 
+    /**
+     * Metodo logout
+     *
+     * @param username
+     * @throws SQLException
+     */
     private void logout(String username) throws SQLException {
         openConnection();
         statement = connection.createStatement();
