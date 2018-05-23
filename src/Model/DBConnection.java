@@ -86,16 +86,15 @@ public class DBConnection {
         statement = connection.createStatement();
         rs = statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
 
-        closeConnection();
-
         int count = 0;
-        do{
+        while(rs.next()){
             count++;
-        }while(rs.next());
+        }
+        closeConnection();
 
         if(count > 0){
             logged(username);
-            System.out.println(username + " ha effettuato l'accesso");
+            System.out.println( username + " ha effettuato l'accesso");
             return true;
         }
         System.out.println("Username non presente nel database");

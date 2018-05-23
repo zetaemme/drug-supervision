@@ -1,33 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="DrugDB" uuid="b5fde520-9b13-4db5-811a-56243a3c9550">
+    <data-source source="LOCAL" name="DrugDB.db" uuid="0850da2b-d98b-452c-9216-acdcc1a5e902">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>SQLite</remarks>
-=======
-    <data-source source="LOCAL" name="DrugDB.db" uuid="10b11992-4a22-462f-aab2-932beada8fc0">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
->>>>>>> 46162199cf558057fbdc59d8642cc23cb987b96b
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/DB/DrugDB.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
-<<<<<<< HEAD
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/xerial-sqlite-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/sqlite-jdbc-3.20.1.1.jar</url>
-        </library>
-      </libraries>
-=======
->>>>>>> 46162199cf558057fbdc59d8642cc23cb987b96b
     </data-source>
   </component>
 </project>
