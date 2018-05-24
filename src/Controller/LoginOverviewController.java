@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,15 +8,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 
+import java.sql.SQLException;
+
 /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
 
 public class LoginOverviewController {
+    DBConnection conn = new DBConnection();
 
     /**
-     * Bottone
-     */
+    * Bottone
+    */
     @FXML
     public Button loginButton;
     /**
@@ -29,17 +33,9 @@ public class LoginOverviewController {
     @FXML
     private PasswordField password;
 
-    /**
-     * Metodo costruttore nullo
-     */
-    public LoginOverviewController() {
-    }
-
-    /**
-     * Metodo per inizializzare l'interfaccia ddi login
-     */
-    @FXML
-    private void initialize() {
-        username.setOnAction(handleUsername -> handleUsername.);
+    public void handleLogin(ActionEvent actionEvent) throws SQLException {
+        if(conn.login(username.getText(), password.getText())){
+            System.out.println("Login succesful!");
+        }
     }
 }

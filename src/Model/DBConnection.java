@@ -16,9 +16,9 @@ public class DBConnection {
      */
     public void openConnection() {
         try {
-            Class.forName("org.sqlite.JBDC");
-            connection = DriverManager.getConnection("jdbc:DB:DrugDB.db");
-            System.out.println("Successfully Connected!");
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:/home/andrea/Documenti/Sorgenti/Programmazione II/drug-supervision/src/DB/DrugDB.db");
+
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -70,23 +70,7 @@ public class DBConnection {
         return String.valueOf(rs);
     }
 
-
-    /**
-     * Metodo insert
-     *
-     * @param buffer
-     * @param tableName
-     * @throws SQLException
-     */
-    private void insert(String buffer, String tableName) throws SQLException {
-        openConnection();
-
-        statement = connection.createStatement();
-        statement.executeQuery("INSERT INTO " + tableName + " VALUES " + buffer + ";");
-
-        closeConnection();
-    }
-
+    
     /**
      * Metodo login
      *
@@ -96,31 +80,54 @@ public class DBConnection {
      * @throws SQLException
      */
     public boolean login(String username, String password) throws SQLException {
+    
         openConnection();
 
         statement = connection.createStatement();
-        rs = statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' password = '" + password + "' logged = false;");
-
-        closeConnection();
+        rs = statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
 
         int count = 0;
         while(rs.next()){
-            count += 1;
+            count++;
         }
-        logged(username);
-        return count != 0;
+        closeConnection();
+
+        if(count > 0){
+            logged(username);
+            System.out.println( username + " ha effettuato l'accesso");
+            return true;
+        }
+        System.out.println("Username non presente nel database");
+        return false;
+    }
+     
+    /**
+    * Metodo insert
+    *
+    * @param buffer
+    * @param tableName
+    * @throws SQLException
+    */
+    private void insert(String buffer, String tableName) throws SQLException {    
+        openConnection();
+
+        statement = connection.createStatement();
+        statement.executeQuery("INSERT INTO " + tableName + " VALUES " + buffer + ";");
+
+        closeConnection();
     }
 
+    
     /**
      * Metodo logged
      *
      * @param username
      * @throws SQLException
      */
-    private void logged(String username) throws SQLException {
+    protected void logged(String username) throws SQLException {
         openConnection();
         statement = connection.createStatement();
-        statement.executeQuery("UPDATE Users SET logged = true WHERE username = '" + username + "';");
+        statement.executeUpdate("UPDATE Users SET logged = 1 WHERE username = '" + username + "';");
         closeConnection();
     }
 
@@ -133,7 +140,7 @@ public class DBConnection {
     private void logout(String username) throws SQLException {
         openConnection();
         statement = connection.createStatement();
-        statement.executeQuery("UPDATE Users SET logged = false WHERE username = '" + username + "';");
+        statement.executeUpdate("UPDATE Users SET logged = 0 WHERE username = '" + username + "';");
         closeConnection();
     }
 
