@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 /**
  * @author Andrea Soglieri e Mattia Zorzan
