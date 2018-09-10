@@ -13,11 +13,13 @@ public class DBConnection {
 
     /**
      * Metodo openConnection
+     *
+     * Path relativo possibilmente !!!!!!!!!!!
      */
     public void openConnection() {
         try {
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:/home/andrea/Documenti/Sorgenti/Programmazione II/drug-supervision/src/DB/DrugDB.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:drug-supervision/src/DB/DrugDB.db");
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
