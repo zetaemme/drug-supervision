@@ -1,8 +1,8 @@
-package Controller; /**
+package Model; /**
  * @author Andrea Soglieri e Mattia Zorzan
  */
-import Controller.Exceptions.IllegalRiskValueException;
-import Controller.Exceptions.NullStringException;
+import Model.Exceptions.IllegalRiskValueException;
+import Model.Exceptions.NullStringException;
 
 public class Reaction {
     /**
