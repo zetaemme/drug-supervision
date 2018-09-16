@@ -11,8 +11,6 @@ public class LoginController {
         loginConnection = new DBConnection();
         loginConnection.openConnection();
 
-        String sql = "SELECT * FROM Users WHERE username =" + username + ", password =" + password + "AND logged = 0";
-
         try {
             loginConnection.statement = loginConnection.connection.createStatement();
         } catch(SQLException sqle) {
@@ -22,7 +20,7 @@ public class LoginController {
         }
 
         try {
-            loginConnection.rs = loginConnection.statement.executeQuery(sql);
+            loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
@@ -66,7 +64,7 @@ public class LoginController {
         }
 
         try {
-            loginConnection.rs = loginConnection.statement.executeQuery(sql);
+            loginConnection.statement.executeUpdate("UPDATE Users SET logged = 1 WHERE username = '" + username + "';");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
