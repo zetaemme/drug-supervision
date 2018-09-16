@@ -1,25 +1,12 @@
-package Model; /**
- * @author Andrea Soglieri e Mattia Zorzan
- */
+package Model;
+
 import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 
 public class Reaction {
-    /**
-     * Livello di gravità (da 1 a 5)
-     */
     private final int risk;
-    /**
-     * Descrizione della reazione avversa
-     */
     private final String description;
 
-    /**
-     * Metodo costruttore
-     *
-     * @param risk
-     * @param description
-     */
     private Reaction(int risk, String description) throws IllegalRiskValueException, NullStringException {
         if(risk < 1 || risk > 5) {
             throw new IllegalRiskValueException();
@@ -31,11 +18,6 @@ public class Reaction {
         this.description = description;
     }
 
-    /**
-     * Metodo hashCode
-     *
-     * @return L'hash della reazione avversa
-     */
     @Override
     public int hashCode() {
         return risk ^ description.hashCode();
