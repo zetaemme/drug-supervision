@@ -73,6 +73,7 @@ public class LoginController {
         loginConnection.closeConnection();
     }
 
+    // Logout of the selected user
     private void logout(String username, DBConnection loginConnection) {
         loginConnection.openConnection();
 
