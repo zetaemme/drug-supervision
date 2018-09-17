@@ -28,7 +28,7 @@ public class Login {
 
         // Set the spacing between objects
         root.setSpacing(10);
-        root.setPadding(new Insets(10, 10, 10, 10));
+        root.setPadding(new Insets(10));
 
         final TextField username = new TextField();
         final PasswordField password = new PasswordField();
@@ -52,12 +52,11 @@ public class Login {
 
         // Title label options
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setId("titleLabel");
-        titleLabel.setStyle("}.titleLabel {-fx-text-fill: #696969}{");
+        titleLabel.setStyle("} {-fx-text-fill: #696969} {");
 
         // Copyright label options
         copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
-        copyrightLabel.setOpacity(20.0);
+        copyrightLabel.setOpacity(10);
 
         // Set the (x, y) position for the objects
         titleLabel.setTranslateX(75);
@@ -85,9 +84,24 @@ public class Login {
         primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.show();
 
+        // You can press 'Enter' to login
+        loginButton.setDefaultButton(true);
         loginButton.setOnAction(e -> {
+            /*
+
+            !Test area!
+
             if(controller.login(username.getText(), password.getText())) {
                 loginLabel.setText("Login Successful!");
+            } else {
+                loginLabel.setText("Login Failed!");
+            }
+            */
+
+            // Loads the main page if the login is right
+            if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
+                primaryStage.close();
+                MainPage mainPage = new MainPage(new Stage());
             } else {
                 loginLabel.setText("Login Failed!");
             }
