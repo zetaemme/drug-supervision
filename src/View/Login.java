@@ -18,6 +18,9 @@ public class Login {
 
         root.setMinHeight(400);
         root.setMinWidth(400);
+
+        // Set the spacing between objects
+        root.setSpacing(10);
         root.setPadding(new Insets(10, 10, 10, 10));
 
         final TextField username = new TextField();
@@ -25,14 +28,20 @@ public class Login {
         final Button loginButton = new Button("Login");
         final Label label = new Label("");
 
-        username.setMinSize(150, 30);
-        password.setMinSize(150, 30);
+        username.setMinSize(220, 30);
+        username.setMaxSize(230, 30);
+
+        password.setMinSize(220, 30);
+        password.setMaxSize(230, 30);
 
         loginButton.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
 
         root.getChildren().addAll(username, password, loginButton, label);
 
-        // This way i can update the label text
+        primaryStage.setTitle("Drug Supervision - Login");
+        primaryStage.setScene(new Scene(root, 400, 400));
+        primaryStage.show();
+
         loginButton.setOnAction(e -> {
             if(controller.login(username.getText(), password.getText())) {
                 label.setText("Login Successful!");
@@ -40,9 +49,5 @@ public class Login {
                 label.setText("Login Failed!");
             }
         });
-
-        primaryStage.setTitle("Drug Supervision - Login");
-        primaryStage.setScene(new Scene(root, 400, 300));
-        primaryStage.show();
     }
 }
