@@ -46,7 +46,6 @@ public class LoginController {
             return true;
         }
 
-        System.out.println("Login failed.");
         return false;
     }
 
