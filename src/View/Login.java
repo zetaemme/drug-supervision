@@ -28,6 +28,9 @@ public class Login {
         final Button loginButton = new Button("Login");
         final Label label = new Label("");
 
+        username.setPromptText("Username");
+        password.setPromptText("Password");
+
         username.setMinSize(220, 30);
         username.setMaxSize(230, 30);
 
