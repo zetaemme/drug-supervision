@@ -28,14 +28,24 @@ public class Login {
         final Button loginButton = new Button("Login");
         final Label label = new Label("");
 
+        // Set the promptText for the TextField/PasswordField
         username.setPromptText("Username");
         password.setPromptText("Password");
 
+        // Set the sizes for the Fields
         username.setMinSize(220, 30);
         username.setMaxSize(230, 30);
 
         password.setMinSize(220, 30);
         password.setMaxSize(230, 30);
+
+        // Set the (x, y) position for the objects
+        username.setTranslateX(75);
+
+        password.setTranslateX(75);
+
+        loginButton.setTranslateX(330.0);
+        loginButton.setTranslateY(275.5);
 
         loginButton.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
 
