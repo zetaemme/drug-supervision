@@ -46,6 +46,9 @@ public class MainPage {
         patientTable.setMinSize(300, 600);
         patientTable.setMaxSize(300, 600);
 
+        // TODO Test ancora da eseguire, c'è già un TODO in MainPageController
+        patientTable.getItems().addAll(mpController.initPatientList());
+
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
         titleLabel.setStyle("} {-fx-text-fill: #696969} {");
