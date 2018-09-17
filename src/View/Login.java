@@ -41,8 +41,10 @@ public class Login {
 
         // Set the (x, y) position for the objects
         username.setTranslateX(75);
+        username.setTranslateY(140);
 
         password.setTranslateX(75);
+        password.setTranslateY(165);
 
         loginButton.setTranslateX(330.0);
         loginButton.setTranslateY(275.5);
