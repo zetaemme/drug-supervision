@@ -15,7 +15,7 @@ public class Patient {
     private final StringProperty profession;
     private final ObjectProperty<RiskFactor> risk_factor;
 
-    private Patient(String first_name, String last_name, Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
+    public Patient(String first_name, String last_name, Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
         if(province.length() == 0 || profession.length() == 0 || first_name.length() == 0 || last_name.length() == 0) {
             throw new NullStringException();
         }

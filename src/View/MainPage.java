@@ -45,6 +45,8 @@ public class MainPage {
         sp1.setMinSize(300, 600);
         sp1.setMaxSize(300, 600);
 
+        patientsList = mpController.initPatientsList();
+
         TableView patientTable = new TableView();
 
         TableColumn<Patient, String> firstNameColumn = new TableColumn<>("First Name");
@@ -94,10 +96,5 @@ public class MainPage {
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
-    }
-
-    // Returns the ObservableList
-    public ObservableList<Patient> getPatientsList() {
-        return patientsList;
     }
 }
