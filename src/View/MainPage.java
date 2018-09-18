@@ -44,21 +44,31 @@ public class MainPage {
         // Settings for the SplitPane
         sp1.setMinSize(300, 600);
         sp1.setMaxSize(300, 600);
-        sp1.setAlignment(Pos.CENTER);
 
         TableView patientTable = new TableView();
 
-        TableColumn<Patient, String> firstNameColumn = new TableColumn<Patient, String>("First Name");
-        TableColumn<Patient, String> lastNameColumn = new TableColumn<Patient, String>("last Name");
+        TableColumn<Patient, String> firstNameColumn = new TableColumn<>("First Name");
+        TableColumn<Patient, String> lastNameColumn = new TableColumn<>("Last Name");
 
-        mpController.initTableView(firstNameColumn, lastNameColumn);
+        // Initialize the table columns values
+        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
+        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
+
+        // Add teh columns to the table
+        patientTable.getColumns().setAll(firstNameColumn, lastNameColumn);
 
         // Set table min/max size
         patientTable.setMinSize(300, 600);
         patientTable.setMaxSize(300, 600);
 
+        firstNameColumn.setMinWidth(150);
+        firstNameColumn.setMaxWidth(150);
+
+        lastNameColumn.setMinWidth(150);
+        lastNameColumn.setMaxWidth(150);
+
         // TODO Test ancora da eseguire, c'è già in MainPageController
-        patientTable.getItems().addAll(patientsList);
+        patientTable.setItems(patientsList);
 
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
