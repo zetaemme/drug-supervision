@@ -1,18 +1,24 @@
 package View;
 
 import Controller.MainPageController;
+import Model.Patient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainPage {
+    private ObservableList<Patient> patientsList = FXCollections.observableArrayList();
+
     public MainPage(Stage primaryStage) {
         final MainPageController mpController = new MainPageController();
 
@@ -40,14 +46,19 @@ public class MainPage {
         sp1.setMaxSize(300, 600);
         sp1.setAlignment(Pos.CENTER);
 
-        ListView patientTable = new ListView();
+        TableView patientTable = new TableView();
+
+        TableColumn<Patient, String> firstNameColumn = new TableColumn<Patient, String>("First Name");
+        TableColumn<Patient, String> lastNameColumn = new TableColumn<Patient, String>("last Name");
+
+        mpController.initTableView(firstNameColumn, lastNameColumn);
 
         // Set table min/max size
         patientTable.setMinSize(300, 600);
         patientTable.setMaxSize(300, 600);
 
-        // TODO Test ancora da eseguire, c'è già un TODO in MainPageController
-        patientTable.getItems().addAll(mpController.initPatientList());
+        // TODO Test ancora da eseguire, c'è già in MainPageController
+        patientTable.getItems().addAll(patientsList);
 
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
@@ -73,5 +84,10 @@ public class MainPage {
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
+    }
+
+    // Returns the ObservableList
+    public ObservableList<Patient> getPatientsList() {
+        return patientsList;
     }
 }
