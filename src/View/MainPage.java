@@ -45,7 +45,7 @@ public class MainPage {
         sp1.setMinSize(300, 600);
         sp1.setMaxSize(300, 600);
 
-        //patientsList = mpController.initPatientsList();
+        patientsList = mpController.initPatientsList();
 
         TableView patientTable = new TableView();
 
