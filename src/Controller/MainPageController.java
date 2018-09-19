@@ -36,8 +36,7 @@ public class MainPageController {
 
         try {
             while(mpConnection.rs.next()) {
-                patients.add(new Patient(mpConnection.rs.getString("first_name"),
-                                            mpConnection.rs.getString("last_name"),
+                patients.add(new Patient(mpConnection.rs.getString("idPatient"),
                                             mpConnection.rs.getDate("birthday"),
                                             mpConnection.rs.getString("province"),
                                             mpConnection.rs.getString("profession"),

@@ -7,11 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 public class Login {
     public Login(Stage primaryStage) {
@@ -83,7 +84,7 @@ public class Login {
 
         // Scene and CSS
         Scene scene = new Scene(root, 400, 400);
-        scene.getStylesheets().add(this.getClass().getResource("CSS/style.css").toExternalForm());
+        scene.getStylesheets().add("CSS/style.css");
 
         primaryStage.setTitle("Drug Supervision - Login");
         primaryStage.setScene(scene);
@@ -92,21 +93,22 @@ public class Login {
         // You can press 'Enter' to login
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e -> {
+            /*
             if(controller.login(username.getText(), password.getText())) {
                 primaryStage.close();
                 MainPage mainPage = new MainPage(new Stage());
             } else {
                 loginLabel.setText("Login Failed!");
-            }
+            } */
 
             // Loads the main page if the login is right
-            /*
+
             if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
                 primaryStage.close();
                 MainPage mainPage = new MainPage(new Stage());
             } else {
                 loginLabel.setText("Login Failed!");
-            } */
+            }
         });
     }
 }

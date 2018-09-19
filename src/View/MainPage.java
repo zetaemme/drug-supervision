@@ -49,25 +49,20 @@ public class MainPage {
 
         TableView patientTable = new TableView();
 
-        TableColumn<Patient, String> firstNameColumn = new TableColumn<>("First Name");
-        TableColumn<Patient, String> lastNameColumn = new TableColumn<>("Last Name");
+        TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
-        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
         // Add teh columns to the table
-        patientTable.getColumns().setAll(firstNameColumn, lastNameColumn);
+        patientTable.getColumns().setAll(idColumn);
 
         // Set table min/max size
         patientTable.setMinSize(300, 600);
         patientTable.setMaxSize(300, 600);
 
-        firstNameColumn.setMinWidth(150);
-        firstNameColumn.setMaxWidth(150);
-
-        lastNameColumn.setMinWidth(150);
-        lastNameColumn.setMaxWidth(150);
+        idColumn.setMinWidth(300);
+        idColumn.setMaxWidth(300);
 
         patientTable.setItems(patientsList);
 
