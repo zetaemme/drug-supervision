@@ -8,14 +8,13 @@ import Model.Utils.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MainPageController {
     private DBConnection mpConnection;
 
     // Initialize the patients list
-    public ObservableList<Patient> initPatientsList() {
+   /* public ObservableList<Patient> initPatientsList() {
         final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
         mpConnection = new DBConnection();
@@ -39,7 +38,12 @@ public class MainPageController {
 
         try {
             while(mpConnection.rs.next()) {
-                patients.add(newPatientfromRS(mpConnection.rs, count));
+                patients.add(new Patient(mpConnection.rs.getString("first_name"),
+                                            mpConnection.rs.getString("last_name"),
+                                            ,
+                                            mpConnection.rs.getString("province"),
+                                            mpConnection.rs.getString("profession"),
+                                            ));
                 count++;
             }
         } catch(SQLException sqle) {
@@ -49,27 +53,5 @@ public class MainPageController {
 
         mpConnection.closeConnection();
         return patients;
-    }
-
-    // TODO Fixare il return null
-    private Patient newPatientfromRS(ResultSet rs, int index) throws SQLException {
-        // TODO Pertutti i campi sottostanti bisogna fare uno slice dell'array del ResultSet
-        String first_name = rs.getArray("first_name").toString();
-        String last_name = rs.getArray("last_name").toString();
-        // TODO Ritorna sql.Date, bisogna trasformarlo in Utils.Date
-        Date birthday;
-        String province = rs.getArray("province").toString();
-        String profession = rs.getArray("profession").toString();
-        // TODO Trasformare in RiskFactor
-        RiskFactor risk_factor;
-
-
-
-        try {
-            return new Patient(first_name, last_name, birthday, province, profession, risk_factor);
-        } catch (NullStringException e) {
-            System.out.println("Error: " + e.getLocalizedMessage());
-            return null;
-        }
-    }
+    } */
 }

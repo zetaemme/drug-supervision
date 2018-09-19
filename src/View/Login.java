@@ -52,7 +52,7 @@ public class Login {
 
         // Title label options
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setStyle("} {-fx-text-fill: #696969} {");
+        titleLabel.setStyle("-fx-text-fill: #696969");
 
         // Copyright label options
         copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));

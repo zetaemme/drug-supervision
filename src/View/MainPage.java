@@ -45,7 +45,7 @@ public class MainPage {
         sp1.setMinSize(300, 600);
         sp1.setMaxSize(300, 600);
 
-        patientsList = mpController.initPatientsList();
+        //patientsList = mpController.initPatientsList();
 
         TableView patientTable = new TableView();
 
@@ -74,7 +74,7 @@ public class MainPage {
 
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
-        titleLabel.setStyle("} {-fx-text-fill: #696969} {");
+        titleLabel.setStyle("-fx-text-fill: #696969");
 
         // Set objects (x, y) position
         titleLabel.setTranslateX(220);
