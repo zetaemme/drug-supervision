@@ -17,7 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainPage {
-    private ObservableList<Patient> patientsList = FXCollections.observableArrayList();
+    private ObservableList<Patient> patientsList;
 
     public MainPage(Stage primaryStage) {
         final MainPageController mpController = new MainPageController();
