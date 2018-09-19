@@ -69,12 +69,11 @@ public class MainPage {
         lastNameColumn.setMinWidth(150);
         lastNameColumn.setMaxWidth(150);
 
-        // TODO Test ancora da eseguire, c'è già in MainPageController
         patientTable.setItems(patientsList);
 
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
-        titleLabel.setStyle("-fx-text-fill: #696969");
+        titleLabel.setId("titleLabel");
 
         // Set objects (x, y) position
         titleLabel.setTranslateX(220);

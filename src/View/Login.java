@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -52,7 +53,7 @@ public class Login {
 
         // Title label options
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setStyle("-fx-text-fill: #696969");
+        titleLabel.setId("titleLabel");
 
         // Copyright label options
         copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
@@ -80,31 +81,32 @@ public class Login {
         // Add the objects to the panel
         root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel, copyrightLabel);
 
+        // Scene and CSS
+        Scene scene = new Scene(root, 400, 400);
+        scene.getStylesheets().add(this.getClass().getResource("CSS/style.css").toExternalForm());
+
         primaryStage.setTitle("Drug Supervision - Login");
-        primaryStage.setScene(new Scene(root, 400, 400));
+        primaryStage.setScene(scene);
         primaryStage.show();
 
         // You can press 'Enter' to login
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e -> {
-            /*
-
-            !Test area!
-
             if(controller.login(username.getText(), password.getText())) {
-                loginLabel.setText("Login Successful!");
-            } else {
-                loginLabel.setText("Login Failed!");
-            }
-            */
-
-            // Loads the main page if the login is right
-            if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
                 primaryStage.close();
                 MainPage mainPage = new MainPage(new Stage());
             } else {
                 loginLabel.setText("Login Failed!");
             }
+
+            // Loads the main page if the login is right
+            /*
+            if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
+                primaryStage.close();
+                MainPage mainPage = new MainPage(new Stage());
+            } else {
+                loginLabel.setText("Login Failed!");
+            } */
         });
     }
 }
