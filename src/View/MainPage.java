@@ -110,6 +110,8 @@ public class MainPage {
 
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(new Scene(root, 1000, 600));
+        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }

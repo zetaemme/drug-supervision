@@ -21,7 +21,6 @@ public class Login {
         VBox root = new VBox();
         root.isResizable();
 
-        // TODO Fixare il resize
         root.setMinHeight(400);
         root.setMinWidth(400);
 
@@ -88,6 +87,8 @@ public class Login {
 
         primaryStage.setTitle("Drug Supervision - Login");
         primaryStage.setScene(scene);
+        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         // You can press 'Enter' to login
