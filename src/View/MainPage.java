@@ -35,6 +35,11 @@ public class MainPage {
         MenuItem miDelete = new MenuItem("Delete");
         MenuItem miAbout = new MenuItem("About");
 
+        // If clicked opens a new about window
+        miAbout.setOnAction(e -> {
+            About about = new About(new Stage());
+        });
+
         // Adds the MenuItem to the respective menu
         m1.getItems().addAll(miNew, miDelete);
         m2.getItems().add(miAbout);
@@ -86,7 +91,7 @@ public class MainPage {
         patientTable.setItems(patientsList);
 
         // Set title font and style
-        titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         titleLabel.setId("titleLabel");
 
         // Set objects (x, y) position
@@ -108,8 +113,12 @@ public class MainPage {
 
         root.getChildren().addAll(menuBar, spRoot);
 
+        // Sets scene stylesheet
+        Scene scene = new Scene(root, 1000, 600);
+        scene.getStylesheets().add("CSS/style.css");
+
         primaryStage.setTitle("Drug Supervision");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        primaryStage.setScene(scene);
         // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
         primaryStage.setResizable(false);
         primaryStage.show();
