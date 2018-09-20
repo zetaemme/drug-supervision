@@ -2,15 +2,10 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -22,10 +17,34 @@ public class MainPage {
     public MainPage(Stage primaryStage) {
         final MainPageController mpController = new MainPageController();
 
-        SplitPane root = new SplitPane();
+        VBox root = new VBox();
 
-        // Sets root as resizable
-        root.isResizable();
+        // Root size settings
+        root.setMinSize(1000, 600);
+        root.setMaxSize(1000, 600);
+
+        MenuBar menuBar = new MenuBar();
+
+        // MenuBar size settings
+        menuBar.setMaxSize(1000, 10);
+
+        Menu m1 = new Menu("File");
+        Menu m2 = new Menu("Help");
+
+        MenuItem miNew = new MenuItem("New");
+        MenuItem miDelete = new MenuItem("Delete");
+        MenuItem miAbout = new MenuItem("About");
+
+        // Adds the MenuItem to the respective menu
+        m1.getItems().addAll(miNew, miDelete);
+        m2.getItems().add(miAbout);
+
+        menuBar.getMenus().addAll(m1, m2);
+
+        SplitPane spRoot = new SplitPane();
+
+        // Sets SplitPane as resizable
+        spRoot.isResizable();
 
         final VBox sp1 = new VBox();
         final VBox sp2 = new VBox();
@@ -85,7 +104,9 @@ public class MainPage {
         sp2.getChildren().addAll(titleLabel, nameLabel, patientName);
 
         // Add panes to SplitPane
-        root.getItems().addAll(sp1, sp2);
+        spRoot.getItems().addAll(sp1, sp2);
+
+        root.getChildren().addAll(menuBar, spRoot);
 
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(new Scene(root, 1000, 600));
