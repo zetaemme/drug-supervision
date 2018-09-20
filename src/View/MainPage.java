@@ -2,30 +2,54 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainPage {
-    private ObservableList<Patient> patientsList = FXCollections.observableArrayList();
+    private ObservableList<Patient> patientsList;
 
     public MainPage(Stage primaryStage) {
         final MainPageController mpController = new MainPageController();
 
-        SplitPane root = new SplitPane();
+        VBox root = new VBox();
 
-        // Sets root as resizable
-        root.isResizable();
+        // Root size settings
+        root.setMinSize(1000, 600);
+        root.setMaxSize(1000, 600);
+
+        MenuBar menuBar = new MenuBar();
+
+        // MenuBar size settings
+        menuBar.setMaxSize(1000, 10);
+
+        Menu m1 = new Menu("File");
+        Menu m2 = new Menu("Help");
+
+        MenuItem miNew = new MenuItem("New");
+        MenuItem miDelete = new MenuItem("Delete");
+        MenuItem miAbout = new MenuItem("About");
+
+        // If clicked opens a new about window
+        miAbout.setOnAction(e -> {
+            About about = new About(new Stage());
+        });
+
+        // Adds the MenuItem to the respective menu
+        m1.getItems().addAll(miNew, miDelete);
+        m2.getItems().add(miAbout);
+
+        menuBar.getMenus().addAll(m1, m2);
+
+        SplitPane spRoot = new SplitPane();
+
+        // Sets SplitPane as resizable
+        spRoot.isResizable();
 
         final VBox sp1 = new VBox();
         final VBox sp2 = new VBox();
@@ -45,36 +69,30 @@ public class MainPage {
         sp1.setMinSize(300, 600);
         sp1.setMaxSize(300, 600);
 
-        //patientsList = mpController.initPatientsList();
+        patientsList = mpController.initPatientsList();
 
         TableView patientTable = new TableView();
 
-        TableColumn<Patient, String> firstNameColumn = new TableColumn<>("First Name");
-        TableColumn<Patient, String> lastNameColumn = new TableColumn<>("Last Name");
+        TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFirstNameProperty());
-        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().getLastNameProperty());
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
         // Add teh columns to the table
-        patientTable.getColumns().setAll(firstNameColumn, lastNameColumn);
+        patientTable.getColumns().setAll(idColumn);
 
         // Set table min/max size
         patientTable.setMinSize(300, 600);
         patientTable.setMaxSize(300, 600);
 
-        firstNameColumn.setMinWidth(150);
-        firstNameColumn.setMaxWidth(150);
+        idColumn.setMinWidth(300);
+        idColumn.setMaxWidth(300);
 
-        lastNameColumn.setMinWidth(150);
-        lastNameColumn.setMaxWidth(150);
-
-        // TODO Test ancora da eseguire, c'è già in MainPageController
         patientTable.setItems(patientsList);
 
         // Set title font and style
-        titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 40));
-        titleLabel.setStyle("-fx-text-fill: #696969");
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+        titleLabel.setId("titleLabel");
 
         // Set objects (x, y) position
         titleLabel.setTranslateX(220);
@@ -91,10 +109,18 @@ public class MainPage {
         sp2.getChildren().addAll(titleLabel, nameLabel, patientName);
 
         // Add panes to SplitPane
-        root.getItems().addAll(sp1, sp2);
+        spRoot.getItems().addAll(sp1, sp2);
+
+        root.getChildren().addAll(menuBar, spRoot);
+
+        // Sets scene stylesheet
+        Scene scene = new Scene(root, 1000, 600);
+        scene.getStylesheets().add("CSS/style.css");
 
         primaryStage.setTitle("Drug Supervision");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        primaryStage.setScene(scene);
+        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }

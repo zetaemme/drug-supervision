@@ -1,10 +1,10 @@
 package Controller;
 
+import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.Patient;
 import Model.RiskFactor;
 import Model.Utils.DBConnection;
-import Model.Utils.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,7 +14,7 @@ public class MainPageController {
     private DBConnection mpConnection;
 
     // Initialize the patients list
-   /* public ObservableList<Patient> initPatientsList() {
+    public ObservableList<Patient> initPatientsList() {
         final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
         mpConnection = new DBConnection();
@@ -34,24 +34,26 @@ public class MainPageController {
             mpConnection.closeConnection();
         }
 
-        int count = 0;
-
         try {
             while(mpConnection.rs.next()) {
-                patients.add(new Patient(mpConnection.rs.getString("first_name"),
-                                            mpConnection.rs.getString("last_name"),
-                                            ,
+                patients.add(new Patient(mpConnection.rs.getString("idPatient"),
+                                            mpConnection.rs.getDate("birthday"),
                                             mpConnection.rs.getString("province"),
                                             mpConnection.rs.getString("profession"),
-                                            ));
-                count++;
+                                            new RiskFactor("", mpConnection.rs.getInt("risk_factor"))));
             }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
+            mpConnection.closeConnection();
+        } catch(NullStringException nse) {
+            System.out.println("Error: " + nse.getLocalizedMessage());
+            mpConnection.closeConnection();
+        } catch(IllegalRiskValueException irve) {
+            System.out.println("Error: " + irve.getLocalizedMessage());
             mpConnection.closeConnection();
         }
 
         mpConnection.closeConnection();
         return patients;
-    } */
+    }
 }

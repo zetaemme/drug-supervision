@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Login {
     public Login(Stage primaryStage) {
         LoginController controller = new LoginController();
@@ -19,7 +21,6 @@ public class Login {
         VBox root = new VBox();
         root.isResizable();
 
-        // TODO Fixare il resize
         root.setMinHeight(400);
         root.setMinWidth(400);
 
@@ -52,7 +53,7 @@ public class Login {
 
         // Title label options
         titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setStyle("-fx-text-fill: #696969");
+        titleLabel.setId("titleLabel");
 
         // Copyright label options
         copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
@@ -80,25 +81,29 @@ public class Login {
         // Add the objects to the panel
         root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel, copyrightLabel);
 
+        // Scene and CSS
+        Scene scene = new Scene(root, 400, 400);
+        scene.getStylesheets().add("CSS/style.css");
+
         primaryStage.setTitle("Drug Supervision - Login");
-        primaryStage.setScene(new Scene(root, 400, 400));
+        primaryStage.setScene(scene);
+        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
+        primaryStage.setResizable(false);
         primaryStage.show();
 
         // You can press 'Enter' to login
         loginButton.setDefaultButton(true);
         loginButton.setOnAction(e -> {
             /*
-
-            !Test area!
-
             if(controller.login(username.getText(), password.getText())) {
-                loginLabel.setText("Login Successful!");
+                primaryStage.close();
+                MainPage mainPage = new MainPage(new Stage());
             } else {
                 loginLabel.setText("Login Failed!");
-            }
-            */
+            } */
 
             // Loads the main page if the login is right
+
             if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
                 primaryStage.close();
                 MainPage mainPage = new MainPage(new Stage());

@@ -1,27 +1,26 @@
 package Model;
 
 import Model.Exceptions.NullStringException;
-import Model.Utils.Date;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Date;
+
 public class Patient {
-    private final StringProperty first_name;
-    private final StringProperty last_name;
+    private final StringProperty idPatient;
     private final ObjectProperty<Date> birthday;
     private final StringProperty province;
     private final StringProperty profession;
     private final ObjectProperty<RiskFactor> risk_factor;
 
-    public Patient(String first_name, String last_name, Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
-        if(province.length() == 0 || profession.length() == 0 || first_name.length() == 0 || last_name.length() == 0) {
+    public Patient(String idPatient, Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
+        if(province.length() == 0 || profession.length() == 0 || idPatient.length() == 0) {
             throw new NullStringException();
         }
 
-        this.first_name = new SimpleStringProperty(first_name);
-        this.last_name = new SimpleStringProperty(last_name);
+        this.idPatient = new SimpleStringProperty(idPatient);
         this.birthday = new SimpleObjectProperty<>(birthday);
         this.province = new SimpleStringProperty(province);
         this.profession = new SimpleStringProperty(profession);
@@ -33,28 +32,16 @@ public class Patient {
         return birthday.get().hashCode() ^ province.get().hashCode() ^ profession.get().hashCode();
     }
 
-    public String getFirstName() {
-        return first_name.get();
+    public String getId() {
+        return idPatient.get();
     }
 
-    public void setFirstName(String first_name) { 
-        this.first_name.set(first_name); 
+    public void setId(String first_name) {
+        this.idPatient.set(first_name);
     }
 
-    public StringProperty getFirstNameProperty() {
-        return first_name;
-    }
-
-    public String getLastName() { 
-        return last_name.get(); 
-    }
-
-    public void setLastName(String last_name) { 
-        this.last_name.set(last_name); 
-    }
-
-    public StringProperty getLastNameProperty() {
-        return last_name;
+    public StringProperty getIdProperty() {
+        return idPatient;
     }
 
     public Date getBirthday() { 
