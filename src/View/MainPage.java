@@ -35,6 +35,11 @@ public class MainPage {
         MenuItem miDelete = new MenuItem("Delete");
         MenuItem miAbout = new MenuItem("About");
 
+        // // If clicked opens a new window that allows to add a new patient
+        miNew.setOnAction(e -> {
+            NewPatient newPatient = new NewPatient(new Stage());
+        });
+
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
@@ -60,10 +65,22 @@ public class MainPage {
 
         sp2.setPadding(new Insets(10));
 
+        // TODO Completare impaginazione, sembra un po' vuota
         final Label titleLabel = new Label("Patient Info");
-        final Label nameLabel = new Label("Name:");
+        final Label idLabel = new Label("Patient ID:");
+        final Label birthdayLabel = new Label("Birthday:");
+        final Label provinceLabel = new Label("Province:");
+        final Label professionLabel = new Label("Profession:");
+        final Label riskFactorLabel = new Label("Risk Factor:");
+        final Label medicLabel = new Label("Medic:");
 
-        final Label patientName = new Label("");
+        // This labels will show the patient personal data
+        final Label patientID = new Label("");
+        final Label patientBDay = new Label("");
+        final Label patientProvince = new Label("");
+        final Label patientProfession = new Label("");
+        final Label patientRiskFactor = new Label("");
+        final Label patientMedic = new Label("");
 
         // Settings for the SplitPane
         sp1.setMinSize(300, 600);
@@ -78,7 +95,7 @@ public class MainPage {
         // Initialize the table columns values
         idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
-        // Add teh columns to the table
+        // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
 
         // Set table min/max size
@@ -88,6 +105,7 @@ public class MainPage {
         idColumn.setMinWidth(300);
         idColumn.setMaxWidth(300);
 
+        // TODO Indagare, sembra non funzionare
         patientTable.setItems(patientsList);
 
         // Set title font and style
@@ -98,19 +116,52 @@ public class MainPage {
         titleLabel.setTranslateX(220);
         titleLabel.setTranslateY(5);
 
-        nameLabel.setTranslateX(50);
-        nameLabel.setTranslateY(70);
+        idLabel.setTranslateX(50);
+        idLabel.setTranslateY(70);
 
-        patientName.setTranslateX(100);
-        patientName.setTranslateY(53.3);
+        patientID.setTranslateX(120);
+        patientID.setTranslateY(53.3);
+
+        birthdayLabel.setTranslateX(50);
+        birthdayLabel.setTranslateY(90);
+
+        patientBDay.setTranslateX(113);
+        patientBDay.setTranslateY(73.3);
+
+        provinceLabel.setTranslateX(50);
+        provinceLabel.setTranslateY(110);
+
+        patientProvince.setTranslateX(115);
+        patientProvince.setTranslateY(93.4);
+
+        professionLabel.setTranslateX(50);
+        professionLabel.setTranslateY(130);
+
+        patientProfession.setTranslateX(125);
+        patientProfession.setTranslateY(113.4);
+
+        riskFactorLabel.setTranslateX(50);
+        riskFactorLabel.setTranslateY(150);
+
+        patientRiskFactor.setTranslateX(130);
+        patientRiskFactor.setTranslateY(133.4);
+
+        medicLabel.setTranslateX(50);
+        medicLabel.setTranslateY(170);
+
+        patientMedic.setTranslateX(96);
+        patientMedic.setTranslateY(153.4);
 
         // Add objects to panes
         sp1.getChildren().add(patientTable);
-        sp2.getChildren().addAll(titleLabel, nameLabel, patientName);
+        sp2.getChildren().addAll(titleLabel, idLabel, patientID, birthdayLabel, patientBDay, provinceLabel,
+                                    patientProvince, professionLabel, patientProfession, riskFactorLabel,
+                                    patientRiskFactor, medicLabel, patientMedic);
 
         // Add panes to SplitPane
         spRoot.getItems().addAll(sp1, sp2);
 
+        // Add all to root
         root.getChildren().addAll(menuBar, spRoot);
 
         // Sets scene stylesheet
