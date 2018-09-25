@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class MainPage {
     private ObservableList<Patient> patientsList;
 
-    public MainPage(Stage primaryStage) {
+    public MainPage(Stage primaryStage, String username) {
         final MainPageController mpController = new MainPageController();
 
         VBox root = new VBox();
@@ -44,7 +44,12 @@ public class MainPage {
 
         // TODO Implementare miDelete
 
-        // TODO Implementare logout
+        miLogout.setOnAction(e -> {
+            // TODO (Forse) Per fare il logout bisogna andare sulla MainPage
+            mpController.logout(username);
+            primaryStage.close();
+            Login login = new Login(new Stage());
+        });
 
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {

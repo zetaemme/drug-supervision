@@ -106,7 +106,7 @@ public class Login {
 
             if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
                 primaryStage.close();
-                MainPage mainPage = new MainPage(new Stage());
+                MainPage mainPage = new MainPage(new Stage(), username.getText());
             } else {
                 loginLabel.setText("Login Failed!");
             }
