@@ -33,6 +33,8 @@ public class MainPage {
 
         MenuItem miNew = new MenuItem("New");
         MenuItem miDelete = new MenuItem("Delete");
+        SeparatorMenuItem separator = new SeparatorMenuItem();
+        MenuItem miLogout = new MenuItem("Logout");
         MenuItem miAbout = new MenuItem("About");
 
         // // If clicked opens a new window that allows to add a new patient
@@ -40,13 +42,17 @@ public class MainPage {
             NewPatient newPatient = new NewPatient(new Stage());
         });
 
+        // TODO Implementare miDelete
+
+        // TODO Implementare logout
+
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
         });
 
         // Adds the MenuItem to the respective menu
-        m1.getItems().addAll(miNew, miDelete);
+        m1.getItems().addAll(miNew, miDelete, separator, miLogout);
         m2.getItems().add(miAbout);
 
         menuBar.getMenus().addAll(m1, m2);

@@ -10,7 +10,6 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //Login login = new Login(primaryStage);
-        NewPatient np = new NewPatient(primaryStage);
+        Login login = new Login(primaryStage);
     }
 }
