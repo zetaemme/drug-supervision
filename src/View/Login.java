@@ -2,11 +2,13 @@ package View;
 
 import Controller.LoginController;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -19,6 +21,8 @@ public class Login {
         LoginController controller = new LoginController();
 
         VBox root = new VBox();
+        BorderPane borderPane = new BorderPane(root);
+
         root.isResizable();
 
         root.setMinHeight(400);
@@ -75,20 +79,21 @@ public class Login {
         loginLabel.setTranslateX(145);
         loginLabel.setTranslateY(100);
 
-        copyrightLabel.setTranslateX(75);
-        copyrightLabel.setTranslateY(180);
+        copyrightLabel.setTranslateY(-2);
 
         // Add the objects to the panel
-        root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel, copyrightLabel);
+        root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel);
+
+        borderPane.setBottom(copyrightLabel);
+
+        borderPane.setAlignment(copyrightLabel, Pos.BASELINE_CENTER);
 
         // Scene and CSS
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(borderPane, 400, 400);
         scene.getStylesheets().add("CSS/style.css");
 
         primaryStage.setTitle("Drug Supervision - Login");
         primaryStage.setScene(scene);
-        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
-        primaryStage.setResizable(false);
         primaryStage.show();
 
         // You can press 'Enter' to login
