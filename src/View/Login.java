@@ -1,15 +1,14 @@
 package View;
 
 import Controller.LoginController;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -20,20 +19,12 @@ public class Login {
     public Login(Stage primaryStage) {
         LoginController controller = new LoginController();
 
-        VBox root = new VBox();
-        BorderPane borderPane = new BorderPane(root);
+        Group root = new Group();
+        BorderPane borderPane = new BorderPane();
 
         root.isResizable();
 
-        root.setMinHeight(400);
-        root.setMinWidth(400);
-
-        root.setMaxHeight(400);
-        root.setMaxWidth(400);
-
         // Set the spacing between objects
-        root.setSpacing(10);
-        root.setPadding(new Insets(10));
 
         final TextField username = new TextField();
         final PasswordField password = new PasswordField();
@@ -64,29 +55,29 @@ public class Login {
         copyrightLabel.setOpacity(10);
 
         // Set the (x, y) position for the objects
-        titleLabel.setTranslateX(75);
-        titleLabel.setTranslateY(25);
+        titleLabel.setTranslateY(-310);
 
-        username.setTranslateX(75);
-        username.setTranslateY(80);
+        username.setTranslateY(-200);
 
-        password.setTranslateX(75);
-        password.setTranslateY(105);
+        password.setTranslateY(-135);
 
-        loginButton.setTranslateX(280);
-        loginButton.setTranslateY(130);
+        loginButton.setTranslateX(168);
+        loginButton.setTranslateY(-80);
 
-        loginLabel.setTranslateX(145);
-        loginLabel.setTranslateY(100);
+        // Riattivare per check login()
+        //loginLabel.setTranslateY(100);
 
-        copyrightLabel.setTranslateY(-2);
+        copyrightLabel.setTranslateY(-3);
 
         // Add the objects to the panel
         root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel);
 
+        // Sets the positions and the alignments for the BorderPane
         borderPane.setBottom(copyrightLabel);
+        borderPane.setCenter(root);
 
         borderPane.setAlignment(copyrightLabel, Pos.BASELINE_CENTER);
+        borderPane.setAlignment(root, Pos.CENTER);
 
         // Scene and CSS
         Scene scene = new Scene(borderPane, 400, 400);
