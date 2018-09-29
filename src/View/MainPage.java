@@ -12,9 +12,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainPage {
+    // All patients list
     private ObservableList<Patient> patientsList;
 
     public MainPage(Stage primaryStage, String username) {
+        // Connection with the controller
         final MainPageController mpController = new MainPageController();
 
         VBox root = new VBox();
@@ -26,35 +28,18 @@ public class MainPage {
         MenuBar menuBar = new MenuBar();
 
         // MenuBar size settings
-        menuBar.setMaxSize(1000, 10);
+        menuBar.setMaxHeight(10);
 
+        // The two menus
         Menu m1 = new Menu("File");
         Menu m2 = new Menu("Help");
 
+        // All the items in the menu
         MenuItem miNew = new MenuItem("New");
         MenuItem miDelete = new MenuItem("Delete");
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem miLogout = new MenuItem("Logout");
         MenuItem miAbout = new MenuItem("About");
-
-        // // If clicked opens a new window that allows to add a new patient
-        miNew.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage());
-        });
-
-        // TODO Implementare miDelete
-
-        miLogout.setOnAction(e -> {
-            // TODO (Forse) Per fare il logout bisogna andare sulla MainPage
-            mpController.logout(username);
-            primaryStage.close();
-            Login login = new Login(new Stage());
-        });
-
-        // If clicked opens a new about window
-        miAbout.setOnAction(e -> {
-            About about = new About(new Stage());
-        });
 
         // Adds the MenuItem to the respective menu
         m1.getItems().addAll(miNew, miDelete, separator, miLogout);
@@ -62,19 +47,19 @@ public class MainPage {
 
         menuBar.getMenus().addAll(m1, m2);
 
+        // The main view of the window
         SplitPane spRoot = new SplitPane();
 
         // Sets SplitPane as resizable
         spRoot.isResizable();
 
-        final VBox sp1 = new VBox();
-        final VBox sp2 = new VBox();
+        // TODO Gestire l'allineamento (Forse va usata BorderPane invece che VBox)
+        final VBox patientInfoPane = new VBox();
 
-        // Set both the panes as resizable
-        sp1.isResizable();
-        sp2.isResizable();
+        // Set resizable
+        patientInfoPane.isResizable();
 
-        sp2.setPadding(new Insets(10));
+        patientInfoPane.setPadding(new Insets(10));
 
         // TODO Completare impaginazione, sembra un po' vuota
         final Label titleLabel = new Label("Patient Info");
@@ -93,14 +78,16 @@ public class MainPage {
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
 
-        // Settings for the SplitPane
-        sp1.setMinSize(300, 600);
-        sp1.setMaxSize(300, 600);
-
+        // Function that initializes the patient list inside the TableView
         patientsList = mpController.initPatientsList();
 
         TableView patientTable = new TableView();
 
+        // We want the table to have static width
+        patientTable.setMinWidth(300);
+        patientTable.setMaxWidth(300);
+
+        // The PatientID column
         TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
@@ -110,8 +97,8 @@ public class MainPage {
         patientTable.getColumns().setAll(idColumn);
 
         // Set table min/max size
-        patientTable.setMinSize(300, 600);
-        patientTable.setMaxSize(300, 600);
+        patientTable.setMinWidth(300);
+        patientTable.setMaxWidth(300);
 
         idColumn.setMinWidth(300);
         idColumn.setMaxWidth(300);
@@ -164,13 +151,12 @@ public class MainPage {
         patientMedic.setTranslateY(153.4);
 
         // Add objects to panes
-        sp1.getChildren().add(patientTable);
-        sp2.getChildren().addAll(titleLabel, idLabel, patientID, birthdayLabel, patientBDay, provinceLabel,
+        patientInfoPane.getChildren().addAll(titleLabel, idLabel, patientID, birthdayLabel, patientBDay, provinceLabel,
                                     patientProvince, professionLabel, patientProfession, riskFactorLabel,
                                     patientRiskFactor, medicLabel, patientMedic);
 
         // Add panes to SplitPane
-        spRoot.getItems().addAll(sp1, sp2);
+        spRoot.getItems().addAll(patientTable, patientInfoPane);
 
         // Add all to root
         root.getChildren().addAll(menuBar, spRoot);
@@ -179,10 +165,39 @@ public class MainPage {
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add("CSS/style.css");
 
+        // Resize policy options
+        root.prefWidthProperty().bind(scene.widthProperty());
+        root.prefHeightProperty().bind(scene.heightProperty());
+
+        menuBar.prefWidthProperty().bind(root.widthProperty());
+
+        spRoot.prefWidthProperty().bind(root.widthProperty());
+        spRoot.prefHeightProperty().bind(root.heightProperty());
+
+        patientTable.prefHeightProperty().bind(spRoot.heightProperty());
+
+        // Stage options
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(scene);
-        // TODO Per ora non è ridimensionabile, sarebbe meglio fixare
-        primaryStage.setResizable(false);
         primaryStage.show();
+
+        // If clicked opens a new window that allows to add a new patient
+        miNew.setOnAction(e -> {
+            NewPatient newPatient = new NewPatient(new Stage());
+        });
+
+        // TODO Implementare miDelete
+
+        miLogout.setOnAction(e -> {
+            // TODO (Forse) Per fare il logout bisogna andare sulla MainPage
+            mpController.logout(username);
+            primaryStage.close();
+            Login login = new Login(new Stage());
+        });
+
+        // If clicked opens a new about window
+        miAbout.setOnAction(e -> {
+            About about = new About(new Stage());
+        });
     }
 }

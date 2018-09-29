@@ -17,14 +17,13 @@ import java.sql.SQLException;
 
 public class Login {
     public Login(Stage primaryStage) {
+        // Connects to the controller
         LoginController controller = new LoginController();
 
         Group root = new Group();
         BorderPane borderPane = new BorderPane();
 
         root.isResizable();
-
-        // Set the spacing between objects
 
         final TextField username = new TextField();
         final PasswordField password = new PasswordField();
@@ -64,8 +63,9 @@ public class Login {
         loginButton.setTranslateX(168);
         loginButton.setTranslateY(-80);
 
-        // Riattivare per check login()
-        //loginLabel.setTranslateY(100);
+        /* Riattivare per check login()
+        * loginLabel.setTranslateY(100);
+        */
 
         copyrightLabel.setTranslateY(-3);
 
@@ -76,6 +76,7 @@ public class Login {
         borderPane.setBottom(copyrightLabel);
         borderPane.setCenter(root);
 
+        // Sets BorderPane alignments
         borderPane.setAlignment(copyrightLabel, Pos.BASELINE_CENTER);
         borderPane.setAlignment(root, Pos.CENTER);
 
@@ -83,12 +84,15 @@ public class Login {
         Scene scene = new Scene(borderPane, 400, 400);
         scene.getStylesheets().add("CSS/style.css");
 
+        // Stage options
         primaryStage.setTitle("Drug Supervision - Login");
         primaryStage.setScene(scene);
         primaryStage.show();
 
         // You can press 'Enter' to login
         loginButton.setDefaultButton(true);
+
+        // Lambda to login action
         loginButton.setOnAction(e -> {
             /*
             if(controller.login(username.getText(), password.getText())) {
