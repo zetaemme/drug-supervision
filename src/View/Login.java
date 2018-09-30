@@ -86,6 +86,7 @@ public class Login {
 
         // Stage options
         primaryStage.setTitle("Drug Supervision - Login");
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
 

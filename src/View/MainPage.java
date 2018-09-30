@@ -4,8 +4,10 @@ import Controller.MainPageController;
 import Model.Patient;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -53,7 +55,8 @@ public class MainPage {
         // Sets SplitPane as resizable
         spRoot.isResizable();
 
-        // TODO Gestire l'allineamento (Forse va usata BorderPane invece che VBox)
+        BorderPane infoBP = new BorderPane();
+        VBox labelsGroup = new VBox();
         final VBox patientInfoPane = new VBox();
 
         // Set resizable
@@ -77,6 +80,10 @@ public class MainPage {
         final Label patientProfession = new Label("");
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
+
+        labelsGroup.getChildren().addAll(idLabel, patientID, birthdayLabel, patientBDay, provinceLabel, patientProvince,
+                                            professionLabel, patientProfession, riskFactorLabel, patientRiskFactor,
+                                            medicLabel, patientMedic);
 
         // Function that initializes the patient list inside the TableView
         patientsList = mpController.initPatientsList();
@@ -111,49 +118,51 @@ public class MainPage {
         titleLabel.setId("titleLabel");
 
         // Set objects (x, y) position
-        titleLabel.setTranslateX(220);
         titleLabel.setTranslateY(5);
 
-        idLabel.setTranslateX(50);
-        idLabel.setTranslateY(70);
+        idLabel.setTranslateX(150);
+        idLabel.setTranslateY(120);
 
-        patientID.setTranslateX(120);
-        patientID.setTranslateY(53.3);
+        patientID.setTranslateX(220);
+        patientID.setTranslateY(103);
 
-        birthdayLabel.setTranslateX(50);
-        birthdayLabel.setTranslateY(90);
+        birthdayLabel.setTranslateX(150);
+        birthdayLabel.setTranslateY(120);
 
-        patientBDay.setTranslateX(113);
-        patientBDay.setTranslateY(73.3);
+        patientBDay.setTranslateX(212);
+        patientBDay.setTranslateY(103);
 
-        provinceLabel.setTranslateX(50);
-        provinceLabel.setTranslateY(110);
+        provinceLabel.setTranslateX(150);
+        provinceLabel.setTranslateY(120);
 
-        patientProvince.setTranslateX(115);
-        patientProvince.setTranslateY(93.4);
+        patientProvince.setTranslateX(213);
+        patientProvince.setTranslateY(103);
 
-        professionLabel.setTranslateX(50);
-        professionLabel.setTranslateY(130);
+        professionLabel.setTranslateX(150);
+        professionLabel.setTranslateY(120);
 
-        patientProfession.setTranslateX(125);
-        patientProfession.setTranslateY(113.4);
+        patientProfession.setTranslateX(225);
+        patientProfession.setTranslateY(103);
 
-        riskFactorLabel.setTranslateX(50);
-        riskFactorLabel.setTranslateY(150);
+        riskFactorLabel.setTranslateX(150);
+        riskFactorLabel.setTranslateY(120);
 
-        patientRiskFactor.setTranslateX(130);
-        patientRiskFactor.setTranslateY(133.4);
+        patientRiskFactor.setTranslateX(229);
+        patientRiskFactor.setTranslateY(103);
 
-        medicLabel.setTranslateX(50);
-        medicLabel.setTranslateY(170);
+        medicLabel.setTranslateX(150);
+        medicLabel.setTranslateY(120);
 
-        patientMedic.setTranslateX(96);
-        patientMedic.setTranslateY(153.4);
+        patientMedic.setTranslateX(197);
+        patientMedic.setTranslateY(103);
 
         // Add objects to panes
-        patientInfoPane.getChildren().addAll(titleLabel, idLabel, patientID, birthdayLabel, patientBDay, provinceLabel,
-                                    patientProvince, professionLabel, patientProfession, riskFactorLabel,
-                                    patientRiskFactor, medicLabel, patientMedic);
+        infoBP.setTop(titleLabel);
+        infoBP.setCenter(labelsGroup);
+
+        infoBP.setAlignment(titleLabel, Pos.TOP_CENTER);
+
+        patientInfoPane.getChildren().add(infoBP);
 
         // Add panes to SplitPane
         spRoot.getItems().addAll(patientTable, patientInfoPane);
@@ -176,6 +185,12 @@ public class MainPage {
 
         patientTable.prefHeightProperty().bind(spRoot.heightProperty());
 
+        patientInfoPane.prefWidthProperty().bind(spRoot.widthProperty());
+        patientInfoPane.prefHeightProperty().bind(spRoot.heightProperty());
+
+        infoBP.prefWidthProperty().bind(patientInfoPane.widthProperty());
+        infoBP.prefHeightProperty().bind(patientInfoPane.heightProperty());
+
         // Stage options
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(scene);
@@ -189,7 +204,6 @@ public class MainPage {
         // TODO Implementare miDelete
 
         miLogout.setOnAction(e -> {
-            // TODO (Forse) Per fare il logout bisogna andare sulla MainPage
             mpController.logout(username);
             primaryStage.close();
             Login login = new Login(new Stage());
