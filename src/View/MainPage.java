@@ -85,10 +85,11 @@ public class MainPage {
                                             professionLabel, patientProfession, riskFactorLabel, patientRiskFactor,
                                             medicLabel, patientMedic);
 
-        // Function that initializes the patient list inside the TableView
-        patientsList = mpController.initPatientsList();
 
-        TableView patientTable = new TableView();
+        TableView<Patient> patientTable = new TableView(patientsList);
+
+        // Initialize the patientList
+        patientsList = mpController.initPatientsList();
 
         // We want the table to have static width
         patientTable.setMinWidth(300);
@@ -98,7 +99,7 @@ public class MainPage {
         TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
+        idColumn.setCellValueFactory(param -> param.getValue().getIdProperty());
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
@@ -109,9 +110,6 @@ public class MainPage {
 
         idColumn.setMinWidth(300);
         idColumn.setMaxWidth(300);
-
-        // TODO Indagare, sembra non funzionare
-        patientTable.setItems(patientsList);
 
         // Set title font and style
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40));
