@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
 import java.util.Date;
 
 public class Patient {
+    // TODO Bisognerebbe aggiungere anche il medico
     private final StringProperty idPatient;
     private final ObjectProperty<Date> birthday;
     private final StringProperty province;
