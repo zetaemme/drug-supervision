@@ -95,22 +95,23 @@ public class Login {
 
         // Lambda to login action
         loginButton.setOnAction(e -> {
-            /*
             if(controller.login(username.getText(), password.getText())) {
                 primaryStage.close();
-                MainPage mainPage = new MainPage(new Stage());
+                MainPage mainPage = new MainPage(new Stage(), username.getText());
             } else {
                 loginLabel.setText("Login Failed!");
-            } */
+            }
 
             // Loads the main page if the login is right
 
+            /*
             if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
                 primaryStage.close();
                 MainPage mainPage = new MainPage(new Stage(), username.getText());
             } else {
                 loginLabel.setText("Login Failed!");
             }
+            */
         });
     }
 }
