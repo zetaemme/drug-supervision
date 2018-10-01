@@ -1,6 +1,6 @@
 package Model;
 
-import Model.Utils.Date;
+import java.util.Date;
 
 public class Report {
     private final Patient patient;

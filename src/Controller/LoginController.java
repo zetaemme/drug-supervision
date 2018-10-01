@@ -11,15 +11,25 @@ public class LoginController {
         loginConnection = new DBConnection();
         loginConnection.openConnection();
 
+        int count = 0;
+
+
         try {
             loginConnection.statement = loginConnection.connection.createStatement();
+            loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
+
+            while (loginConnection.rs.next()) {
+                count++;
+            }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
-            return false;
+            //return false;
         }
 
-        try {
+
+
+        /* try {
             loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
@@ -37,7 +47,7 @@ public class LoginController {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
             return false;
-        }
+        } */
         loginConnection.closeConnection();
 
         if (count > 0) {
@@ -53,21 +63,20 @@ public class LoginController {
     private void logged(String username, DBConnection loginConnection) {
         loginConnection.openConnection();
 
-        String sql = "UPDATE Users SET logged = 1 WHERE username = " + username;
-
         try {
             loginConnection.statement = loginConnection.connection.createStatement();
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            loginConnection.closeConnection();
-        }
-
-        try {
             loginConnection.statement.executeUpdate("UPDATE Users SET logged = 1 WHERE username = '" + username + "';");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
         }
+
+        /* try {
+            loginConnection.statement.executeUpdate("UPDATE Users SET logged = 1 WHERE username = '" + username + "';");
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+            loginConnection.closeConnection();
+        } */
 
         loginConnection.closeConnection();
     }

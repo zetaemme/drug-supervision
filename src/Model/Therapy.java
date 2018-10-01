@@ -3,7 +3,8 @@ package Model;
 import Model.Exceptions.NullDailyFrequencyException;
 import Model.Exceptions.NullDoseException;
 import Model.Exceptions.NullStringException;
-import Model.Utils.Date;
+
+import java.util.Date;
 
 public class Therapy {
     private final Patient patient;

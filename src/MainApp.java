@@ -1,4 +1,6 @@
 import View.Login;
+import View.MainPage;
+import View.NewPatient;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

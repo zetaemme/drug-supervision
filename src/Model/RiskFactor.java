@@ -7,7 +7,7 @@ public class RiskFactor {
     private final String description;
     private final int risk_level;
 
-    private RiskFactor(String description, int risk_level) throws NullStringException, IllegalRiskValueException {
+    public RiskFactor(String description, int risk_level) throws NullStringException, IllegalRiskValueException {
         if(description.length() == 0) {
             throw new NullStringException();
         } else if(risk_level < 1 || risk_level > 4) {
