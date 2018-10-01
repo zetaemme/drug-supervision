@@ -211,5 +211,10 @@ public class MainPage {
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
         });
+
+        primaryStage.setOnCloseRequest(e -> {
+            mpController.logout(username);
+            primaryStage.close();
+        });
     }
 }
