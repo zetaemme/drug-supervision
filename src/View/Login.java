@@ -1,7 +1,10 @@
 package View;
 
 import Controller.LoginController;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -16,102 +22,65 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 
 public class Login {
-    public Login(Stage primaryStage) {
-        // Connects to the controller
-        LoginController controller = new LoginController();
+    LoginController controller = new LoginController();
 
-        Group root = new Group();
-        BorderPane borderPane = new BorderPane();
+    public Login(Stage primaryStage){
+        GridPane root = new GridPane();
 
-        root.isResizable();
+        root.setPadding(new Insets(30, 30, 10, 30));
+
+        RowConstraints tc = new RowConstraints();
+        tc.setPercentHeight(20.0);
+        tc.setValignment(VPos.CENTER);
+        root.getRowConstraints().add(tc);
+
+        RowConstraints uc = new RowConstraints();
+        uc.setPercentHeight(20.0);
+        uc.setValignment(VPos.CENTER);
+        root.getRowConstraints().add(uc);
+
+        RowConstraints pc = new RowConstraints();
+        pc.setPercentHeight(20.0);
+        pc.setValignment(VPos.CENTER);
+        root.getRowConstraints().add(pc);
+
+        RowConstraints lc = new RowConstraints();
+        lc.setPercentHeight(20.0);
+        lc.setValignment(VPos.CENTER);
+        root.getRowConstraints().add(lc);
+
+        RowConstraints about = new RowConstraints();
+        about.setPercentHeight(20.0);
+        about.setValignment(VPos.BOTTOM);
+        root.getRowConstraints().add(about);
+
+
+
+        ColumnConstraints cc = new ColumnConstraints();
+        cc.setPercentWidth(100);
+        cc.setHalignment(HPos.CENTER);
+        root.getColumnConstraints().add(cc);
+
+        final Label title = new Label("Drug Supervision");
+        title.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
+        root.add(title, 0, 0);
 
         final TextField username = new TextField();
+        root.add(username, 0 , 1);
+
         final PasswordField password = new PasswordField();
+        root.add(password, 0, 2);
+
         final Button loginButton = new Button("Login");
-        final Label loginLabel = new Label("");
-        final Label titleLabel = new Label("Drug Supervision");
+        root.add(loginButton, 0 ,3);
+
         final Label copyrightLabel = new Label("© Andrea Soglieri and Mattia Zorzan | A.A. 2018/2019");
+        copyrightLabel.setFont(Font.font(12));
+        root.add(copyrightLabel, 0 , 4);
 
-        // Set the promptText for the TextField/PasswordField
-        username.setPromptText("Username");
-        password.setPromptText("Password");
-
-        // Set the sizes for the objects
-        username.setMinSize(220, 30);
-        username.setMaxSize(230, 30);
-
-        password.setMinSize(220, 30);
-        password.setMaxSize(230, 30);
-
-        loginButton.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-
-        // Title label options
-        titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setId("titleLabel");
-
-        // Copyright label options
-        copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
-        copyrightLabel.setOpacity(10);
-
-        // Set the (x, y) position for the objects
-        titleLabel.setTranslateY(-310);
-
-        username.setTranslateY(-200);
-
-        password.setTranslateY(-135);
-
-        loginButton.setTranslateX(168);
-        loginButton.setTranslateY(-80);
-
-        /* Riattivare per check login()
-        * loginLabel.setTranslateY(100);
-        */
-
-        copyrightLabel.setTranslateY(-3);
-
-        // Add the objects to the panel
-        root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel);
-
-        // Sets the positions and the alignments for the BorderPane
-        borderPane.setBottom(copyrightLabel);
-        borderPane.setCenter(root);
-
-        // Sets BorderPane alignments
-        borderPane.setAlignment(copyrightLabel, Pos.BASELINE_CENTER);
-        borderPane.setAlignment(root, Pos.CENTER);
-
-        // Scene and CSS
-        Scene scene = new Scene(borderPane, 400, 400);
-        scene.getStylesheets().add("CSS/style.css");
-
-        // Stage options
         primaryStage.setTitle("Drug Supervision - Login");
+        primaryStage.setScene(new Scene(root, 400,400));
         primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
         primaryStage.show();
-
-        // You can press 'Enter' to login
-        loginButton.setDefaultButton(true);
-
-        // Lambda to login action
-        loginButton.setOnAction(e -> {
-            if(controller.login(username.getText(), password.getText())) {
-                primaryStage.close();
-                MainPage mainPage = new MainPage(new Stage(), username.getText());
-            } else {
-                loginLabel.setText("Login Failed!");
-            }
-
-            // Loads the main page if the login is right
-
-            /*
-            if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
-                primaryStage.close();
-                MainPage mainPage = new MainPage(new Stage(), username.getText());
-            } else {
-                loginLabel.setText("Login Failed!");
-            }
-            */
-        });
     }
 }
