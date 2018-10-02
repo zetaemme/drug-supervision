@@ -80,23 +80,4 @@ public class LoginController {
 
         loginConnection.closeConnection();
     }
-
-    // Logout of the selected user
-    private void logout(String username, DBConnection loginConnection) {
-        loginConnection.openConnection();
-
-        try {
-            loginConnection.statement = loginConnection.connection.createStatement();
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-        }
-
-        try {
-            loginConnection.statement.executeUpdate("UPDATE Users SET logged = 0 WHERE username = '" + username + "';");
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-        }
-
-        loginConnection.closeConnection();
-    }
 }

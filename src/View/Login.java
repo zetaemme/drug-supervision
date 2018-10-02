@@ -3,12 +3,9 @@ package View;
 import Controller.LoginController;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -16,64 +13,62 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-import java.util.Optional;
-
 public class Login {
-    LoginController controller = new LoginController();
+    LoginController loginController = new LoginController();
 
     public Login(Stage primaryStage){
         GridPane root = new GridPane();
 
         root.setPadding(new Insets(30, 30, 10, 30));
 
-        RowConstraints tc = new RowConstraints();
-        tc.setPercentHeight(20.0);
-        tc.setValignment(VPos.CENTER);
-        root.getRowConstraints().add(tc);
+        // Rows of the GridPane
+        RowConstraints titleRow = new RowConstraints();
+        titleRow.setPercentHeight(20.0);
+        titleRow.setValignment(VPos.CENTER);
 
-        RowConstraints uc = new RowConstraints();
-        uc.setPercentHeight(20.0);
-        uc.setValignment(VPos.CENTER);
-        root.getRowConstraints().add(uc);
+        RowConstraints usernameRow = new RowConstraints();
+        usernameRow.setPercentHeight(20.0);
+        usernameRow.setValignment(VPos.CENTER);
 
-        RowConstraints pc = new RowConstraints();
-        pc.setPercentHeight(20.0);
-        pc.setValignment(VPos.CENTER);
-        root.getRowConstraints().add(pc);
+        RowConstraints passwordRow = new RowConstraints();
+        passwordRow.setPercentHeight(20.0);
+        passwordRow.setValignment(VPos.CENTER);
 
-        RowConstraints lc = new RowConstraints();
-        lc.setPercentHeight(20.0);
-        lc.setValignment(VPos.CENTER);
-        root.getRowConstraints().add(lc);
+        RowConstraints buttonRow = new RowConstraints();
+        buttonRow.setPercentHeight(20.0);
+        buttonRow.setValignment(VPos.CENTER);
 
-        RowConstraints about = new RowConstraints();
-        about.setPercentHeight(20.0);
-        about.setValignment(VPos.BOTTOM);
-        root.getRowConstraints().add(about);
+        RowConstraints copyrightRow = new RowConstraints();
+        copyrightRow.setPercentHeight(20.0);
+        copyrightRow.setValignment(VPos.BOTTOM);
 
+        // Columns of the GridPane
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(100);
+        column.setHalignment(HPos.CENTER);
 
+        // Add all rows/columns to the root
+        root.getColumnConstraints().add(column);
+        root.getRowConstraints().addAll(titleRow, usernameRow, passwordRow, buttonRow, copyrightRow);
 
-        ColumnConstraints cc = new ColumnConstraints();
-        cc.setPercentWidth(100);
-        cc.setHalignment(HPos.CENTER);
-        root.getColumnConstraints().add(cc);
-
+        // Nodes of the view
         final Label title = new Label("Drug Supervision");
-        title.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        root.add(title, 0, 0);
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        title.setId("titleLabel");
 
         final TextField username = new TextField();
-        root.add(username, 0 , 1);
-
         final PasswordField password = new PasswordField();
-        root.add(password, 0, 2);
-
         final Button loginButton = new Button("Login");
-        root.add(loginButton, 0 ,3);
-
         final Label copyrightLabel = new Label("© Andrea Soglieri and Mattia Zorzan | A.A. 2018/2019");
+
+        // Sets the font of the title
         copyrightLabel.setFont(Font.font(12));
+
+        // Adds al nodes to root
+        root.add(title, 0, 0);
+        root.add(username, 0 , 1);
+        root.add(password, 0, 2);
+        root.add(loginButton, 0 ,3);
         root.add(copyrightLabel, 0 , 4);
 
         primaryStage.setTitle("Drug Supervision - Login");
@@ -81,21 +76,34 @@ public class Login {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        // Logs you in if you press 'Enter'
+        loginButton.setDefaultButton(true);
+
+        // Log you in if username/password is correct
         loginButton.setOnAction(e -> {
-            if(controller.login(username.getText(), password.getText())){
+            // Logs you in in case of correct username/password
+            if (loginController.login(username.getText(), password.getText())) {
                 MainPage mainPage = new MainPage(new Stage(), username.getText());
                 primaryStage.close();
+            } else if(username.getText().equals("") || password.getText().equals("")) {
+                // Alert window in case of empty username/password
+                Alert emptyUserPassAlert = new Alert(Alert.AlertType.WARNING);
+
+                emptyUserPassAlert.setTitle("Error!");
+                emptyUserPassAlert.setHeaderText("Empty username/password");
+                emptyUserPassAlert.setContentText("Please, insert both username and password.");
+
+                emptyUserPassAlert.showAndWait();
+            } else {
+                // Alert window in case of wrong username/password
+                Alert loginFailedAlert = new Alert(Alert.AlertType.WARNING);
+
+                loginFailedAlert.setTitle("Login Failed");
+                loginFailedAlert.setHeaderText("Login Failed");
+                loginFailedAlert.setContentText("Wrong username or password.\nPlease, try again.");
+
+                loginFailedAlert.showAndWait();
             }
-            else{
-                Alert loginAlert = new Alert(Alert.AlertType.WARNING);
-
-                loginAlert.setTitle("Warning");
-                loginAlert.setHeaderText("Login Failed");
-                loginAlert.setContentText("Wrong username or password, please try again");
-
-                loginAlert.showAndWait();
-            }
-
         });
     }
 }
