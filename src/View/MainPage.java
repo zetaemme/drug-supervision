@@ -3,6 +3,8 @@ package View;
 import Controller.MainPageController;
 import Model.Patient;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -14,12 +16,13 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.Optional;
 
 public class MainPage {
     // All patients list
-    private ObservableList<Patient> patientsList;
+    private ObservableList<String> patientIdsList;
 
     public MainPage(Stage primaryStage, String username) {
         // Connection with the controller
@@ -149,23 +152,25 @@ public class MainPage {
 
         infoRoot.setAlignment(title, Pos.CENTER);
 
-        TableView<Patient> patientTable = new TableView(patientsList);
-
         // Initialize the patientList
-        patientsList = mpController.initPatientsList();
+        patientIdsList = mpController.initPatientsList();
+
+        TableView<String> patientTable = new TableView<>(patientIdsList);
 
         // We want the table to have static width
         patientTable.setMinWidth(300);
         patientTable.setMaxWidth(300);
 
         // The PatientID column
-        TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
+        TableColumn<String, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        idColumn.setCellValueFactory(param -> param.getValue().getIdProperty());
+        idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
+
+        // TODO Bisogna fare in modo che adesso torni un Patient e non solo l'id
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -200,6 +205,7 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
