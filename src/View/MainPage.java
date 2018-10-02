@@ -1,10 +1,7 @@
 package View;
 
 import Controller.MainPageController;
-import Model.Patient;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -16,13 +13,10 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.util.Optional;
 
 public class MainPage {
-    // All patients list
-    private ObservableList<String> patientIdsList;
 
     public MainPage(Stage primaryStage, String username) {
         // Connection with the controller
@@ -124,7 +118,6 @@ public class MainPage {
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
 
-        // TODO Non è bellissimo ma per ora può andare
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -150,10 +143,11 @@ public class MainPage {
 
         infoRoot.setCenter(patientInfo);
 
-        infoRoot.setAlignment(title, Pos.CENTER);
+        // Sets the title alignment
+        BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        patientIdsList = mpController.initPatientsList();
+        ObservableList<String> patientIdsList = mpController.initPatientsList();
 
         TableView<String> patientTable = new TableView<>(patientIdsList);
         patientTable.setId("patientTable");

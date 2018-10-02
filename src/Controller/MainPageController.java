@@ -30,8 +30,9 @@ public class MainPageController {
             mpConnection.closeConnection();
         } finally {
             mpConnection.closeConnection();
-            return patients;
         }
+
+        return patients;
     }
 
     public void logout(String username) {
