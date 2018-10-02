@@ -21,10 +21,10 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
-public class Login {
+public class Login_test {
     LoginController controller = new LoginController();
 
-    public Login(Stage primaryStage){
+    public Login_test(Stage primaryStage){
         GridPane root = new GridPane();
 
         root.setPadding(new Insets(30, 30, 10, 30));
