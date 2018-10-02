@@ -2,6 +2,7 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -199,8 +200,6 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // TODO BUGGED Fixare perchè gli resta in buffer il chiudere la finestra
-        /*
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -213,10 +212,11 @@ public class MainPage {
             if(result.get() == ButtonType.OK) {
                 mpController.logout(username);
             } else {
+                // Cancels the close request
+                e.consume();
                 mpLogoutAlert.close();
             }
         });
-        */
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
@@ -247,11 +247,6 @@ public class MainPage {
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
-        });
-
-        primaryStage.setOnCloseRequest(e -> {
-            mpController.logout(username);
-            primaryStage.close();
         });
     }
 }
