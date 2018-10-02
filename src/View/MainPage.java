@@ -1,8 +1,7 @@
 package View;
 
 import Controller.MainPageController;
-import Model.Patient;
-import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -18,8 +17,6 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class MainPage {
-    // All patients list
-    private ObservableList<Patient> patientsList;
 
     public MainPage(Stage primaryStage, String username) {
         // Connection with the controller
@@ -121,7 +118,6 @@ public class MainPage {
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
 
-        // TODO Non è bellissimo ma per ora può andare
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -147,25 +143,29 @@ public class MainPage {
 
         infoRoot.setCenter(patientInfo);
 
-        infoRoot.setAlignment(title, Pos.CENTER);
-
-        TableView<Patient> patientTable = new TableView(patientsList);
+        // Sets the title alignment
+        BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        patientsList = mpController.initPatientsList();
+        ObservableList<String> patientIdsList = mpController.initPatientsList();
+
+        TableView<String> patientTable = new TableView<>(patientIdsList);
+        patientTable.setId("patientTable");
 
         // We want the table to have static width
         patientTable.setMinWidth(300);
         patientTable.setMaxWidth(300);
 
         // The PatientID column
-        TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
+        TableColumn<String, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        idColumn.setCellValueFactory(param -> param.getValue().getIdProperty());
+        idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
+
+        // TODO Bisogna fare in modo che adesso torni un Patient e non solo l'id
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -200,6 +200,7 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 

@@ -25,30 +25,9 @@ public class LoginController {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
             //return false;
-        }
-
-
-
-        /* try {
-            loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "' AND logged = 0;");
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
+        } finally {
             loginConnection.closeConnection();
-            return false;
         }
-
-        int count = 0;
-
-        try {
-            while (loginConnection.rs.next()) {
-                count++;
-            }
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            loginConnection.closeConnection();
-            return false;
-        } */
-        loginConnection.closeConnection();
 
         if (count > 0) {
             logged(username, loginConnection);
@@ -69,15 +48,8 @@ public class LoginController {
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             loginConnection.closeConnection();
-        }
-
-        /* try {
-            loginConnection.statement.executeUpdate("UPDATE Users SET logged = 1 WHERE username = '" + username + "';");
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
+        } finally {
             loginConnection.closeConnection();
-        } */
-
-        loginConnection.closeConnection();
+        }
     }
 }
