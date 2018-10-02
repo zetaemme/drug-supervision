@@ -13,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.Optional;
+
 public class MainPage {
     // All patients list
     private ObservableList<Patient> patientsList;
@@ -194,6 +196,23 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        primaryStage.setOnCloseRequest(e -> {
+            Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            mpLogoutAlert.setTitle("Logout");
+            mpLogoutAlert.setHeaderText("Logout");
+            mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
+
+            Optional<ButtonType> result = mpLogoutAlert.showAndWait();
+
+            if(result.get() == ButtonType.OK) {
+                mpController.logout(username);
+                primaryStage.close();
+            } else {
+                mpLogoutAlert.close();
+            }
+        });
+
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
             NewPatient newPatient = new NewPatient(new Stage());
@@ -202,9 +221,22 @@ public class MainPage {
         // TODO Implementare miDelete
 
         miLogout.setOnAction(e -> {
-            mpController.logout(username);
-            primaryStage.close();
-            Login login = new Login(new Stage());
+            // Confirmation alert that ask if you are sure to logout
+            Alert logoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            logoutAlert.setTitle("Logout");
+            logoutAlert.setHeaderText("Logout");
+            logoutAlert.setContentText("Are you sure you want to logout?");
+
+            Optional<ButtonType> result = logoutAlert.showAndWait();
+
+            if(result.get() == ButtonType.OK) {
+                mpController.logout(username);
+                primaryStage.close();
+                Login login = new Login(new Stage());
+            } else {
+                logoutAlert.close();
+            }
         });
 
         // If clicked opens a new about window

@@ -13,8 +13,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 public class Login {
     public Login(Stage primaryStage) {
         // Connects to the controller
@@ -63,14 +61,10 @@ public class Login {
         loginButton.setTranslateX(168);
         loginButton.setTranslateY(-80);
 
-        /* Riattivare per check login()
-        * loginLabel.setTranslateY(100);
-        */
-
         copyrightLabel.setTranslateY(-3);
 
         // Add the objects to the panel
-        root.getChildren().addAll(titleLabel, username, password, loginButton, loginLabel);
+        root.getChildren().addAll(titleLabel, username, password, loginButton);
 
         // Sets the positions and the alignments for the BorderPane
         borderPane.setBottom(copyrightLabel);
@@ -101,17 +95,6 @@ public class Login {
             } else {
                 loginLabel.setText("Login Failed!");
             }
-
-            // Loads the main page if the login is right
-
-            /*
-            if(username.getText().equals("aaa") && password.getText().equals("aaa")) {
-                primaryStage.close();
-                MainPage mainPage = new MainPage(new Stage(), username.getText());
-            } else {
-                loginLabel.setText("Login Failed!");
-            }
-            */
         });
     }
 }
