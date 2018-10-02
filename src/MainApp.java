@@ -1,5 +1,4 @@
 import View.Login;
-import View.Login_test;
 import View.MainPage;
 import View.NewPatient;
 import javafx.application.Application;

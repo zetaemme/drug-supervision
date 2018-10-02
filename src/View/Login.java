@@ -7,10 +7,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -20,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class Login {
     LoginController controller = new LoginController();
@@ -82,5 +80,22 @@ public class Login {
         primaryStage.setScene(new Scene(root, 400,400));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        loginButton.setOnAction(e -> {
+            if(controller.login(username.getText(), password.getText())){
+                MainPage mainPage = new MainPage(new Stage(), username.getText());
+                primaryStage.close();
+            }
+            else{
+                Alert loginAlert = new Alert(Alert.AlertType.WARNING);
+
+                loginAlert.setTitle("Warning");
+                loginAlert.setHeaderText("Login Failed");
+                loginAlert.setContentText("Wrong username or password, please try again");
+
+                loginAlert.showAndWait();
+            }
+
+        });
     }
 }
