@@ -3,12 +3,13 @@ package View;
 import Controller.MainPageController;
 import Model.Patient;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -57,17 +58,53 @@ public class MainPage {
         // Sets SplitPane as resizable
         spRoot.isResizable();
 
-        BorderPane infoBP = new BorderPane();
-        VBox labelsGroup = new VBox();
-        final VBox patientInfoPane = new VBox();
+        BorderPane infoRoot = new BorderPane();
+        GridPane patientInfo = new GridPane();
 
-        // Set resizable
-        patientInfoPane.isResizable();
+        // Padding settings
+        infoRoot.setPadding(new Insets(10));
 
-        patientInfoPane.setPadding(new Insets(10));
+        // Title label and settings
+        final Label title = new Label("Patient Info");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        title.setId("titleLabel");
 
-        // TODO Completare impaginazione, sembra un po' vuota
-        final Label titleLabel = new Label("Patient Info");
+        infoRoot.setTop(title);
+
+        // Static labels column
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setHalignment(HPos.CENTER);
+        column1.setPercentWidth(50);
+
+        // Dynamic labels column
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setHalignment(HPos.CENTER);
+        column2.setPercentWidth(50);
+
+        RowConstraints idRow = new RowConstraints();
+        idRow.setValignment(VPos.CENTER);
+        idRow.setPercentHeight(100.0 / 6);
+
+        RowConstraints bDayRow = new RowConstraints();
+        bDayRow.setValignment(VPos.CENTER);
+        bDayRow.setPercentHeight(100.0 / 6);
+
+        RowConstraints provinceRow = new RowConstraints();
+        provinceRow.setValignment(VPos.CENTER);
+        provinceRow.setPercentHeight(100.0 / 6);
+
+        RowConstraints professionRow = new RowConstraints();
+        professionRow.setValignment(VPos.CENTER);
+        professionRow.setPercentHeight(100.0 / 6);
+
+        RowConstraints riskFactorRow = new RowConstraints();
+        riskFactorRow.setValignment(VPos.CENTER);
+        riskFactorRow.setPercentHeight(100.0 / 6);
+
+        RowConstraints medicRow = new RowConstraints();
+        medicRow.setValignment(VPos.CENTER);
+        medicRow.setPercentHeight(100.0 / 6);
+
         final Label idLabel = new Label("Patient ID:");
         final Label birthdayLabel = new Label("Birthday:");
         final Label provinceLabel = new Label("Province:");
@@ -83,10 +120,33 @@ public class MainPage {
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
 
-        labelsGroup.getChildren().addAll(idLabel, patientID, birthdayLabel, patientBDay, provinceLabel, patientProvince,
-                                            professionLabel, patientProfession, riskFactorLabel, patientRiskFactor,
-                                            medicLabel, patientMedic);
+        // TODO Non è bellissimo ma per ora può andare
+        // Adds the labels on the relative position
+        patientInfo.add(idLabel, 0, 0);
+        patientInfo.add(patientID, 1, 0);
 
+        patientInfo.add(birthdayLabel, 0, 1);
+        patientInfo.add(patientBDay, 1, 1);
+
+        patientInfo.add(provinceLabel, 0, 2);
+        patientInfo.add(patientProvince, 1, 2);
+
+        patientInfo.add(professionLabel, 0, 3);
+        patientInfo.add(patientProfession, 1, 3);
+
+        patientInfo.add(riskFactorLabel, 0 , 4);
+        patientInfo.add(patientRiskFactor, 1 , 4);
+
+        patientInfo.add(medicLabel, 0, 5);
+        patientInfo.add(patientMedic, 1, 5);
+
+        // Adds all to the GridPane
+        patientInfo.getColumnConstraints().addAll(column1, column2);
+        patientInfo.getRowConstraints().addAll(idRow, bDayRow, provinceRow, professionRow, riskFactorRow, medicRow);
+
+        infoRoot.setCenter(patientInfo);
+
+        infoRoot.setAlignment(title, Pos.CENTER);
 
         TableView<Patient> patientTable = new TableView(patientsList);
 
@@ -113,59 +173,8 @@ public class MainPage {
         idColumn.setMinWidth(300);
         idColumn.setMaxWidth(300);
 
-        // Set title font and style
-        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40));
-        titleLabel.setId("titleLabel");
-
-        // Set objects (x, y) position
-        titleLabel.setTranslateY(5);
-
-        idLabel.setTranslateX(150);
-        idLabel.setTranslateY(120);
-
-        patientID.setTranslateX(220);
-        patientID.setTranslateY(103);
-
-        birthdayLabel.setTranslateX(150);
-        birthdayLabel.setTranslateY(120);
-
-        patientBDay.setTranslateX(212);
-        patientBDay.setTranslateY(103);
-
-        provinceLabel.setTranslateX(150);
-        provinceLabel.setTranslateY(120);
-
-        patientProvince.setTranslateX(213);
-        patientProvince.setTranslateY(103);
-
-        professionLabel.setTranslateX(150);
-        professionLabel.setTranslateY(120);
-
-        patientProfession.setTranslateX(225);
-        patientProfession.setTranslateY(103);
-
-        riskFactorLabel.setTranslateX(150);
-        riskFactorLabel.setTranslateY(120);
-
-        patientRiskFactor.setTranslateX(229);
-        patientRiskFactor.setTranslateY(103);
-
-        medicLabel.setTranslateX(150);
-        medicLabel.setTranslateY(120);
-
-        patientMedic.setTranslateX(197);
-        patientMedic.setTranslateY(103);
-
-        // Add objects to panes
-        infoBP.setTop(titleLabel);
-        infoBP.setCenter(labelsGroup);
-
-        infoBP.setAlignment(titleLabel, Pos.TOP_CENTER);
-
-        patientInfoPane.getChildren().add(infoBP);
-
         // Add panes to SplitPane
-        spRoot.getItems().addAll(patientTable, patientInfoPane);
+        spRoot.getItems().addAll(patientTable, infoRoot);
 
         // Add all to root
         root.getChildren().addAll(menuBar, spRoot);
@@ -185,17 +194,13 @@ public class MainPage {
 
         patientTable.prefHeightProperty().bind(spRoot.heightProperty());
 
-        patientInfoPane.prefWidthProperty().bind(spRoot.widthProperty());
-        patientInfoPane.prefHeightProperty().bind(spRoot.heightProperty());
-
-        infoBP.prefWidthProperty().bind(patientInfoPane.widthProperty());
-        infoBP.prefHeightProperty().bind(patientInfoPane.heightProperty());
-
         // Stage options
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // TODO BUGGED Fixare perchè gli resta in buffer il chiudere la finestra
+        /*
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -207,11 +212,11 @@ public class MainPage {
 
             if(result.get() == ButtonType.OK) {
                 mpController.logout(username);
-                primaryStage.close();
             } else {
                 mpLogoutAlert.close();
             }
         });
+        */
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {

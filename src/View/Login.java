@@ -1,99 +1,108 @@
 package View;
 
 import Controller.LoginController;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.*;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Login {
-    public Login(Stage primaryStage) {
-        // Connects to the controller
-        LoginController controller = new LoginController();
+    LoginController loginController = new LoginController();
 
-        Group root = new Group();
-        BorderPane borderPane = new BorderPane();
+    public Login(Stage primaryStage){
+        GridPane root = new GridPane();
 
-        root.isResizable();
+        root.setPadding(new Insets(30, 30, 10, 30));
+
+        // Rows of the GridPane
+        RowConstraints titleRow = new RowConstraints();
+        titleRow.setPercentHeight(20.0);
+        titleRow.setValignment(VPos.CENTER);
+
+        RowConstraints usernameRow = new RowConstraints();
+        usernameRow.setPercentHeight(20.0);
+        usernameRow.setValignment(VPos.CENTER);
+
+        RowConstraints passwordRow = new RowConstraints();
+        passwordRow.setPercentHeight(20.0);
+        passwordRow.setValignment(VPos.CENTER);
+
+        RowConstraints buttonRow = new RowConstraints();
+        buttonRow.setPercentHeight(20.0);
+        buttonRow.setValignment(VPos.CENTER);
+
+        RowConstraints copyrightRow = new RowConstraints();
+        copyrightRow.setPercentHeight(20.0);
+        copyrightRow.setValignment(VPos.BOTTOM);
+
+        // Columns of the GridPane
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(100);
+        column.setHalignment(HPos.CENTER);
+
+        // Add all rows/columns to the root
+        root.getColumnConstraints().add(column);
+        root.getRowConstraints().addAll(titleRow, usernameRow, passwordRow, buttonRow, copyrightRow);
+
+        // Nodes of the view
+        final Label title = new Label("Drug Supervision");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        title.setId("titleLabel");
 
         final TextField username = new TextField();
         final PasswordField password = new PasswordField();
         final Button loginButton = new Button("Login");
-        final Label loginLabel = new Label("");
-        final Label titleLabel = new Label("Drug Supervision");
         final Label copyrightLabel = new Label("© Andrea Soglieri and Mattia Zorzan | A.A. 2018/2019");
 
-        // Set the promptText for the TextField/PasswordField
-        username.setPromptText("Username");
-        password.setPromptText("Password");
+        // Sets the font of the title
+        copyrightLabel.setFont(Font.font(12));
 
-        // Set the sizes for the objects
-        username.setMinSize(220, 30);
-        username.setMaxSize(230, 30);
+        // Adds al nodes to root
+        root.add(title, 0, 0);
+        root.add(username, 0 , 1);
+        root.add(password, 0, 2);
+        root.add(loginButton, 0 ,3);
+        root.add(copyrightLabel, 0 , 4);
 
-        password.setMinSize(220, 30);
-        password.setMaxSize(230, 30);
-
-        loginButton.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
-
-        // Title label options
-        titleLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 30));
-        titleLabel.setId("titleLabel");
-
-        // Copyright label options
-        copyrightLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
-        copyrightLabel.setOpacity(10);
-
-        // Set the (x, y) position for the objects
-        titleLabel.setTranslateY(-310);
-
-        username.setTranslateY(-200);
-
-        password.setTranslateY(-135);
-
-        loginButton.setTranslateX(168);
-        loginButton.setTranslateY(-80);
-
-        copyrightLabel.setTranslateY(-3);
-
-        // Add the objects to the panel
-        root.getChildren().addAll(titleLabel, username, password, loginButton);
-
-        // Sets the positions and the alignments for the BorderPane
-        borderPane.setBottom(copyrightLabel);
-        borderPane.setCenter(root);
-
-        // Sets BorderPane alignments
-        borderPane.setAlignment(copyrightLabel, Pos.BASELINE_CENTER);
-        borderPane.setAlignment(root, Pos.CENTER);
-
-        // Scene and CSS
-        Scene scene = new Scene(borderPane, 400, 400);
-        scene.getStylesheets().add("CSS/style.css");
-
-        // Stage options
         primaryStage.setTitle("Drug Supervision - Login");
+        primaryStage.setScene(new Scene(root, 400,400));
         primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
         primaryStage.show();
 
-        // You can press 'Enter' to login
+        // Logs you in if you press 'Enter'
         loginButton.setDefaultButton(true);
 
-        // Lambda to login action
+        // Log you in if username/password is correct
         loginButton.setOnAction(e -> {
-            if(controller.login(username.getText(), password.getText())) {
-                primaryStage.close();
+            // Logs you in in case of correct username/password
+            if (loginController.login(username.getText(), password.getText())) {
                 MainPage mainPage = new MainPage(new Stage(), username.getText());
+                primaryStage.close();
+            } else if(username.getText().equals("") || password.getText().equals("")) {
+                // Alert window in case of empty username/password
+                Alert emptyUserPassAlert = new Alert(Alert.AlertType.WARNING);
+
+                emptyUserPassAlert.setTitle("Error!");
+                emptyUserPassAlert.setHeaderText("Empty username/password");
+                emptyUserPassAlert.setContentText("Please, insert both username and password.");
+
+                emptyUserPassAlert.showAndWait();
             } else {
-                loginLabel.setText("Login Failed!");
+                // Alert window in case of wrong username/password
+                Alert loginFailedAlert = new Alert(Alert.AlertType.WARNING);
+
+                loginFailedAlert.setTitle("Login Failed");
+                loginFailedAlert.setHeaderText("Login Failed");
+                loginFailedAlert.setContentText("Wrong username or password.\nPlease, try again.");
+
+                loginFailedAlert.showAndWait();
             }
         });
     }
