@@ -156,6 +156,7 @@ public class MainPage {
         patientIdsList = mpController.initPatientsList();
 
         TableView<String> patientTable = new TableView<>(patientIdsList);
+        patientTable.setId("patientTable");
 
         // We want the table to have static width
         patientTable.setMinWidth(300);
