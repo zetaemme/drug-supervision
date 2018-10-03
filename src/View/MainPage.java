@@ -24,6 +24,8 @@ public class MainPage {
 
         VBox root = new VBox();
 
+        // Ho aggiunto questo commento
+
         // Root size settings
         root.setMinSize(1000, 600);
         root.setMaxSize(1000, 600);
