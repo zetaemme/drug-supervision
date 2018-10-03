@@ -1,20 +1,23 @@
 package View;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-
 public class NewPatient {
     public NewPatient(Stage primaryStage) {
-        VBox root = new VBox();
+        GridPane root = new GridPane();
 
         root.setPadding(new Insets(10));
 
@@ -38,34 +41,58 @@ public class NewPatient {
         professionField.setPromptText("Profession");
         riskFactorField.setPromptText("Risk Factor");
 
-        // Sets addButton as default button
-        addButton.isDefaultButton();
+        // Sets the Pane column
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(100);
+        column.setHalignment(HPos.CENTER);
 
-        // Set (x, y) position of objects
-        titleLabel.setTranslateX(75);
+        // Sets the Pane rows
+        RowConstraints titleRow = new RowConstraints();
+        titleRow.setPercentHeight(100.0 / 8);
+        titleRow.setValignment(VPos.CENTER);
 
-        insertLabel.setTranslateX(5);
-        insertLabel.setTranslateY(45);
+        RowConstraints insertLabelRow = new RowConstraints();
+        insertLabelRow.setPercentHeight(100.0 / 8);
+        insertLabelRow.setValignment(VPos.BOTTOM);
 
-        idField.setTranslateY(50);
+        RowConstraints idFieldRow = new RowConstraints();
+        idFieldRow.setPercentHeight(100.0 / 8);
+        idFieldRow.setValignment(VPos.CENTER);
 
-        birthdayField.setTranslateY(70);
+        RowConstraints bDayRow = new RowConstraints();
+        bDayRow.setPercentHeight(100.0 / 8);
+        bDayRow.setValignment(VPos.CENTER);
 
-        provinceField.setTranslateY(90);
+        RowConstraints provinceFieldRow = new RowConstraints();
+        provinceFieldRow.setPercentHeight(100.0 / 8);
+        provinceFieldRow.setValignment(VPos.CENTER);
 
-        professionField.setTranslateY(110);
+        RowConstraints professionFieldRow = new RowConstraints();
+        professionFieldRow.setPercentHeight(100.0 / 8);
+        professionFieldRow.setValignment(VPos.CENTER);
 
-        riskFactorField.setTranslateY(130);
+        RowConstraints riskFactorFieldRow = new RowConstraints();
+        riskFactorFieldRow.setPercentHeight(100.0 / 8);
+        riskFactorFieldRow.setValignment(VPos.CENTER);
 
-        addButton.setTranslateX(290);
-        addButton.setTranslateY(155);
+        RowConstraints addRow = new RowConstraints();
+        addRow.setPercentHeight(100.0 / 8);
+        addRow.setValignment(VPos.CENTER);
 
-        // Size preferences for the objects
-        addButton.setPrefSize(70, 10);
+        // Sets BirthdayField width
+        birthdayField.setPrefWidth(1000);
 
-        birthdayField.setPrefWidth(380);
+        root.add(titleLabel, 0, 0);
+        root.add(insertLabel, 0, 1);
+        root.add(idField, 0, 2);
+        root.add(birthdayField, 0, 3);
+        root.add(provinceField, 0, 4);
+        root.add(professionField, 0, 5);
+        root.add(riskFactorField, 0, 6);
+        root.add(addButton, 0, 7);
 
-        root.getChildren().addAll(titleLabel, insertLabel, idField, birthdayField, provinceField, professionField, riskFactorField, addButton);
+        root.getColumnConstraints().add(column);
+        root.getRowConstraints().addAll(titleRow, insertLabelRow, idFieldRow, bDayRow, provinceFieldRow, professionFieldRow, riskFactorFieldRow, addRow);
 
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 400);
