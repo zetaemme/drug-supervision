@@ -30,4 +30,9 @@ public class RiskFactor {
     public int getRisk_level() {
         return risk_level;
     }
+
+    @Override
+    public String toString() {
+        return risk_level + " : " + description;
+    }
 }

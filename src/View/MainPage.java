@@ -2,7 +2,6 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -15,7 +14,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.util.Date;
 import java.util.Optional;
 
 public class MainPage {
@@ -110,7 +108,6 @@ public class MainPage {
         final Label provinceLabel = new Label("Province:");
         final Label professionLabel = new Label("Profession:");
         final Label riskFactorLabel = new Label("Risk Factor:");
-        final Label medicLabel = new Label("Medic:");
 
         // This labels will show the patient personal data
         final Label patientID = new Label("");
@@ -118,8 +115,6 @@ public class MainPage {
         final Label patientProvince = new Label("");
         final Label patientProfession = new Label("");
         final Label patientRiskFactor = new Label("");
-        final Label patientMedic = new Label("");
-
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -135,9 +130,6 @@ public class MainPage {
 
         patientInfo.add(riskFactorLabel, 0 , 4);
         patientInfo.add(patientRiskFactor, 1 , 4);
-
-        patientInfo.add(medicLabel, 0, 5);
-        patientInfo.add(patientMedic, 1, 5);
 
         // Adds all to the GridPane
         patientInfo.getColumnConstraints().addAll(column1, column2);
@@ -166,6 +158,9 @@ public class MainPage {
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
+
+        // Sets the default selected value
+        patientTable.getSelectionModel().selectFirst();
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -199,6 +194,13 @@ public class MainPage {
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // TableView corresponding labels
+        patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
+        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday().toString());
+        patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
+        patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
+        patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
 
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
