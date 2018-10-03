@@ -2,6 +2,7 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -14,11 +15,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.Date;
 import java.util.Optional;
 
 public class MainPage {
-    // All patients list
-    private ObservableList<Patient> patientsList;
 
     public MainPage(Stage primaryStage, String username) {
         // Connection with the controller
@@ -120,7 +120,6 @@ public class MainPage {
         final Label patientRiskFactor = new Label("");
         final Label patientMedic = new Label("");
 
-        // TODO Non è bellissimo ma per ora può andare
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -146,12 +145,14 @@ public class MainPage {
 
         infoRoot.setCenter(patientInfo);
 
-        infoRoot.setAlignment(title, Pos.CENTER);
-
-        TableView<Patient> patientTable = new TableView(patientsList);
+        // Sets the title alignment
+        BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        patientsList = mpController.initPatientsList();
+        ObservableList<Patient> patientIdsList = mpController.initPatientsList();
+
+        TableView<Patient> patientTable = new TableView<>(patientIdsList);
+        patientTable.setId("patientTable");
 
         // We want the table to have static width
         patientTable.setMinWidth(300);
@@ -161,7 +162,7 @@ public class MainPage {
         TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        idColumn.setCellValueFactory(param -> param.getValue().getIdProperty());
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
@@ -199,13 +200,12 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // TODO BUGGED Fixare perchè gli resta in buffer il chiudere la finestra
-        /*
+        // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
             mpLogoutAlert.setTitle("Logout");
-            mpLogoutAlert.setHeaderText("Logout");
+            mpLogoutAlert.setHeaderText("You will exit the program");
             mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
 
             Optional<ButtonType> result = mpLogoutAlert.showAndWait();
@@ -213,10 +213,11 @@ public class MainPage {
             if(result.get() == ButtonType.OK) {
                 mpController.logout(username);
             } else {
+                // Cancels the close request
+                e.consume();
                 mpLogoutAlert.close();
             }
         });
-        */
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
@@ -247,11 +248,6 @@ public class MainPage {
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
-        });
-
-        primaryStage.setOnCloseRequest(e -> {
-            mpController.logout(username);
-            primaryStage.close();
         });
     }
 }

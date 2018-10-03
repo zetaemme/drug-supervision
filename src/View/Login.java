@@ -14,7 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Login {
-    LoginController loginController = new LoginController();
+    private LoginController loginController = new LoginController();
 
     public Login(Stage primaryStage){
         GridPane root = new GridPane();

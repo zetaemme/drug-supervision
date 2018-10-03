@@ -1,3 +1,7 @@
 #titleLabel {
-    -fx-text-fill: #696969
+    -fx-text-fill: #696969;
+}
+
+#patientTable .table-column {
+    -fx-alignment: CENTER;
 }

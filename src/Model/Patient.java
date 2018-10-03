@@ -9,15 +9,15 @@ import javafx.beans.property.StringProperty;
 import java.util.Date;
 
 public class Patient {
-    // TODO Bisognerebbe aggiungere anche il medico
-    private final StringProperty idPatient;
-    private final ObjectProperty<Date> birthday;
-    private final StringProperty province;
-    private final StringProperty profession;
-    private final ObjectProperty<RiskFactor> risk_factor;
+    private final SimpleStringProperty idPatient;
+    private final SimpleObjectProperty<Date> birthday;
+    private final SimpleStringProperty province;
+    private final SimpleStringProperty profession;
+    private final SimpleObjectProperty<RiskFactor> risk_factor;
+    //private final StringProperty medic;
 
-    public Patient(String idPatient, Date birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
-        if(province.length() == 0 || profession.length() == 0 || idPatient.length() == 0) {
+    public Patient(String idPatient, Date birthday, String province, String profession, RiskFactor risk_factor/*, String medic*/) throws NullStringException {
+        if(province.length() == 0 || profession.length() == 0 || idPatient.length() == 0 /*|| medic.length() == 0*/) {
             throw new NullStringException();
         }
 
@@ -26,6 +26,7 @@ public class Patient {
         this.province = new SimpleStringProperty(province);
         this.profession = new SimpleStringProperty(profession);
         this.risk_factor = new SimpleObjectProperty<>(risk_factor);
+        //this.medic = new SimpleStringProperty(medic);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Patient {
         this.idPatient.set(first_name);
     }
 
-    public StringProperty getIdProperty() {
+    public SimpleStringProperty getIdProperty() {
         return idPatient;
     }
 
@@ -53,7 +54,7 @@ public class Patient {
         this.birthday.set(birthday);
     }
     
-    public ObjectProperty<Date> getBirthdayProperty() {
+    public SimpleObjectProperty<Date> getBirthdayProperty() {
         return birthday;
     }
 
@@ -65,7 +66,7 @@ public class Patient {
         this.province.set(province);
     }
 
-    public StringProperty getProvinceProperty() {
+    public SimpleStringProperty getProvinceProperty() {
         return province;
     }
 
@@ -77,7 +78,7 @@ public class Patient {
         this.profession.set(profession);
     }
 
-    public StringProperty getProfessionProperty() {
+    public SimpleStringProperty getProfessionProperty() {
         return profession;
     }
 
@@ -89,7 +90,21 @@ public class Patient {
         this.risk_factor.set(risk_factor);
     }
 
-    public ObjectProperty<RiskFactor> getRiskFactorProperty() {
+    public SimpleObjectProperty<RiskFactor> getRiskFactorProperty() {
         return risk_factor;
     }
+
+    /*
+    public String getMedic() {
+        return medic.get();
+    }
+
+    public void setMedic(String medic) {
+        this.medic.set(medic);
+    }
+
+    public StringProperty getMedicProperty() {
+        return medic;
+    }
+    */
 }

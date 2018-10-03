@@ -23,31 +23,27 @@ public class MainPageController {
         try {
             mpConnection.statement = mpConnection.connection.createStatement();
             mpConnection.rs = mpConnection.statement.executeQuery("SELECT * FROM Patient");
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            mpConnection.closeConnection();
-        }
 
-        try {
             while(mpConnection.rs.next()) {
                 patients.add(new Patient(mpConnection.rs.getString("idPatient"),
                                             mpConnection.rs.getDate("birthday"),
                                             mpConnection.rs.getString("province"),
                                             mpConnection.rs.getString("profession"),
-                                            new RiskFactor("", mpConnection.rs.getInt("risk_factor"))));
+                                            new RiskFactor(" ", mpConnection.rs.getInt("RiskFactor_idFactor"))));
             }
         } catch(SQLException sqle) {
-            System.out.println("SQL Error: " + sqle.getMessage());
+            System.out.println("Error: " + sqle.getMessage());
             mpConnection.closeConnection();
-        } catch(NullStringException nse) {
-            System.out.println("NULL STRING: Error: " + nse.getLocalizedMessage());
+        } catch (IllegalRiskValueException irve) {
+            System.out.println("Risk Value Error: " + irve.getMessage());
             mpConnection.closeConnection();
-        } catch(IllegalRiskValueException irve) {
-            System.out.println("Error: " + irve.getLocalizedMessage());
+        } catch (NullStringException nse) {
+            System.out.println("String Error: " + nse.getMessage());
+            mpConnection.closeConnection();
+        } finally {
             mpConnection.closeConnection();
         }
 
-        mpConnection.closeConnection();
         return patients;
     }
 
