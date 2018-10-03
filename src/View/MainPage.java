@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MainPageController;
+import Model.Patient;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -14,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.Date;
 import java.util.Optional;
 
 public class MainPage {
@@ -147,9 +149,9 @@ public class MainPage {
         BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        ObservableList<String> patientIdsList = mpController.initPatientsList();
+        ObservableList<Patient> patientIdsList = mpController.initPatientsList();
 
-        TableView<String> patientTable = new TableView<>(patientIdsList);
+        TableView<Patient> patientTable = new TableView<>(patientIdsList);
         patientTable.setId("patientTable");
 
         // We want the table to have static width
@@ -157,15 +159,13 @@ public class MainPage {
         patientTable.setMaxWidth(300);
 
         // The PatientID column
-        TableColumn<String, String> idColumn = new TableColumn<>("Patient ID");
+        TableColumn<Patient, String> idColumn = new TableColumn<>("Patient ID");
 
         // Initialize the table columns values
-        idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty());
 
         // Add the columns to the table
         patientTable.getColumns().setAll(idColumn);
-
-        // TODO Bisogna fare in modo che adesso torni un Patient e non solo l'id
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -205,7 +205,7 @@ public class MainPage {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
             mpLogoutAlert.setTitle("Logout");
-            mpLogoutAlert.setHeaderText("Logout");
+            mpLogoutAlert.setHeaderText("You will exit the program");
             mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
 
             Optional<ButtonType> result = mpLogoutAlert.showAndWait();

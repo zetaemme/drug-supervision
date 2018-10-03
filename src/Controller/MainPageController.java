@@ -1,5 +1,9 @@
 package Controller;
 
+import Model.Exceptions.IllegalRiskValueException;
+import Model.Exceptions.NullStringException;
+import Model.Patient;
+import Model.RiskFactor;
 import Model.Utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,23 +14,31 @@ public class MainPageController {
     private DBConnection mpConnection;
 
     // Initialize the patients list
-    public ObservableList<String> initPatientsList() {
-        final ObservableList<String> patients = FXCollections.observableArrayList();
+    public ObservableList<Patient> initPatientsList() {
+        final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
         mpConnection = new DBConnection();
         mpConnection.openConnection();
 
         try {
             mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.rs = mpConnection.statement.executeQuery("SELECT idPatient FROM Patient");
+            mpConnection.rs = mpConnection.statement.executeQuery("SELECT * FROM Patient");
 
             while(mpConnection.rs.next()) {
-                for(int i = 1; i <= mpConnection.rs.getMetaData().getColumnCount(); i++) {
-                    patients.add(mpConnection.rs.getString(i));
-                }
+                patients.add(new Patient(mpConnection.rs.getString("idPatient"),
+                                            mpConnection.rs.getDate("birthday"),
+                                            mpConnection.rs.getString("province"),
+                                            mpConnection.rs.getString("profession"),
+                                            new RiskFactor(" ", mpConnection.rs.getInt("RiskFactor_idFactor"))));
             }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
+            mpConnection.closeConnection();
+        } catch (IllegalRiskValueException irve) {
+            System.out.println("Risk Value Error: " + irve.getMessage());
+            mpConnection.closeConnection();
+        } catch (NullStringException nse) {
+            System.out.println("String Error: " + nse.getMessage());
             mpConnection.closeConnection();
         } finally {
             mpConnection.closeConnection();
