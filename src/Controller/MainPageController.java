@@ -22,14 +22,17 @@ public class MainPageController {
 
         try {
             mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.rs = mpConnection.statement.executeQuery("SELECT * FROM Patient");
+            mpConnection.rs = mpConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, R.description, R.riskLevel " +
+                                                                     "FROM Patient JOIN Patient_has_RiskFactor P " +
+                                                                     "on Patient.idPatient = P.Patient_idPatient " +
+                                                                     "JOIN RiskFactor R on P.RiskFactor_idFactor = R.idFactor");
 
             while(mpConnection.rs.next()) {
                 patients.add(new Patient(mpConnection.rs.getString("idPatient"),
-                                            mpConnection.rs.getDate("birthday"),
-                                            mpConnection.rs.getString("province"),
-                                            mpConnection.rs.getString("profession"),
-                                            new RiskFactor(" ", mpConnection.rs.getInt("RiskFactor_idFactor"))));
+                                         mpConnection.rs.getDate("birthday"),
+                                         mpConnection.rs.getString("province"),
+                                         mpConnection.rs.getString("profession"),
+                                         new RiskFactor(mpConnection.rs.getString("description"), mpConnection.rs.getInt("riskLevel"))));
             }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
