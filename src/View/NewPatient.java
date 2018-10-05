@@ -105,7 +105,7 @@ public class NewPatient {
         primaryStage.show();
 
         addButton.setOnAction(e -> {
-            // TODO Implementare INSERT (SQL)
+
             primaryStage.close();
         });
     }
