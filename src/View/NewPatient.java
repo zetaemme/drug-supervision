@@ -1,6 +1,7 @@
 package View;
 
 import Controller.NewPatientController;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -24,7 +25,6 @@ public class NewPatient {
 
         final Label titleLabel = new Label("Add new patient");
         final Label insertLabel = new Label("New patient data:");
-        final TextField idField = new TextField();
         final DatePicker birthdayField = new DatePicker();
         final TextField provinceField = new TextField();
         final TextField professionField = new TextField();
@@ -40,16 +40,11 @@ public class NewPatient {
         titleLabel.setId("titleLabel");
 
         // Sets prompt texts
-        idField.setPromptText("Patient ID");
         birthdayField.setPromptText("Birthday");
         provinceField.setPromptText("Province");
         professionField.setPromptText("Profession");
 
-        // Sets the Pane column
-        ColumnConstraints column = new ColumnConstraints();
-        column.setPercentWidth(100);
-        column.setHalignment(HPos.CENTER);
-
+        // Sets the RiskFactor GridPane columns
         ColumnConstraints riskColumn1 = new ColumnConstraints();
         riskColumn1.setPercentWidth(70);
         riskColumn1.setHalignment(HPos.CENTER);
@@ -58,39 +53,41 @@ public class NewPatient {
         riskColumn2.setPercentWidth(30);
         riskColumn2.setHalignment(HPos.CENTER);
 
+        // Sets the Pane column
+        ColumnConstraints mainColumn = new ColumnConstraints();
+        mainColumn.setPercentWidth(100);
+        mainColumn.setHalignment(HPos.CENTER);
+
         // Sets the Pane rows
         RowConstraints titleRow = new RowConstraints();
-        titleRow.setPercentHeight(100.0 / 8);
+        titleRow.setPercentHeight(100.0 / 7);
         titleRow.setValignment(VPos.CENTER);
 
         RowConstraints insertLabelRow = new RowConstraints();
-        insertLabelRow.setPercentHeight(100.0 / 8);
+        insertLabelRow.setPercentHeight(100.0 / 7);
         insertLabelRow.setValignment(VPos.BOTTOM);
 
-        RowConstraints idFieldRow = new RowConstraints();
-        idFieldRow.setPercentHeight(100.0 / 8);
-        idFieldRow.setValignment(VPos.CENTER);
-
         RowConstraints bDayRow = new RowConstraints();
-        bDayRow.setPercentHeight(100.0 / 8);
+        bDayRow.setPercentHeight(100.0 / 7);
         bDayRow.setValignment(VPos.CENTER);
 
         RowConstraints provinceFieldRow = new RowConstraints();
-        provinceFieldRow.setPercentHeight(100.0 / 8);
+        provinceFieldRow.setPercentHeight(100.0 / 7);
         provinceFieldRow.setValignment(VPos.CENTER);
 
         RowConstraints professionFieldRow = new RowConstraints();
-        professionFieldRow.setPercentHeight(100.0 / 8);
+        professionFieldRow.setPercentHeight(100.0 / 7);
         professionFieldRow.setValignment(VPos.CENTER);
 
         RowConstraints riskFactorFieldRow = new RowConstraints();
-        riskFactorFieldRow.setPercentHeight(100.0 / 8);
+        riskFactorFieldRow.setPercentHeight(100.0 / 7);
         riskFactorFieldRow.setValignment(VPos.CENTER);
 
         RowConstraints addRow = new RowConstraints();
-        addRow.setPercentHeight(100.0 / 8);
+        addRow.setPercentHeight(100.0 / 7);
         addRow.setValignment(VPos.CENTER);
 
+        // Sets the RiskFactor GridPane row
         RowConstraints riskFactorRow = new RowConstraints();
         riskFactorRow.setPercentHeight(100);
         riskFactorRow.setValignment(VPos.CENTER);
@@ -100,18 +97,17 @@ public class NewPatient {
 
         root.add(titleLabel, 0, 0);
         root.add(insertLabel, 0, 1);
-        root.add(idField, 0, 2);
-        root.add(birthdayField, 0, 3);
-        root.add(provinceField, 0, 4);
-        root.add(professionField, 0, 5);
-        root.add(riskFactorGrid, 0, 6);
-        root.add(addButton, 0, 7);
+        root.add(birthdayField, 0, 2);
+        root.add(provinceField, 0, 3);
+        root.add(professionField, 0, 4);
+        root.add(riskFactorGrid, 0, 5);
+        root.add(addButton, 0, 6);
 
         riskFactorGrid.add(riskFactorBox,0, 0);
         riskFactorGrid.add(riskButton,1, 0);
 
-        root.getColumnConstraints().add(column);
-        root.getRowConstraints().addAll(titleRow, insertLabelRow, idFieldRow, bDayRow, provinceFieldRow, professionFieldRow, riskFactorFieldRow, addRow);
+        root.getColumnConstraints().add(mainColumn);
+        root.getRowConstraints().addAll(titleRow, insertLabelRow, bDayRow, provinceFieldRow, professionFieldRow, riskFactorFieldRow, addRow);
 
         riskFactorGrid.getColumnConstraints().addAll(riskColumn1, riskColumn2);
         riskFactorGrid.getRowConstraints().add(riskFactorRow);
@@ -134,7 +130,6 @@ public class NewPatient {
 
         riskButton.setOnAction(e -> {
             NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
-
         });
     }
 }
