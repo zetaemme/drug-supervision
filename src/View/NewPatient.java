@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 public class NewPatient {
     public NewPatient(Stage primaryStage) {
         GridPane root = new GridPane();
+        GridPane riskFactorGrid = new GridPane();
 
         root.setPadding(new Insets(10));
 
@@ -29,6 +30,7 @@ public class NewPatient {
         final TextField professionField = new TextField();
         final TextField riskFactorField = new TextField();
         final Button addButton = new Button("Add");
+        final Button riskButton = new Button("New");
 
         // Sets tileLabel font
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
@@ -45,6 +47,14 @@ public class NewPatient {
         ColumnConstraints column = new ColumnConstraints();
         column.setPercentWidth(100);
         column.setHalignment(HPos.CENTER);
+
+        ColumnConstraints riskColumn1 = new ColumnConstraints();
+        riskColumn1.setPercentWidth(70);
+        riskColumn1.setHalignment(HPos.CENTER);
+
+        ColumnConstraints riskColumn2 = new ColumnConstraints();
+        riskColumn2.setPercentWidth(30);
+        riskColumn2.setHalignment(HPos.CENTER);
 
         // Sets the Pane rows
         RowConstraints titleRow = new RowConstraints();
@@ -79,6 +89,10 @@ public class NewPatient {
         addRow.setPercentHeight(100.0 / 8);
         addRow.setValignment(VPos.CENTER);
 
+        RowConstraints riskFactorRow = new RowConstraints();
+        riskFactorRow.setPercentHeight(100);
+        riskFactorRow.setValignment(VPos.CENTER);
+
         // Sets BirthdayField width
         birthdayField.setPrefWidth(1000);
 
@@ -88,11 +102,18 @@ public class NewPatient {
         root.add(birthdayField, 0, 3);
         root.add(provinceField, 0, 4);
         root.add(professionField, 0, 5);
-        root.add(riskFactorField, 0, 6);
+        root.add(riskFactorGrid, 0, 6);
         root.add(addButton, 0, 7);
+
+        riskFactorGrid.add(riskFactorField,0, 0);
+        riskFactorGrid.add(riskButton,1, 0);
 
         root.getColumnConstraints().add(column);
         root.getRowConstraints().addAll(titleRow, insertLabelRow, idFieldRow, bDayRow, provinceFieldRow, professionFieldRow, riskFactorFieldRow, addRow);
+
+        riskFactorGrid.getColumnConstraints().addAll(riskColumn1, riskColumn2);
+        riskFactorGrid.getRowConstraints().add(riskFactorRow);
+
 
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 400);
@@ -105,8 +126,13 @@ public class NewPatient {
         primaryStage.show();
 
         addButton.setOnAction(e -> {
-            // TODO Implementare INSERT (SQL)
+
             primaryStage.close();
+        });
+
+        riskButton.setOnAction(e -> {
+            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
+
         });
     }
 }
