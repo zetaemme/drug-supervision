@@ -1,13 +1,11 @@
 package View;
 
+import Controller.NewPatientController;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -20,6 +18,8 @@ public class NewPatient {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
 
+        NewPatientController npController = new NewPatientController();
+
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Add new patient");
@@ -28,9 +28,12 @@ public class NewPatient {
         final DatePicker birthdayField = new DatePicker();
         final TextField provinceField = new TextField();
         final TextField professionField = new TextField();
-        final TextField riskFactorField = new TextField();
+        final ChoiceBox riskFactorBox = new ChoiceBox(npController.initRiskFactorList());
         final Button addButton = new Button("Add");
         final Button riskButton = new Button("New");
+
+        riskFactorBox.setPrefWidth(1000);
+        riskFactorBox.getSelectionModel().selectFirst();
 
         // Sets tileLabel font
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
@@ -41,7 +44,6 @@ public class NewPatient {
         birthdayField.setPromptText("Birthday");
         provinceField.setPromptText("Province");
         professionField.setPromptText("Profession");
-        riskFactorField.setPromptText("Risk Factor");
 
         // Sets the Pane column
         ColumnConstraints column = new ColumnConstraints();
@@ -105,7 +107,7 @@ public class NewPatient {
         root.add(riskFactorGrid, 0, 6);
         root.add(addButton, 0, 7);
 
-        riskFactorGrid.add(riskFactorField,0, 0);
+        riskFactorGrid.add(riskFactorBox,0, 0);
         riskFactorGrid.add(riskButton,1, 0);
 
         root.getColumnConstraints().add(column);
