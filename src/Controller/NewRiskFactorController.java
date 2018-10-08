@@ -5,17 +5,16 @@ import Model.Utils.DBConnection;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class NewPatientController {
+public class NewRiskFactorController {
     private DBConnection npConnection;
 
-    public void addNewPatient(Date birthday, String profession, String province, int riskFactor, String medic) {
+    public void addRiskFactor(int riskLevel, String description) {
         npConnection = new DBConnection();
         npConnection.openConnection();
 
         try {
             npConnection.statement = npConnection.connection.createStatement();
-            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) VALUES ('"
-                                                    + birthday + "','" + province + "','" + profession + "','" + medic + "')");
+            npConnection.statement.executeUpdate("INSERT INTO RiskFactor (description, riskLevel) VALUES ('" + description + "','" + riskLevel + "')");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             npConnection.closeConnection();
