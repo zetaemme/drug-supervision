@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+// TODO Reimplementare in GridPane
 // Doesn't need a Controller because it's a static page
 public class About {
     public About(Stage primaryStage) {

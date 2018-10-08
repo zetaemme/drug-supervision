@@ -15,11 +15,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class NewPatient {
+    private NewPatientController npController = new NewPatientController();
+
     public NewPatient(Stage primaryStage) {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
-
-        NewPatientController npController = new NewPatientController();
 
         root.setPadding(new Insets(10));
 
@@ -32,6 +32,7 @@ public class NewPatient {
         final Button addButton = new Button("Add");
         final Button riskButton = new Button("New");
 
+        // RiskFactor ChoiceBox preferences
         riskFactorBox.setPrefWidth(1000);
         riskFactorBox.getSelectionModel().selectFirst();
 

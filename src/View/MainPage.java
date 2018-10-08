@@ -115,6 +115,7 @@ public class MainPage {
         final Label patientProvince = new Label("");
         final Label patientProfession = new Label("");
         final Label patientRiskFactor = new Label("");
+
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -228,6 +229,7 @@ public class MainPage {
 
         // TODO Implementare miDelete
 
+        // If clicked log the logged user out
         miLogout.setOnAction(e -> {
             // Confirmation alert that ask if you are sure to logout
             Alert logoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
