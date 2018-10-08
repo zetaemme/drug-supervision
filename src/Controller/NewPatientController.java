@@ -8,19 +8,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 
 public class NewPatientController {
     private DBConnection npConnection;
 
-    public void addNewPatient(Date birthday, String profession, String province, int riskFactor, String medic) {
+    // TODO Manca il MedicUsername sia a View che a Controller, vorrei un modo per ricavarlo dallo User loggato
+    public void addNewPatient(Date birthday, String province, String profession) {
         npConnection = new DBConnection();
         npConnection.openConnection();
 
         try {
             npConnection.statement = npConnection.connection.createStatement();
-            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) VALUES ('"
-                                                    + birthday + "','" + province + "','" + profession + "','" + medic + "')");
+            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession) " +
+                                                    "VALUES ('" + birthday + "','" + province + "','" + profession + "')");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             npConnection.closeConnection();

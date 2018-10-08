@@ -106,9 +106,11 @@ public class NewPatient {
         riskFactorGrid.add(riskFactorBox,0, 0);
         riskFactorGrid.add(riskButton,1, 0);
 
+        // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
         root.getRowConstraints().addAll(titleRow, insertLabelRow, bDayRow, provinceFieldRow, professionFieldRow, riskFactorFieldRow, addRow);
 
+        // Adds columns and rows to the RiskFactor GridPane
         riskFactorGrid.getColumnConstraints().addAll(riskColumn1, riskColumn2);
         riskFactorGrid.getRowConstraints().add(riskFactorRow);
 
@@ -123,11 +125,28 @@ public class NewPatient {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        // If clicked adds the new Patient to the DB
         addButton.setOnAction(e -> {
+            if(birthdayField.getValue() == null || provinceField.getText().equals("") || professionField.getText().equals("")) {
+                Alert newPatientAlert = new Alert(Alert.AlertType.WARNING);
 
-            primaryStage.close();
+                newPatientAlert.setTitle("No Data");
+                newPatientAlert.setHeaderText("No data into fields!");
+                newPatientAlert.setContentText("Please, insert some values into the fields.");
+
+                newPatientAlert.showAndWait();
+            } else {
+                // Converts from LocalDate to java.sql.Date
+                java.sql.Date queryBDayDate = java.sql.Date.valueOf(birthdayField.getValue());
+
+                // TODO Manca il MedicUsername sia a View che a Controller, vorrei un modo per ricavarlo dallo User loggato
+                npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText());
+
+                primaryStage.close();
+            }
         });
 
+        // If clicked opens a NewRiskFactor window
         riskButton.setOnAction(e -> {
             NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
         });
