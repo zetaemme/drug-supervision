@@ -1,5 +1,6 @@
 package View;
 
+import Controller.NewPatientController;
 import Controller.NewRiskFactorController;
 
 import javafx.geometry.HPos;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -19,7 +21,7 @@ import javafx.stage.Stage;
 public class NewRiskFactor {
     private NewRiskFactorController riskFactorController = new NewRiskFactorController();
 
-    public NewRiskFactor(Stage primaryStage) {
+    public NewRiskFactor(Stage primaryStage, ChoiceBox riskFactorBox, NewPatientController npController) {
         GridPane root = new GridPane();
 
         root.setPadding(new Insets(10));
@@ -88,6 +90,8 @@ public class NewRiskFactor {
         // If clicked adds a new RiskFactor to the DB
         addButton.setOnAction(e -> {
             riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptionField.getText());
+            riskFactorBox.setItems(npController.initRiskFactorList());
+            riskFactorBox.getSelectionModel().selectLast();
             primaryStage.close();
         });
     }

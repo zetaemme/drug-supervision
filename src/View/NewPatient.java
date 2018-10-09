@@ -154,7 +154,7 @@ public class NewPatient {
 
         // If clicked opens a NewRiskFactor window
         riskButton.setOnAction(e -> {
-            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
+            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage(), riskFactorBox, npController);
         });
     }
 }
