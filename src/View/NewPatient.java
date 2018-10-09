@@ -1,6 +1,9 @@
 package View;
 
 import Controller.NewPatientController;
+import Model.RiskFactor;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -133,8 +136,7 @@ public class NewPatient {
         });
 
         riskButton.setOnAction(e -> {
-            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
-
+            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage(), riskFactorBox, npController);
         });
     }
 }
