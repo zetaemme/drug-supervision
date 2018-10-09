@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class NewPatient {
     private NewPatientController npController = new NewPatientController();
 
-    public NewPatient(Stage primaryStage) {
+    public NewPatient(Stage primaryStage, String username) {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
 
@@ -140,8 +140,7 @@ public class NewPatient {
                 // Converts from LocalDate to java.sql.Date
                 java.sql.Date queryBDayDate = java.sql.Date.valueOf(birthdayField.getValue());
 
-                // TODO Manca il MedicUsername sia a View che a Controller, vorrei un modo per ricavarlo dallo User loggato
-                npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText());
+                npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username);
 
                 primaryStage.close();
             }

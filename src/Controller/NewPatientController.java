@@ -13,15 +13,14 @@ import java.sql.Date;
 public class NewPatientController {
     private DBConnection npConnection;
 
-    // TODO Manca il MedicUsername sia a View che a Controller, vorrei un modo per ricavarlo dallo User loggato
-    public void addNewPatient(Date birthday, String province, String profession) {
+    public void addNewPatient(Date birthday, String province, String profession, String medic) {
         npConnection = new DBConnection();
         npConnection.openConnection();
 
         try {
             npConnection.statement = npConnection.connection.createStatement();
-            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession) " +
-                                                    "VALUES ('" + birthday + "','" + province + "','" + profession + "')");
+            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) " +
+                                                    "VALUES ('" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "')");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             npConnection.closeConnection();
