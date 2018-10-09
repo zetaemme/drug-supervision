@@ -1,13 +1,13 @@
 package View;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -17,15 +17,13 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-// TODO Reimplementare in GridPane
 // Doesn't need a Controller because it's a static page
 public class About {
     public About(Stage primaryStage) {
-        VBox root = new VBox();
+        GridPane root = new GridPane();
 
         // Sets root min/max size
-        root.setMinSize(400, 300);
-        root.setMaxSize(400, 300);
+        root.setPrefSize(400, 300);
 
         root.setPadding(new Insets(10));
 
@@ -41,8 +39,9 @@ public class About {
         Hyperlink asGit = new Hyperlink("Andrea Soglieri");
         Hyperlink mzGit = new Hyperlink("Mattia Zorzan");
 
-        Pane asPane = new Pane(gitAS);
-        Pane mzPane = new Pane(gitMZ);
+        // TODO Meglio GridPane 2 righe(80 immagine, 20 link) 1 colonna a testa
+        Pane asPane = new Pane(gitAS, asGit);
+        Pane mzPane = new Pane(gitMZ, mzGit);
 
         // Opens Andrea's GitHub profile
         asGit.setOnAction(e -> {
@@ -98,35 +97,67 @@ public class About {
 
         aaLabel.setFont(Font.font(14));
 
-        // Sets the (x, y) position of the labels/images
-        titleLabel.setTranslateX(150);
-        titleLabel.setTranslateY(5);
+        // GridPane column
+        ColumnConstraints column = new ColumnConstraints();
+        column.setPercentWidth(100);
+        column.setHalignment(HPos.CENTER);
 
-        dsLabel.setTranslateX(110);
-        dsLabel.setTranslateY(40);
+        // GridPane rows
+        RowConstraints titleRow = new RowConstraints();
+        titleRow.setPercentHeight(100.0 / 6);
+        titleRow.setValignment(VPos.CENTER);
 
-        eisLabel.setTranslateX(80);
-        eisLabel.setTranslateY(55);
+        RowConstraints drugSupervisionRow = new RowConstraints();
+        drugSupervisionRow.setPercentHeight(100.0 / 6);
+        drugSupervisionRow.setValignment(VPos.CENTER);
 
-        aaLabel.setTranslateX(140);
-        aaLabel.setTranslateY(60);
+        RowConstraints elaboratoRow = new RowConstraints();
+        elaboratoRow.setPercentHeight(100.0 / 6);
+        elaboratoRow.setValignment(VPos.CENTER);
 
-        asPane.setTranslateX(110);
-        asPane.setTranslateY(89);
+        RowConstraints aaRow = new RowConstraints();
+        aaRow.setPercentHeight(100.0 / 6);
+        aaRow.setValignment(VPos.CENTER);
 
-        mzPane.setTranslateX(230);
-        mzPane.setTranslateY(50);
+        RowConstraints linkRow = new RowConstraints();
+        linkRow.setPercentHeight(100.0 / 6);
+        linkRow.setValignment(VPos.CENTER);
 
-        asGit.setTranslateX(80);
-        asGit.setTranslateY(50);
+        RowConstraints copyrightRow = new RowConstraints();
+        copyrightRow.setPercentHeight(100.0 / 6);
+        copyrightRow.setValignment(VPos.BOTTOM);
 
-        mzGit.setTranslateX(205);
-        mzGit.setTranslateY(27);
+        GridPane gitPane = new GridPane();
 
-        copyrightLabel.setTranslateX(70);
-        copyrightLabel.setTranslateY(58);
+        // gitPane columns
+        ColumnConstraints asColumn = new ColumnConstraints();
+        asColumn.setPercentWidth(50);
+        asColumn.setHalignment(HPos.CENTER);
 
-        root.getChildren().addAll(titleLabel, dsLabel, eisLabel, aaLabel, asPane, mzPane, asGit, mzGit, copyrightLabel);
+        ColumnConstraints mzColumn = new ColumnConstraints();
+        mzColumn.setPercentWidth(50);
+        mzColumn.setHalignment(HPos.CENTER);
+
+        // gitPane row
+        RowConstraints row = new RowConstraints();
+        row.setPercentHeight(100);
+        row.setValignment(VPos.CENTER);
+
+        gitPane.add(asPane, 0, 0);
+        gitPane.add(mzPane, 1, 0);
+
+        gitPane.getColumnConstraints().addAll(asColumn, mzColumn);
+        gitPane.getRowConstraints().add(row);
+
+        root.add(titleLabel, 0, 0);
+        root.add(dsLabel, 0, 1);
+        root.add(eisLabel, 0, 2);
+        root.add(aaLabel, 0, 3);
+        root.add(gitPane, 0, 4);
+        root.add(copyrightLabel, 0, 5);
+
+        root.getColumnConstraints().add(column);
+        root.getRowConstraints().addAll(titleRow, drugSupervisionRow, elaboratoRow, aaRow, linkRow, copyrightRow);
 
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 300);
