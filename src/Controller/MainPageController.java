@@ -5,9 +5,11 @@ import Model.Exceptions.NullStringException;
 import Model.Patient;
 import Model.RiskFactor;
 import Model.Utils.DBConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class MainPageController {
@@ -29,7 +31,7 @@ public class MainPageController {
 
             while(mpConnection.rs.next()) {
                 patients.add(new Patient(mpConnection.rs.getString("idPatient"),
-                                         mpConnection.rs.getDate("birthday"),
+                                         new Date(mpConnection.rs.getDate("birthday").getTime()),
                                          mpConnection.rs.getString("province"),
                                          mpConnection.rs.getString("profession"),
                                          new RiskFactor(mpConnection.rs.getString("description"), mpConnection.rs.getInt("riskLevel"))));

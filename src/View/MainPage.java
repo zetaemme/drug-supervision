@@ -2,6 +2,7 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -142,7 +143,7 @@ public class MainPage {
         BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        ObservableList<Patient> patientIdsList = mpController.initPatientsList();
+        ObservableList<Patient> patientIdsList = FXCollections.observableArrayList(mpController.initPatientsList());
 
         TableView<Patient> patientTable = new TableView<>(patientIdsList);
         patientTable.setId("patientTable");
@@ -224,7 +225,7 @@ public class MainPage {
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage(), username);
+            NewPatient newPatient = new NewPatient(new Stage(), username, patientTable);
         });
 
         // TODO Implementare miDelete

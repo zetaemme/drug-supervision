@@ -1,6 +1,7 @@
 package View;
 
 import Controller.NewRiskFactorController;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
