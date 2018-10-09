@@ -1,18 +1,16 @@
 package View;
 
+import Controller.NewPatientController;
 import Controller.NewRiskFactorController;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
-<<<<<<< HEAD
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-=======
 import javafx.scene.control.*;
->>>>>>> c6b4ea1ce64f35964d69d6e0407574a5548911f2
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -21,13 +19,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class NewRiskFactor {
-<<<<<<< HEAD
     private NewRiskFactorController riskFactorController = new NewRiskFactorController();
 
-    public NewRiskFactor(Stage primaryStage) {
-=======
     public NewRiskFactor(Stage primaryStage, ChoiceBox riskFactorBox, NewPatientController npController) {
->>>>>>> c6b4ea1ce64f35964d69d6e0407574a5548911f2
         GridPane root = new GridPane();
 
         root.setPadding(new Insets(10));
@@ -95,14 +89,9 @@ public class NewRiskFactor {
 
         // If clicked adds a new RiskFactor to the DB
         addButton.setOnAction(e -> {
-<<<<<<< HEAD
             riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptionField.getText());
-=======
-            NewRiskFactorController riskFactorController = new NewRiskFactorController();
-            riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptonField.getText());
             riskFactorBox.setItems(npController.initRiskFactorList());
             riskFactorBox.getSelectionModel().selectLast();
->>>>>>> c6b4ea1ce64f35964d69d6e0407574a5548911f2
             primaryStage.close();
         });
     }

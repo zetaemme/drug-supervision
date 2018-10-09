@@ -2,10 +2,7 @@ package View;
 
 import Controller.NewPatientController;
 import Model.RiskFactor;
-<<<<<<< HEAD
 
-=======
->>>>>>> c6b4ea1ce64f35964d69d6e0407574a5548911f2
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -157,11 +154,7 @@ public class NewPatient {
 
         // If clicked opens a NewRiskFactor window
         riskButton.setOnAction(e -> {
-<<<<<<< HEAD
-            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage());
-=======
             NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage(), riskFactorBox, npController);
->>>>>>> c6b4ea1ce64f35964d69d6e0407574a5548911f2
         });
     }
 }
