@@ -1,8 +1,6 @@
 package View;
 
-import Controller.MainPageController;
 import Controller.NewPatientController;
-import Model.Patient;
 import Model.RiskFactor;
 
 import javafx.collections.FXCollections;
@@ -22,7 +20,7 @@ import javafx.stage.Stage;
 public class NewPatient {
     private NewPatientController npController = new NewPatientController();
 
-    public NewPatient(Stage primaryStage, String username, TableView<Patient> patientTable) {
+    public NewPatient(Stage primaryStage, String username) {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
 
@@ -149,8 +147,6 @@ public class NewPatient {
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
-
-                patientTable.refresh();
 
                 primaryStage.close();
             }

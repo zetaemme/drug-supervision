@@ -8,23 +8,21 @@ import java.util.Date;
 
 public class Patient {
     private final SimpleStringProperty idPatient;
-    private final SimpleObjectProperty<Date> birthday;
+    private final SimpleStringProperty birthday;
     private final SimpleStringProperty province;
     private final SimpleStringProperty profession;
     private final SimpleObjectProperty<RiskFactor> risk_factor;
-    //private final StringProperty medic;
 
-    public Patient(String idPatient, Date birthday, String province, String profession, RiskFactor risk_factor/*, String medic*/) throws NullStringException {
-        if(province.length() == 0 || profession.length() == 0 || idPatient.length() == 0 /*|| medic.length() == 0*/) {
+    public Patient(String idPatient, String birthday, String province, String profession, RiskFactor risk_factor) throws NullStringException {
+        if(province.length() == 0 || profession.length() == 0 || idPatient.length() == 0) {
             throw new NullStringException();
         }
 
         this.idPatient = new SimpleStringProperty(idPatient);
-        this.birthday = new SimpleObjectProperty<>(birthday);
+        this.birthday = new SimpleStringProperty(birthday);
         this.province = new SimpleStringProperty(province);
         this.profession = new SimpleStringProperty(profession);
         this.risk_factor = new SimpleObjectProperty<>(risk_factor);
-        //this.medic = new SimpleStringProperty(medic);
     }
 
     @Override
@@ -44,15 +42,15 @@ public class Patient {
         return idPatient;
     }
 
-    public Date getBirthday() { 
+    public String getBirthday() {
         return birthday.get(); 
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday.set(birthday);
     }
     
-    public SimpleObjectProperty<Date> getBirthdayProperty() {
+    public SimpleStringProperty getBirthdayProperty() {
         return birthday;
     }
 
@@ -91,18 +89,4 @@ public class Patient {
     public SimpleObjectProperty<RiskFactor> getRiskFactorProperty() {
         return risk_factor;
     }
-
-    /*
-    public String getMedic() {
-        return medic.get();
-    }
-
-    public void setMedic(String medic) {
-        this.medic.set(medic);
-    }
-
-    public StringProperty getMedicProperty() {
-        return medic;
-    }
-    */
 }

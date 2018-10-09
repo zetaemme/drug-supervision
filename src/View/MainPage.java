@@ -199,7 +199,7 @@ public class MainPage {
 
         // TableView corresponding labels
         patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
-        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday().toString());
+        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
         patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
         patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
         patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
@@ -225,7 +225,7 @@ public class MainPage {
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage(), username, patientTable);
+            NewPatient newPatient = new NewPatient(new Stage(), username);
         });
 
         // TODO Implementare miDelete

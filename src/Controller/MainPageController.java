@@ -31,7 +31,7 @@ public class MainPageController {
 
             while(mpConnection.rs.next()) {
                 patients.add(new Patient(mpConnection.rs.getString("idPatient"),
-                                         new Date(mpConnection.rs.getDate("birthday").getTime()),
+                                         mpConnection.rs.getString("birthday"),
                                          mpConnection.rs.getString("province"),
                                          mpConnection.rs.getString("profession"),
                                          new RiskFactor(mpConnection.rs.getString("description"), mpConnection.rs.getInt("riskLevel"))));
