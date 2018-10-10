@@ -225,7 +225,7 @@ public class MainPage {
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage(), username);
+            NewPatient newPatient = new NewPatient(new Stage(), username, patientTable, mpController);
         });
 
         // TODO Implementare miDelete
