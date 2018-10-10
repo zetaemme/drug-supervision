@@ -162,7 +162,15 @@ public class MainPage {
         patientTable.getColumns().setAll(idColumn);
 
         // Sets the default selected value
-        patientTable.getSelectionModel().selectFirst();
+        patientTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null){
+                patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
+                patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
+                patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
+                patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
+                patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
+            }
+        });
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -198,11 +206,13 @@ public class MainPage {
         primaryStage.show();
 
         // TableView corresponding labels
-        patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
+        /*patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
         patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
         patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
         patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
-        patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
+        patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());*/
+
+
 
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
