@@ -2,10 +2,14 @@ package View;
 
 import Controller.NewPatientController;
 import Controller.NewRiskFactorController;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -15,6 +19,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class NewRiskFactor {
+    private NewRiskFactorController riskFactorController = new NewRiskFactorController();
+
     public NewRiskFactor(Stage primaryStage, ChoiceBox riskFactorBox, NewPatientController npController) {
         GridPane root = new GridPane();
 
@@ -23,7 +29,7 @@ public class NewRiskFactor {
         final Label titleLabel = new Label("Add new Risk Factor");
         final Label insertLabel = new Label("New data:");
         final TextField riskLevelField = new TextField();
-        final TextField descriptonField = new TextField();
+        final TextField descriptionField = new TextField();
         final Button addButton = new Button("Add");
 
         // Sets tileLabel font
@@ -32,7 +38,7 @@ public class NewRiskFactor {
 
         // Sets prompt texts
         riskLevelField.setPromptText("Risk level");
-        descriptonField.setPromptText("Risk description");
+        descriptionField.setPromptText("Risk description");
 
         // Sets the Pane column
         ColumnConstraints column = new ColumnConstraints();
@@ -64,9 +70,10 @@ public class NewRiskFactor {
         root.add(titleLabel, 0, 0);
         root.add(insertLabel, 0, 1);
         root.add(riskLevelField, 0, 2);
-        root.add(descriptonField, 0 , 3);
+        root.add(descriptionField, 0 , 3);
         root.add(addButton, 0, 4);
 
+        // Adds column and rows to the root GridPane
         root.getColumnConstraints().add(column);
         root.getRowConstraints().addAll(titleRow, insertLabelRow, riskLevelRow, descriptionRow, buttonRow);
 
@@ -80,9 +87,9 @@ public class NewRiskFactor {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        // If clicked adds a new RiskFactor to the DB
         addButton.setOnAction(e -> {
-            NewRiskFactorController riskFactorController = new NewRiskFactorController();
-            riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptonField.getText());
+            riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptionField.getText());
             riskFactorBox.setItems(npController.initRiskFactorList());
             riskFactorBox.getSelectionModel().selectLast();
             primaryStage.close();

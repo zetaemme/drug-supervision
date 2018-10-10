@@ -2,6 +2,7 @@ package View;
 
 import Controller.MainPageController;
 import Model.Patient;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -115,6 +116,7 @@ public class MainPage {
         final Label patientProvince = new Label("");
         final Label patientProfession = new Label("");
         final Label patientRiskFactor = new Label("");
+
         // Adds the labels on the relative position
         patientInfo.add(idLabel, 0, 0);
         patientInfo.add(patientID, 1, 0);
@@ -141,7 +143,7 @@ public class MainPage {
         BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
-        ObservableList<Patient> patientIdsList = mpController.initPatientsList();
+        ObservableList<Patient> patientIdsList = FXCollections.observableArrayList(mpController.initPatientsList());
 
         TableView<Patient> patientTable = new TableView<>(patientIdsList);
         patientTable.setId("patientTable");
@@ -197,7 +199,7 @@ public class MainPage {
 
         // TableView corresponding labels
         patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
-        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday().toString());
+        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
         patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
         patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
         patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
@@ -223,11 +225,12 @@ public class MainPage {
 
         // If clicked opens a new window that allows to add a new patient
         miNew.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage());
+            NewPatient newPatient = new NewPatient(new Stage(), username);
         });
 
         // TODO Implementare miDelete
 
+        // If clicked log the logged user out
         miLogout.setOnAction(e -> {
             // Confirmation alert that ask if you are sure to logout
             Alert logoutAlert = new Alert(Alert.AlertType.CONFIRMATION);

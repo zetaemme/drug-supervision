@@ -8,19 +8,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 
 public class NewPatientController {
     private DBConnection npConnection;
 
-    public void addNewPatient(Date birthday, String profession, String province, int riskFactor, String medic) {
+    public void addNewPatient(Date birthday, String province, String profession, String medic, int riskFactor, String description) {
         npConnection = new DBConnection();
         npConnection.openConnection();
 
         try {
             npConnection.statement = npConnection.connection.createStatement();
-            npConnection.statement.executeUpdate("INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) VALUES ('"
-                                                    + birthday + "','" + province + "','" + profession + "','" + medic + "')");
+            npConnection.statement.executeUpdate(
+                    "INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) " +
+                        "VALUES ('" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "');" +
+                        "INSERT INTO  Patient_has_RiskFactor (Patient_idPatient, RiskFactor_idFactor) VALUES " +
+                        "((SELECT idPatient FROM Patient WHERE birthday = '" + birthday + "' AND province = '" +
+                        province + "' AND profession = '" + profession + "'), (SELECT idFactor FROM RiskFactor " +
+                        "WHERE riskLevel = '" + riskFactor + "' AND description = '" + description + "'));"
+            );
+
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             npConnection.closeConnection();

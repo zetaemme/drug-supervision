@@ -3,7 +3,6 @@ package Controller;
 import Model.Utils.DBConnection;
 
 import java.sql.SQLException;
-import java.util.Date;
 
 public class NewRiskFactorController {
     private DBConnection npConnection;
