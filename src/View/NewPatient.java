@@ -1,5 +1,6 @@
 package View;
 
+import Controller.MainPageController;
 import Controller.NewPatientController;
 import Model.RiskFactor;
 
@@ -20,11 +21,11 @@ import javafx.stage.Stage;
 public class NewPatient {
     private NewPatientController npController = new NewPatientController();
 
-    public NewPatient(Stage primaryStage, String username) {
+    public NewPatient(Stage primaryStage, String username, TableView patientTable, MainPageController mpController) {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
 
-        ObservableList<RiskFactor> riskFactorsList = FXCollections.observableArrayList(npController.initRiskFactorList());
+        //ObservableList<RiskFactor> riskFactorsList = FXCollections.observableArrayList(npController.initRiskFactorList());
 
         root.setPadding(new Insets(10));
 
@@ -33,7 +34,7 @@ public class NewPatient {
         final DatePicker birthdayField = new DatePicker();
         final TextField provinceField = new TextField();
         final TextField professionField = new TextField();
-        final ChoiceBox riskFactorBox = new ChoiceBox(riskFactorsList);
+        final ChoiceBox riskFactorBox = new ChoiceBox(npController.initRiskFactorList());
         final Button addButton = new Button("Add");
         final Button riskButton = new Button("New");
 
@@ -147,6 +148,9 @@ public class NewPatient {
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
+
+                patientTable.setItems(mpController.initPatientsList());
+                patientTable.getSelectionModel().selectLast();
 
                 primaryStage.close();
             }
