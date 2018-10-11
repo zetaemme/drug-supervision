@@ -102,6 +102,7 @@ public class NewReport {
         addRow.setPercentHeight(100.0 / 8);
         addRow.setValignment(VPos.CENTER);
 
+        //set row constraints for therapy and reaction GridPane
         RowConstraints gridRow = new RowConstraints();
         gridRow.setPercentHeight(100);
         gridRow.setValignment(VPos.CENTER);
@@ -132,7 +133,7 @@ public class NewReport {
         root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow
                                         ,reactionGridRow, reactionDateRow, reportDateRow, addRow);
 
-        // Adds columns and rows to the RiskFactor GridPane
+        // Adds columns and rows to the therapy and reaction GridPane
         therapyGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
         therapyGrid.getRowConstraints().add(gridRow);
         reactionGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
@@ -143,13 +144,17 @@ public class NewReport {
         Scene scene = new Scene(root, 400, 500);
         scene.getStylesheets().add("CSS/style.css");
 
-        primaryStage.setTitle("Drug Supervision - Add Patient");
+        primaryStage.setTitle("Drug Supervision - Add Report");
         primaryStage.setScene(scene);
         // Better be not resizable
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        // If clicked adds the new Patient to the DB
+        newTherapyButton.setOnAction(e -> {
+            NewTherapy newTherapy = new NewTherapy(new Stage());
+        });
+
+        // If clicked adds the a new Report for the selected patient to the DB
         addButton.setOnAction(e -> {
             if(patientBox.getValue() == null || reactionDate.getValue() == null || reportDate.getValue() == null) {
                 Alert newPatientAlert = new Alert(Alert.AlertType.WARNING);
