@@ -21,7 +21,8 @@ public class NewReport {
 
     public NewReport(Stage primaryStage) {
         GridPane root = new GridPane();
-        GridPane ThReGrid = new GridPane();
+        GridPane therapyGrid = new GridPane();
+        GridPane reactionGrid = new GridPane();
 
         ObservableList<String> patientIds = nrController.initIdList();
 
@@ -70,37 +71,41 @@ public class NewReport {
 
         // Sets the Pane rows
         RowConstraints titleRow = new RowConstraints();
-        titleRow.setPercentHeight(100.0 / 7);
+        titleRow.setPercentHeight(100.0 / 8);
         titleRow.setValignment(VPos.CENTER);
 
         RowConstraints insertLabelRow = new RowConstraints();
-        insertLabelRow.setPercentHeight(100.0 / 7);
-        insertLabelRow.setValignment(VPos.BOTTOM);
+        insertLabelRow.setPercentHeight(100.0 / 8);
+        insertLabelRow.setValignment(VPos.CENTER);
 
-        RowConstraints reactionFieldRow = new RowConstraints();
-        reactionFieldRow.setPercentHeight(100.0 / 7);
-        reactionFieldRow.setValignment(VPos.CENTER);
+        RowConstraints insertPatientRow = new RowConstraints();
+        insertPatientRow.setPercentHeight(100.0 / 8);
+        insertPatientRow.setValignment(VPos.CENTER);
+
+        RowConstraints therapyGridRow = new RowConstraints();
+        therapyGridRow.setPercentHeight(100.0 / 8);
+        therapyGridRow.setValignment(VPos.CENTER);
+
+        RowConstraints reactionGridRow = new RowConstraints();
+        reactionGridRow.setPercentHeight(100.0 / 8);
+        reactionGridRow.setValignment(VPos.CENTER);
 
         RowConstraints reactionDateRow = new RowConstraints();
-        reactionDateRow.setPercentHeight(100.0 / 7);
+        reactionDateRow.setPercentHeight(100.0 / 8);
         reactionDateRow.setValignment(VPos.CENTER);
 
         RowConstraints reportDateRow = new RowConstraints();
-        reportDateRow.setPercentHeight(100.0 / 7);
+        reportDateRow.setPercentHeight(100.0 / 8);
         reportDateRow.setValignment(VPos.CENTER);
 
         RowConstraints addRow = new RowConstraints();
-        addRow.setPercentHeight(100.0 / 7);
+        addRow.setPercentHeight(100.0 / 8);
         addRow.setValignment(VPos.CENTER);
 
-        // Sets the RiskFactor GridPane row
-        RowConstraints therapyRow = new RowConstraints();
-        therapyRow.setPercentHeight(100);
-        therapyRow.setValignment(VPos.CENTER);
+        RowConstraints gridRow = new RowConstraints();
+        gridRow.setPercentHeight(100);
+        gridRow.setValignment(VPos.CENTER);
 
-        RowConstraints reactionRow = new RowConstraints();
-        reactionRow.setPercentHeight(100);
-        reactionRow.setValignment(VPos.CENTER);
 
         // Sets Dates fields width
         reactionDate.setPrefWidth(1000);
@@ -110,24 +115,28 @@ public class NewReport {
         root.add(titleLabel, 0, 0);
         root.add(insertLabel, 0, 1);
         root.add(patientBox, 0, 2);
-        root.add(ThReGrid, 0, 3);
-        root.add(reactionDate, 0, 4);
-        root.add(reportDate, 0, 5);
-        root.add(addButton, 0, 6);
+        root.add(therapyGrid, 0, 3);
+        root.add(reactionGrid, 0, 4);
+        root.add(reactionDate, 0, 5);
+        root.add(reportDate, 0, 6);
+        root.add(addButton, 0, 7);
 
         // Adds nodes to the buttons GridPane
-        ThReGrid.add(newTherapyButton,0, 0);
-        ThReGrid.add(therapyLabel, 1, 0);
-        ThReGrid.add(newReactionButton,0, 1);
-        ThReGrid.add(reactionLabel, 1, 1);
+        therapyGrid.add(newTherapyButton,0, 0);
+        therapyGrid.add(therapyLabel, 0, 1);
+        reactionGrid.add(newReactionButton,0, 0);
+        reactionGrid.add(reactionLabel, 0, 1);
 
         // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
-        root.getRowConstraints().addAll(titleRow, insertLabelRow, reactionFieldRow, reactionDateRow, reportDateRow, addRow);
+        root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow
+                                        ,reactionGridRow, reactionDateRow, reportDateRow, addRow);
 
         // Adds columns and rows to the RiskFactor GridPane
-        ThReGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
-        ThReGrid.getRowConstraints().addAll(therapyRow, reactionRow);
+        therapyGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
+        therapyGrid.getRowConstraints().add(gridRow);
+        reactionGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
+        reactionGrid.getRowConstraints().add(gridRow);
 
 
         // Sets scene stylesheet
