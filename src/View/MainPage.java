@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class MainPage {
+    // TODO IMPORTANTISSIMO Creare assert e gestire logout
 
     public MainPage(Stage primaryStage, String username) {
         // Connection with the controller

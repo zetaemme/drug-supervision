@@ -77,6 +77,8 @@ public class NewRiskFactor {
         root.getColumnConstraints().add(column);
         root.getRowConstraints().addAll(titleRow, insertLabelRow, riskLevelRow, descriptionRow, buttonRow);
 
+        addButton.setDefaultButton(true);
+
         // Sets scene stylesheet
         Scene scene = new Scene(root, 300, 200);
         scene.getStylesheets().add("CSS/style.css");

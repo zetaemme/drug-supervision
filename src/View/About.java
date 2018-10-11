@@ -39,10 +39,6 @@ public class About {
         Hyperlink asGit = new Hyperlink("Andrea Soglieri");
         Hyperlink mzGit = new Hyperlink("Mattia Zorzan");
 
-        // TODO Meglio GridPane 2 righe(80 immagine, 20 link) 1 colonna a testa
-        Pane asPane = new Pane(gitAS, asGit);
-        Pane mzPane = new Pane(gitMZ, mzGit);
-
         // Opens Andrea's GitHub profile
         asGit.setOnAction(e -> {
             if(Desktop.isDesktopSupported()) {
@@ -139,15 +135,24 @@ public class About {
         mzColumn.setHalignment(HPos.CENTER);
 
         // gitPane row
-        RowConstraints row = new RowConstraints();
-        row.setPercentHeight(100);
-        row.setValignment(VPos.CENTER);
+        RowConstraints upperRow = new RowConstraints();
+        upperRow.setPercentHeight(50);
+        upperRow.setValignment(VPos.CENTER);
 
-        gitPane.add(asPane, 0, 0);
-        gitPane.add(mzPane, 1, 0);
+        RowConstraints lowerRow = new RowConstraints();
+        lowerRow.setPercentHeight(50);
+        lowerRow.setValignment(VPos.TOP);
+
+        // Sets Y translate to aaLabel
+        aaLabel.setTranslateY(-20);
+
+        gitPane.add(gitAS, 0, 0);
+        gitPane.add(gitMZ, 1, 0);
+        gitPane.add(asGit, 0, 1);
+        gitPane.add(mzGit, 1, 1);
 
         gitPane.getColumnConstraints().addAll(asColumn, mzColumn);
-        gitPane.getRowConstraints().add(row);
+        gitPane.getRowConstraints().addAll(upperRow, lowerRow);
 
         root.add(titleLabel, 0, 0);
         root.add(dsLabel, 0, 1);

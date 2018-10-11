@@ -9,7 +9,6 @@ import Model.Utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 public class MainPageController {
