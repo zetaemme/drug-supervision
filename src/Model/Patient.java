@@ -4,7 +4,7 @@ import Model.Exceptions.NullStringException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Date;
+import java.util.Random;
 
 public class Patient {
     private final SimpleStringProperty idPatient;
@@ -18,7 +18,8 @@ public class Patient {
             throw new NullStringException();
         }
 
-        this.idPatient = new SimpleStringProperty(province + birthday.replace("-", "") + profession.substring(0 , 3).toUpperCase());
+        this.idPatient = new SimpleStringProperty(province + birthday.replace("-", "") +
+                                                    profession.substring(0 , 3).toUpperCase());
         this.birthday = new SimpleStringProperty(birthday);
         this.province = new SimpleStringProperty(province);
         this.profession = new SimpleStringProperty(profession);
