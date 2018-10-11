@@ -18,7 +18,7 @@ public class Patient {
             throw new NullStringException();
         }
 
-        this.idPatient = new SimpleStringProperty(idPatient);
+        this.idPatient = new SimpleStringProperty(province + birthday.replace("-", "") + profession.substring(0 , 3).toUpperCase());
         this.birthday = new SimpleStringProperty(birthday);
         this.province = new SimpleStringProperty(province);
         this.profession = new SimpleStringProperty(profession);

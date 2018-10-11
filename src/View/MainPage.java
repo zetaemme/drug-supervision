@@ -39,7 +39,10 @@ public class MainPage {
         Menu m2 = new Menu("Help");
 
         // All the items in the menu
-        MenuItem miNew = new MenuItem("New");
+        Menu miNew = new Menu("New");
+        MenuItem miPatient = new MenuItem("Patient");
+        MenuItem miReport = new MenuItem("Report");
+        miNew.getItems().addAll(miPatient, miReport);
         MenuItem miDelete = new MenuItem("Delete");
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem miLogout = new MenuItem("Logout");
@@ -162,7 +165,7 @@ public class MainPage {
         patientTable.getColumns().setAll(idColumn);
 
         // Sets the default selected value
-        patientTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        patientTable.getSelectionModel().selectedItemProperty().addListener((newSelection) -> {
             if(newSelection != null){
                 patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
                 patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
@@ -171,6 +174,8 @@ public class MainPage {
                 patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
             }
         });
+
+        patientTable.getSelectionModel().selectFirst();
 
         // Set table min/max size
         patientTable.setMinWidth(300);
@@ -205,13 +210,6 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // TableView corresponding labels
-        /*patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
-        patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
-        patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
-        patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
-        patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());*/
-
 
 
         // Shows an alert to check if you want to close the window
@@ -234,8 +232,12 @@ public class MainPage {
         });
 
         // If clicked opens a new window that allows to add a new patient
-        miNew.setOnAction(e -> {
+        miPatient.setOnAction(e -> {
             NewPatient newPatient = new NewPatient(new Stage(), username, patientTable, mpController);
+        });
+
+        miReport.setOnAction(e -> {
+            NewReport newReport = new NewReport(new Stage(), mpController);
         });
 
         // TODO Implementare miDelete
