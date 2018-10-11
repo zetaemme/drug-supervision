@@ -25,8 +25,6 @@ public class NewPatient {
         GridPane root = new GridPane();
         GridPane riskFactorGrid = new GridPane();
 
-        //ObservableList<RiskFactor> riskFactorsList = FXCollections.observableArrayList(npController.initRiskFactorList());
-
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Add new patient");

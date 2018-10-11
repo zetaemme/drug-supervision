@@ -4,6 +4,7 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.RiskFactor;
 import Model.Utils.DBConnection;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,11 +18,15 @@ public class NewPatientController {
         npConnection = new DBConnection();
         npConnection.openConnection();
 
+
+        String idPatient = province + birthday.toString().replace("-", "")
+                           + profession.substring(0 , 3).toUpperCase();
+
         try {
             npConnection.statement = npConnection.connection.createStatement();
             npConnection.statement.executeUpdate(
-                    "INSERT INTO Patient (birthday, province, profession, Medic_MedicUsername) " +
-                        "VALUES ('" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "');" +
+                    "INSERT INTO Patient (idPatient, birthday, province, profession, Medic_MedicUsername) " +
+                        "VALUES ('" + idPatient  + "', '" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "');" +
                         "INSERT INTO  Patient_has_RiskFactor (Patient_idPatient, RiskFactor_idFactor) VALUES " +
                         "((SELECT idPatient FROM Patient WHERE birthday = '" + birthday + "' AND province = '" +
                         province + "' AND profession = '" + profession + "'), (SELECT idFactor FROM RiskFactor " +
