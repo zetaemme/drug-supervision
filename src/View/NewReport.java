@@ -72,27 +72,27 @@ public class NewReport {
 
         // Sets the Pane rows
         RowConstraints titleRow = new RowConstraints();
-        titleRow.setPercentHeight(100.0 / 6);
+        titleRow.setPercentHeight(100.0 / 7);
         titleRow.setValignment(VPos.CENTER);
 
         RowConstraints insertLabelRow = new RowConstraints();
-        insertLabelRow.setPercentHeight(100.0 / 6);
+        insertLabelRow.setPercentHeight(100.0 / 7);
         insertLabelRow.setValignment(VPos.BOTTOM);
 
         RowConstraints reactionFieldRow = new RowConstraints();
-        reactionFieldRow.setPercentHeight(100.0 / 6);
+        reactionFieldRow.setPercentHeight(100.0 / 7);
         reactionFieldRow.setValignment(VPos.CENTER);
 
         RowConstraints reactionDateRow = new RowConstraints();
-        reactionDateRow.setPercentHeight(100.0 / 6);
+        reactionDateRow.setPercentHeight(100.0 / 7);
         reactionDateRow.setValignment(VPos.CENTER);
 
         RowConstraints reportDateRow = new RowConstraints();
-        reportDateRow.setPercentHeight(100.0 / 6);
+        reportDateRow.setPercentHeight(100.0 / 7);
         reportDateRow.setValignment(VPos.CENTER);
 
         RowConstraints addRow = new RowConstraints();
-        addRow.setPercentHeight(100.0 / 6);
+        addRow.setPercentHeight(100.0 / 7);
         addRow.setValignment(VPos.CENTER);
 
         // Sets the RiskFactor GridPane row
@@ -142,7 +142,7 @@ public class NewReport {
 
         // If clicked adds the new Patient to the DB
         /*addButton.setOnAction(e -> {
-            if(birthdayField.getValue() == null || provinceField.getText().equals("") || professionField.getText().equals("")) {
+            if(patientBox.getValue() == null || reactionDate.getValue() == null || reportDate.getValue() == null) {
                 Alert newPatientAlert = new Alert(Alert.AlertType.WARNING);
 
                 newPatientAlert.setTitle("No Data");
@@ -162,11 +162,6 @@ public class NewReport {
 
                 primaryStage.close();
             }
-        });
-
-        // If clicked opens a NewRiskFactor window
-        riskButton.setOnAction(e -> {
-            NewRiskFactor newRiskFactor = new NewRiskFactor(new Stage(), riskFactorBox, npController);
         });*/
     }
 }
