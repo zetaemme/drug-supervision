@@ -1,10 +1,7 @@
 package View;
 
-import Controller.MainPageController;
-import Controller.NewPatientController;
-import Model.Patient;
-import Model.RiskFactor;
-import View.NewRiskFactor;
+import Controller.NewReportController;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -20,18 +17,19 @@ import javafx.stage.Stage;
 
 
 public class NewReport {
+    private NewReportController nrController = new NewReportController();
 
-    public NewReport(Stage primaryStage, MainPageController mpController) {
+    public NewReport(Stage primaryStage) {
         GridPane root = new GridPane();
         GridPane ThReGrid = new GridPane();
 
-        ObservableList<Patient> patients = mpController.initPatientsList();
+        ObservableList<String> patientIds = nrController.initIdList();
 
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Add new report");
         final Label insertLabel = new Label("New report data:");
-        final ChoiceBox patientBox = new ChoiceBox(patients);
+        final ChoiceBox patientBox = new ChoiceBox(patientIds);
         final Button newTherapyButton = new Button("Add Therapy");
         final Button newReactionButton = new Button("Add Reaction");
         final Label therapyLabel = new Label();
@@ -40,7 +38,7 @@ public class NewReport {
         final DatePicker reportDate = new DatePicker();
         final Button addButton = new Button("Add");
 
-
+        // Size preferences for the buttons
         newReactionButton.setPrefWidth(300);
         newTherapyButton.setPrefWidth(300);
 
@@ -108,6 +106,7 @@ public class NewReport {
         reactionDate.setPrefWidth(1000);
         reportDate.setPrefWidth(1000);
 
+        // Adds nodes to the root GridPane
         root.add(titleLabel, 0, 0);
         root.add(insertLabel, 0, 1);
         root.add(patientBox, 0, 2);
@@ -116,6 +115,7 @@ public class NewReport {
         root.add(reportDate, 0, 5);
         root.add(addButton, 0, 6);
 
+        // Adds nodes to the buttons GridPane
         ThReGrid.add(newTherapyButton,0, 0);
         ThReGrid.add(therapyLabel, 1, 0);
         ThReGrid.add(newReactionButton,0, 1);
@@ -141,7 +141,7 @@ public class NewReport {
         primaryStage.show();
 
         // If clicked adds the new Patient to the DB
-        /*addButton.setOnAction(e -> {
+        addButton.setOnAction(e -> {
             if(patientBox.getValue() == null || reactionDate.getValue() == null || reportDate.getValue() == null) {
                 Alert newPatientAlert = new Alert(Alert.AlertType.WARNING);
 
@@ -152,17 +152,14 @@ public class NewReport {
                 newPatientAlert.showAndWait();
             } else {
                 // Converts from LocalDate to java.sql.Date
-                java.sql.Date queryBDayDate = java.sql.Date.valueOf(birthdayField.getValue());
-                npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
-                        ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
-                        ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
 
-                patientTable.setItems(mpController.initPatientsList());
-                patientTable.getSelectionModel().selectLast();
+
+                patientBox.setItems(nrController.initIdList());
+                patientBox.getSelectionModel().selectLast();
 
                 primaryStage.close();
             }
-        });*/
+        });
     }
 }
 

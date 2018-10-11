@@ -107,23 +107,18 @@ public class MainPage {
         medicRow.setValignment(VPos.CENTER);
         medicRow.setPercentHeight(100.0 / 6);
 
-        final Label idLabel = new Label("Patient ID:");
         final Label birthdayLabel = new Label("Birthday:");
         final Label provinceLabel = new Label("Province:");
         final Label professionLabel = new Label("Profession:");
         final Label riskFactorLabel = new Label("Risk Factor:");
 
         // This labels will show the patient personal data
-        final Label patientID = new Label("");
         final Label patientBDay = new Label("");
         final Label patientProvince = new Label("");
         final Label patientProfession = new Label("");
         final Label patientRiskFactor = new Label("");
 
         // Adds the labels on the relative position
-        patientInfo.add(idLabel, 0, 0);
-        patientInfo.add(patientID, 1, 0);
-
         patientInfo.add(birthdayLabel, 0, 1);
         patientInfo.add(patientBDay, 1, 1);
 
@@ -167,7 +162,6 @@ public class MainPage {
         // Sets the default selected value
         patientTable.getSelectionModel().selectedItemProperty().addListener((newSelection) -> {
             if(newSelection != null){
-                patientID.setText(patientTable.getSelectionModel().getSelectedItem().getId());
                 patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
@@ -237,7 +231,7 @@ public class MainPage {
         });
 
         miReport.setOnAction(e -> {
-            NewReport newReport = new NewReport(new Stage(), mpController);
+            NewReport newReport = new NewReport(new Stage());
         });
 
         // TODO Implementare miDelete

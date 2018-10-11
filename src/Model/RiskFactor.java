@@ -33,6 +33,6 @@ public class RiskFactor {
 
     @Override
     public String toString() {
-        return risk_level + " : " + description;
+        return risk_level + ": " + description;
     }
 }

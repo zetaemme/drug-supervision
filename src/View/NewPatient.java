@@ -130,6 +130,9 @@ public class NewPatient {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        // Sets the addButton as DefaultButton
+        addButton.setDefaultButton(true);
+
         // If clicked adds the new Patient to the DB
         addButton.setOnAction(e -> {
             if(birthdayField.getValue() == null || provinceField.getText().equals("") || professionField.getText().equals("")) {
