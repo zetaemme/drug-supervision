@@ -151,9 +151,6 @@ public class NewReport {
 
                 newPatientAlert.showAndWait();
             } else {
-                // Converts from LocalDate to java.sql.Date
-
-
                 patientBox.setItems(nrController.initIdList());
                 patientBox.getSelectionModel().selectLast();
 
