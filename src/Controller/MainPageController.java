@@ -50,18 +50,4 @@ public class MainPageController {
 
         return patients;
     }
-
-    public void logout(String username) {
-        mpConnection = new DBConnection();
-        mpConnection.openConnection();
-
-        try {
-          mpConnection.statement = mpConnection.connection.createStatement();
-          mpConnection.statement.executeUpdate("UPDATE Users SET logged = 0 WHERE username = '" + username + "';");
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-        } finally {
-            mpConnection.closeConnection();
-        }
-    }
 }
