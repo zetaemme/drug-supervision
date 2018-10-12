@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 
 public class NewReport {
     private NewReportController nrController = new NewReportController();
@@ -139,6 +141,9 @@ public class NewReport {
         reactionGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
         reactionGrid.getRowConstraints().add(gridRow);
 
+        // Sets defaults values to dates
+        reactionDate.setValue(LocalDate.now());
+        reportDate.setValue(LocalDate.now());
 
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 500);
