@@ -1,7 +1,9 @@
 package View;
 
+import Controller.LoginController;
 import Controller.MainPageController;
 import Model.Patient;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -18,9 +20,10 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class MainPage {
-    // TODO IMPORTANTISSIMO Creare assert e gestire logout
+    public MainPage(Stage primaryStage, String username, LoginController loginController) {
+        // Checks if a login is happened when this constructor is invoked
+        assert loginController.isLogged() : "You shouldn't be here!";
 
-    public MainPage(Stage primaryStage, String username) {
         // Connection with the controller
         final MainPageController mpController = new MainPageController();
 
@@ -218,7 +221,7 @@ public class MainPage {
             Optional<ButtonType> result = mpLogoutAlert.showAndWait();
 
             if(result.get() == ButtonType.OK) {
-                mpController.logout(username);
+                loginController.logout();
             } else {
                 // Cancels the close request
                 e.consume();
@@ -249,7 +252,7 @@ public class MainPage {
             Optional<ButtonType> result = logoutAlert.showAndWait();
 
             if(result.get() == ButtonType.OK) {
-                mpController.logout(username);
+                loginController.logout();
                 primaryStage.close();
                 Login login = new Login(new Stage());
             } else {

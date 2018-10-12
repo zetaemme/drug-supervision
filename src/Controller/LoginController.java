@@ -15,7 +15,8 @@ public class LoginController {
 
         try {
             loginConnection.statement = loginConnection.connection.createStatement();
-            loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '" + username + "' AND password = '" + password + "';");
+            loginConnection.rs = loginConnection.statement.executeQuery("SELECT * FROM Users WHERE username = '"
+                                                                            + username + "' AND password = '" + password + "';");
 
             String result = loginConnection.rs.getString("username");
 
