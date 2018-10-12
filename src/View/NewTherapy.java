@@ -13,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 
 public class NewTherapy {
     private NewTherapyController ntController = new NewTherapyController();
@@ -93,6 +95,9 @@ public class NewTherapy {
 
         root.getColumnConstraints().add(mainColumn);
         root.getRowConstraints().addAll(titleRow, drugRow, doseRow, startingDateRow, endingDateRow, dailyFrequencyRow);
+
+        // Sets default starting date value
+        startingDate.setValue(LocalDate.now());
 
         // Creates scene and add a stylesheet
         Scene scene = new Scene(root, 400, 350);
