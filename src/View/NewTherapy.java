@@ -1,8 +1,6 @@
 package View;
 
-import Controller.NewReportController;
-
-import javafx.collections.ObservableList;
+import Controller.NewTherapyController;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -11,45 +9,48 @@ import javafx.scene.control.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 
 public class NewTherapy {
+    private NewTherapyController ntController = new NewTherapyController();
 
     public NewTherapy(Stage primaryStage) {
         GridPane root = new GridPane();
 
+        // Options for the GridPane
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Insert new Therapy");
-        final TextField drugTextField = new TextField();
-        final TextField doseTextField = new TextField();
+        final TextField drugField = new TextField();
+        final TextField doseField = new TextField();
         final DatePicker startingDate = new DatePicker();
         final DatePicker endingDate = new DatePicker();
-        final TextField dailyFrequencyTextField = new TextField();
+        final TextField dailyFrequencyField = new TextField();
         final Button addButton = new Button("Add");
 
-        drugTextField.setPromptText("Drug name");
-        doseTextField.setPromptText("Drug dose");
+        // Prompt texts for the TextFields
+        drugField.setPromptText("Drug name");
+        doseField.setPromptText("Drug dose");
         startingDate.setPromptText("Therapy starting date");
         endingDate.setPromptText("Therapy ending date");
-        dailyFrequencyTextField.setPromptText("Daily frequency");
+        dailyFrequencyField.setPromptText("Daily frequency");
 
         startingDate.setPrefWidth(400);
         endingDate.setPrefWidth(400);
 
+        // Sets titleLabel Id and Font
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         titleLabel.setId("titleLabel");
 
-        //set colums constraints for root grid pane
+        // GridPane's column
         ColumnConstraints mainColumn = new ColumnConstraints();
         mainColumn.setPercentWidth(100);
         mainColumn.setHalignment(HPos.CENTER);
 
-        //set row constraints for root grid pane
+        // GridPane's rows
         RowConstraints titleRow = new RowConstraints();
         titleRow.setPercentHeight(100.0 / 7);
         titleRow.setValignment(VPos.CENTER);
@@ -78,17 +79,22 @@ public class NewTherapy {
         addRow.setPercentHeight(100.0 / 7);
         addRow.setValignment(VPos.CENTER);
 
+        // Add all nodes to the GridPane
         root.add(titleLabel, 0 ,0);
-        root.add(drugTextField, 0,1);
-        root.add(doseTextField, 0 ,2);
+        root.add(drugField, 0,1);
+        root.add(doseField, 0 ,2);
         root.add(startingDate, 0,3);
         root.add(endingDate, 0,4 );
-        root.add(dailyFrequencyTextField, 0,5);
+        root.add(dailyFrequencyField, 0,5);
         root.add(addButton, 0, 6);
+
+        // Sets addButton as default button
+        addButton.setDefaultButton(true);
 
         root.getColumnConstraints().add(mainColumn);
         root.getRowConstraints().addAll(titleRow, drugRow, doseRow, startingDateRow, endingDateRow, dailyFrequencyRow);
 
+        // Creates scene and add a stylesheet
         Scene scene = new Scene(root, 400, 350);
         scene.getStylesheets().add("CSS/style.css");
 
@@ -98,5 +104,22 @@ public class NewTherapy {
         primaryStage.setResizable(false);
         primaryStage.show();
 
+        // If clicked adds the therapy into the DB
+        addButton.setOnAction(e -> {
+            if(drugField.getText().equals("") || doseField.getText().equals("") || startingDate.getValue() == null
+                || endingDate.getValue() == null || dailyFrequencyField.getText().equals("")) {
+                Alert ntAlert = new Alert(Alert.AlertType.WARNING);
+
+                ntAlert.setTitle("No Data");
+                ntAlert.setHeaderText("No therapy data!");
+                ntAlert.setContentText("Please, fill all fields to add a new therapy.");
+
+                ntAlert.showAndWait();
+            } else {
+                ntController.addNewTherapy(drugField.getText(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
+                                            endingDate.getValue().toString(), Integer.valueOf(dailyFrequencyField.getText()));
+                primaryStage.close();
+            }
+        });
     }
 }

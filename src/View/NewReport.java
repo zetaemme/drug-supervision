@@ -154,6 +154,10 @@ public class NewReport {
             NewTherapy newTherapy = new NewTherapy(new Stage());
         });
 
+        newReactionButton.setOnAction(e -> {
+            NewReaction newReaction = new NewReaction(new Stage());
+        });
+
         // If clicked adds the a new Report for the selected patient to the DB
         addButton.setOnAction(e -> {
             if(patientBox.getValue() == null || reactionDate.getValue() == null || reportDate.getValue() == null) {
