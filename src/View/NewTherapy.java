@@ -44,7 +44,7 @@ public class NewTherapy {
         endingDate.setPrefWidth(400);
 
         // Sets titleLabel Id and Font
-        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 25));
         titleLabel.setId("titleLabel");
 
         // GridPane's column

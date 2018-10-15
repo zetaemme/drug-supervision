@@ -2,7 +2,6 @@ package View;
 
 import Controller.NewReportController;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -26,13 +25,11 @@ public class NewReport {
         GridPane therapyGrid = new GridPane();
         GridPane reactionGrid = new GridPane();
 
-        ObservableList<String> patientIds = nrController.initIdList();
-
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Add new report");
         final Label insertLabel = new Label("New report data:");
-        final ChoiceBox patientBox = new ChoiceBox(patientIds);
+        final ChoiceBox patientBox = new ChoiceBox(nrController.initIdList());
         final Button newTherapyButton = new Button("Add Therapy");
         final Button newReactionButton = new Button("Add Reaction");
         final Label therapyLabel = new Label();
@@ -145,6 +142,9 @@ public class NewReport {
         reactionDate.setValue(LocalDate.now());
         reportDate.setValue(LocalDate.now());
 
+        // Sets addButton as default button
+        addButton.setDefaultButton(true);
+
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 500);
         scene.getStylesheets().add("CSS/style.css");
@@ -174,9 +174,6 @@ public class NewReport {
 
                 newPatientAlert.showAndWait();
             } else {
-                patientBox.setItems(nrController.initIdList());
-                patientBox.getSelectionModel().selectLast();
-
                 java.sql.Date sqlReactionDate = java.sql.Date.valueOf(reactionDate.getValue());
                 java.sql.Date sqlReportDate = java.sql.Date.valueOf(reportDate.getValue());
 
