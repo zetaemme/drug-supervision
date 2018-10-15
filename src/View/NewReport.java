@@ -126,9 +126,9 @@ public class NewReport {
 
         // Adds nodes to the buttons GridPane
         therapyGrid.add(newTherapyButton,0, 0);
-        therapyGrid.add(therapyLabel, 0, 1);
+        therapyGrid.add(therapyLabel, 1, 0);
         reactionGrid.add(newReactionButton,0, 0);
-        reactionGrid.add(reactionLabel, 0, 1);
+        reactionGrid.add(reactionLabel, 1, 0);
 
         // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
@@ -156,11 +156,11 @@ public class NewReport {
         primaryStage.show();
 
         newTherapyButton.setOnAction(e -> {
-            NewTherapy newTherapy = new NewTherapy(new Stage());
+            NewTherapy newTherapy = new NewTherapy(new Stage(), therapyLabel);
         });
 
         newReactionButton.setOnAction(e -> {
-            NewReaction newReaction = new NewReaction(new Stage());
+            NewReaction newReaction = new NewReaction(new Stage(), reactionLabel);
         });
 
         // If clicked adds the a new Report for the selected patient to the DB
@@ -176,6 +176,11 @@ public class NewReport {
             } else {
                 patientBox.setItems(nrController.initIdList());
                 patientBox.getSelectionModel().selectLast();
+
+                java.sql.Date sqlReactionDate = java.sql.Date.valueOf(reactionDate.getValue());
+                java.sql.Date sqlReportDate = java.sql.Date.valueOf(reportDate.getValue());
+
+                nrController.addNewReport(sqlReactionDate, sqlReportDate, therapyLabel, reactionLabel, patientBox);
 
                 primaryStage.close();
             }

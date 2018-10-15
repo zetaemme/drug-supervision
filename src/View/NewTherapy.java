@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class NewTherapy {
     private NewTherapyController ntController = new NewTherapyController();
 
-    public NewTherapy(Stage primaryStage) {
+    public NewTherapy(Stage primaryStage , Label therapyLabel) {
         GridPane root = new GridPane();
 
         // Options for the GridPane
@@ -121,10 +121,15 @@ public class NewTherapy {
 
                 ntAlert.showAndWait();
             } else {
-                ntController.addNewTherapy(drugField.getText(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
-                                            endingDate.getValue().toString(), Integer.valueOf(dailyFrequencyField.getText()));
+                java.sql.Date querySDate = java.sql.Date.valueOf(startingDate.getValue());
+                java.sql.Date queryEDate = java.sql.Date.valueOf(endingDate.getValue());
+                therapyLabel.setText(ntController.addNewTherapy(drugField.getText(), Integer.valueOf(doseField.getText()),
+                                                                querySDate, queryEDate,
+                                                                Integer.valueOf(dailyFrequencyField.getText())));
+
                 primaryStage.close();
             }
         });
     }
 }
+

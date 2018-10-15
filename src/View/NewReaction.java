@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class NewReaction {
     private NewReactionController nreController = new NewReactionController();
 
-    public NewReaction(Stage primaryStage) {
+    public NewReaction(Stage primaryStage, Label reactionLabel) {
         GridPane root = new GridPane();
 
         // Default size for root GridPane
@@ -98,7 +98,7 @@ public class NewReaction {
 
                 nreAlert.showAndWait();
             } else {
-                nreController.addNewReaction(Integer.valueOf(riskField.getText()), descriptionField.getText());
+                reactionLabel.setText(nreController.addNewReaction(Integer.valueOf(riskField.getText()), descriptionField.getText()));
                 primaryStage.close();
             }
         });
