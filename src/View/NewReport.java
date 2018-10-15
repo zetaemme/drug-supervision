@@ -2,7 +2,6 @@ package View;
 
 import Controller.NewReportController;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -26,13 +25,11 @@ public class NewReport {
         GridPane therapyGrid = new GridPane();
         GridPane reactionGrid = new GridPane();
 
-        ObservableList<String> patientIds = nrController.initIdList();
-
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Add new report");
         final Label insertLabel = new Label("New report data:");
-        final ChoiceBox patientBox = new ChoiceBox(patientIds);
+        final ChoiceBox patientBox = new ChoiceBox(nrController.initIdList());
         final Button newTherapyButton = new Button("Add Therapy");
         final Button newReactionButton = new Button("Add Reaction");
         final Label therapyLabel = new Label();
@@ -126,9 +123,9 @@ public class NewReport {
 
         // Adds nodes to the buttons GridPane
         therapyGrid.add(newTherapyButton,0, 0);
-        therapyGrid.add(therapyLabel, 0, 1);
+        therapyGrid.add(therapyLabel, 1, 0);
         reactionGrid.add(newReactionButton,0, 0);
-        reactionGrid.add(reactionLabel, 0, 1);
+        reactionGrid.add(reactionLabel, 1, 0);
 
         // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
@@ -145,6 +142,9 @@ public class NewReport {
         reactionDate.setValue(LocalDate.now());
         reportDate.setValue(LocalDate.now());
 
+        // Sets addButton as default button
+        addButton.setDefaultButton(true);
+
         // Sets scene stylesheet
         Scene scene = new Scene(root, 400, 500);
         scene.getStylesheets().add("CSS/style.css");
@@ -156,11 +156,11 @@ public class NewReport {
         primaryStage.show();
 
         newTherapyButton.setOnAction(e -> {
-            NewTherapy newTherapy = new NewTherapy(new Stage());
+            NewTherapy newTherapy = new NewTherapy(new Stage(), therapyLabel);
         });
 
         newReactionButton.setOnAction(e -> {
-            NewReaction newReaction = new NewReaction(new Stage());
+            NewReaction newReaction = new NewReaction(new Stage(), reactionLabel);
         });
 
         // If clicked adds the a new Report for the selected patient to the DB
@@ -174,8 +174,10 @@ public class NewReport {
 
                 newPatientAlert.showAndWait();
             } else {
-                patientBox.setItems(nrController.initIdList());
-                patientBox.getSelectionModel().selectLast();
+                java.sql.Date sqlReactionDate = java.sql.Date.valueOf(reactionDate.getValue());
+                java.sql.Date sqlReportDate = java.sql.Date.valueOf(reportDate.getValue());
+
+                nrController.addNewReport(sqlReactionDate, sqlReportDate, therapyLabel, reactionLabel, patientBox);
 
                 primaryStage.close();
             }
