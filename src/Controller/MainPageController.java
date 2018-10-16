@@ -26,7 +26,9 @@ public class MainPageController {
             mpConnection.rs = mpConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, R.description, R.riskLevel " +
                                                                      "FROM Patient JOIN Patient_has_RiskFactor P " +
                                                                      "on Patient.idPatient = P.Patient_idPatient " +
-                                                                     "JOIN RiskFactor R on P.RiskFactor_idFactor = R.idFactor");
+                                                                     "JOIN RiskFactor R on P.RiskFactor_idFactor = R.idFactor " +
+                                                                     "JOIN Report on Patient.idPatient = Report.Patient_idPatient " +
+                                                                     "WHERE idPatient = Report.Patient_idPatient");
 
             while(mpConnection.rs.next()) {
                 patients.add(new Patient(mpConnection.rs.getString("idPatient"),
@@ -57,7 +59,10 @@ public class MainPageController {
 
         try{
             mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.statement.executeQuery("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'");
+            mpConnection.statement.executeUpdate("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'; " +
+                                                      "DELETE FROM Report WHERE Patient_idPatient = '" + idPatient + "'; " +
+                                                      "DELETE FROM Therapy WHERE EXISTS (SELECT Therapy_idTherapy FROM Report WHERE Patient_idPatient = '" + idPatient + "'); " +
+                                                      "DELETE FROM Report_has_Reaction WHERE Report_Patient_idPatient = '" + idPatient + "'");
 
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
@@ -65,5 +70,27 @@ public class MainPageController {
         } finally {
             mpConnection.closeConnection();
         }
+    }
+
+    public String getPatientReport(String idPatient){
+        String result = "";
+
+        mpConnection = new DBConnection();
+        mpConnection.openConnection();
+
+        try {
+            mpConnection.statement = mpConnection.connection.createStatement();
+            mpConnection.rs = mpConnection.statement.executeQuery("SELECT reportDate, reactionDate FROM Report WHERE Patient_idPatient = '" + idPatient + "'");
+
+            result = "Report Date: " + mpConnection.rs.getString("reportDate") + "\n\nReactionDate: " + mpConnection.rs.getString("reactionDate");
+
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+            mpConnection.closeConnection();
+        } finally {
+            mpConnection.closeConnection();
+        }
+
+        return result;
     }
 }

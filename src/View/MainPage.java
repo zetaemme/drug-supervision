@@ -107,20 +107,22 @@ public class MainPage {
         riskFactorRow.setValignment(VPos.CENTER);
         riskFactorRow.setPercentHeight(100.0 / 6);
 
-        RowConstraints medicRow = new RowConstraints();
-        medicRow.setValignment(VPos.CENTER);
-        medicRow.setPercentHeight(100.0 / 6);
+        RowConstraints reportRow = new RowConstraints();
+        reportRow.setValignment(VPos.CENTER);
+        reportRow.setPercentHeight(100.0 / 6);
 
         final Label birthdayLabel = new Label("Birthday:");
         final Label provinceLabel = new Label("Province:");
         final Label professionLabel = new Label("Profession:");
         final Label riskFactorLabel = new Label("Risk Factor:");
+        final Label reportLabel = new Label("Report:");
 
         // This labels will show the patient personal data
-        final Label patientBDay = new Label("");
-        final Label patientProvince = new Label("");
-        final Label patientProfession = new Label("");
-        final Label patientRiskFactor = new Label("");
+        final Label patientBDay = new Label();
+        final Label patientProvince = new Label();
+        final Label patientProfession = new Label();
+        final Label patientRiskFactor = new Label();
+        final Label patientReport = new Label();
 
         // Adds the labels on the relative position
         patientInfo.add(birthdayLabel, 0, 1);
@@ -135,9 +137,11 @@ public class MainPage {
         patientInfo.add(riskFactorLabel, 0 , 4);
         patientInfo.add(patientRiskFactor, 1 , 4);
 
+        patientInfo.add(reportLabel, 0 , 5);
+        patientInfo.add(patientReport, 1 , 5);
         // Adds all to the GridPane
         patientInfo.getColumnConstraints().addAll(column1, column2);
-        patientInfo.getRowConstraints().addAll(idRow, bDayRow, provinceRow, professionRow, riskFactorRow, medicRow);
+        patientInfo.getRowConstraints().addAll(idRow, bDayRow, provinceRow, professionRow, riskFactorRow, reportRow);
 
         infoRoot.setCenter(patientInfo);
 
@@ -170,6 +174,7 @@ public class MainPage {
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
                 patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
+                patientReport.setText(mpController.getPatientReport(patientTable.getSelectionModel().getSelectedItem().getId()));
             }
         });
 
@@ -235,10 +240,9 @@ public class MainPage {
         });
 
         miReport.setOnAction(e -> {
-            NewReport newReport = new NewReport(new Stage());
+            NewReport newReport = new NewReport(new Stage(), patientTable, mpController);
         });
 
-        // TODO Implementare miDelete
         miDelete.setOnAction(event -> {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
