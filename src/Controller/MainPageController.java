@@ -50,4 +50,20 @@ public class MainPageController {
 
         return patients;
     }
+
+    public void deletePatient(String idPatient){
+        mpConnection = new DBConnection();
+        mpConnection.openConnection();
+
+        try{
+            mpConnection.statement = mpConnection.connection.createStatement();
+            mpConnection.statement.executeQuery("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'");
+
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+            mpConnection.closeConnection();
+        } finally {
+            mpConnection.closeConnection();
+        }
+    }
 }

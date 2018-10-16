@@ -239,6 +239,25 @@ public class MainPage {
         });
 
         // TODO Implementare miDelete
+        miDelete.setOnAction(event -> {
+            Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            deleteAlert.setTitle("Delete");
+            deleteAlert.setHeaderText("Delete Patient");
+            deleteAlert.setContentText("Are you sure you want to delete " + patientTable.getSelectionModel().getSelectedItem().getId() + " patient?");
+
+            Optional<ButtonType> result = deleteAlert.showAndWait();
+
+            if(result.get() == ButtonType.OK){
+                mpController.deletePatient(patientTable.getSelectionModel().getSelectedItem().getId());
+
+                patientTable.setItems(mpController.initPatientsList());
+                patientTable.getSelectionModel().selectLast();
+            }
+            else{
+                deleteAlert.close();
+            }
+        });
 
         // If clicked log the logged user out
         miLogout.setOnAction(e -> {
