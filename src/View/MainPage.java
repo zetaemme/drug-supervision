@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class MainPage {
-    public MainPage(Stage primaryStage, String username, LoginController loginController) {
+    public MainPage(Stage primaryStage, LoginController loginController) {
         // Checks if a login is happened when this constructor is invoked
         assert loginController.isLogged() : "You shouldn't be here!";
 
@@ -234,15 +234,17 @@ public class MainPage {
             }
         });
 
-        // If clicked opens a new window that allows to add a new patient
+        // If clicked opens a new window that allows to add a new Patient
         miPatient.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage(), username, patientTable, mpController);
+            NewPatient newPatient = new NewPatient(new Stage(), loginController.loginInstance, patientTable, mpController);
         });
 
+        // If clicked opens a new window that allows to add a new Report
         miReport.setOnAction(e -> {
             NewReport newReport = new NewReport(new Stage(), patientTable, mpController);
         });
 
+        // If clicked deletes the selected patient
         miDelete.setOnAction(event -> {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -257,8 +259,7 @@ public class MainPage {
 
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
-            }
-            else{
+            } else {
                 deleteAlert.close();
             }
         });

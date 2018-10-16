@@ -150,6 +150,7 @@ public class NewPatient {
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
 
+                // TODO Non va più, fixare subito
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 

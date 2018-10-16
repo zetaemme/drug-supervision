@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class NewReactionController {
     private DBConnection nreConnection;
 
+    // Adds a new reaction with the corresponding data
     public String addNewReaction(int risk, String description) {
         nreConnection = new DBConnection();
         nreConnection.openConnection();

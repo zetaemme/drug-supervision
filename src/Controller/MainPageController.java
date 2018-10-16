@@ -35,7 +35,8 @@ public class MainPageController {
                                          mpConnection.rs.getString("birthday"),
                                          mpConnection.rs.getString("province"),
                                          mpConnection.rs.getString("profession"),
-                                         new RiskFactor(mpConnection.rs.getString("description"), mpConnection.rs.getInt("riskLevel"))));
+                                         new RiskFactor(mpConnection.rs.getString("description"),
+                                                        mpConnection.rs.getInt("riskLevel"))));
             }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
@@ -53,6 +54,7 @@ public class MainPageController {
         return patients;
     }
 
+    // Deletes the patient with the corresponding id
     public void deletePatient(String idPatient){
         mpConnection = new DBConnection();
         mpConnection.openConnection();
@@ -60,8 +62,9 @@ public class MainPageController {
         try{
             mpConnection.statement = mpConnection.connection.createStatement();
             mpConnection.statement.executeUpdate("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'; " +
-                                                      "DELETE FROM Report WHERE Patient_idPatient = '" + idPatient + "'; " +
-                                                      "DELETE FROM Therapy WHERE EXISTS (SELECT Therapy_idTherapy FROM Report WHERE Patient_idPatient = '" + idPatient + "'); " +
+                                                        "DELETE FROM Report WHERE Patient_idPatient = '" + idPatient + "'; " +
+                                                        "DELETE FROM Therapy WHERE EXISTS (SELECT Therapy_idTherapy " +
+                                                        "FROM Report WHERE Patient_idPatient = '" + idPatient + "'); " +
                                                       "DELETE FROM Report_has_Reaction WHERE Report_Patient_idPatient = '" + idPatient + "'");
 
         } catch(SQLException sqle) {
@@ -72,6 +75,7 @@ public class MainPageController {
         }
     }
 
+    // Returns the patient with the corresponding id
     public String getPatientReport(String idPatient){
         String result = "";
 
@@ -80,9 +84,11 @@ public class MainPageController {
 
         try {
             mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.rs = mpConnection.statement.executeQuery("SELECT reportDate, reactionDate FROM Report WHERE Patient_idPatient = '" + idPatient + "'");
+            mpConnection.rs = mpConnection.statement.executeQuery("SELECT reportDate, reactionDate FROM Report " +
+                                                                    "WHERE Patient_idPatient = '" + idPatient + "'");
 
-            result = "Report Date: " + mpConnection.rs.getString("reportDate") + "\n\nReactionDate: " + mpConnection.rs.getString("reactionDate");
+            result = "Report Date: " + mpConnection.rs.getString("reportDate") + "\n\nReactionDate: " +
+                        mpConnection.rs.getString("reactionDate");
 
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
