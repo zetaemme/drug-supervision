@@ -1,5 +1,6 @@
 package View;
 
+import Controller.MainPageController;
 import Controller.NewReportController;
 
 import javafx.geometry.HPos;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 public class NewReport {
     private NewReportController nrController = new NewReportController();
 
-    public NewReport(Stage primaryStage) {
+    public NewReport(Stage primaryStage, TableView patientTable, MainPageController mpController) {
         GridPane root = new GridPane();
         GridPane therapyGrid = new GridPane();
         GridPane reactionGrid = new GridPane();
@@ -178,6 +179,8 @@ public class NewReport {
                 java.sql.Date sqlReportDate = java.sql.Date.valueOf(reportDate.getValue());
 
                 nrController.addNewReport(sqlReactionDate, sqlReportDate, therapyLabel, reactionLabel, patientBox);
+                patientTable.setItems(mpController.initPatientsList());
+                patientTable.getSelectionModel().selectLast();
 
                 primaryStage.close();
             }
