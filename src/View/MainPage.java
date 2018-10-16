@@ -174,6 +174,7 @@ public class MainPage {
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
                 patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
+                patientReport.setText(mpController.getPatientReport(patientTable.getSelectionModel().getSelectedItem().getId()));
             }
         });
 

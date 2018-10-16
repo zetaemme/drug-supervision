@@ -71,4 +71,26 @@ public class MainPageController {
             mpConnection.closeConnection();
         }
     }
+
+    public String getPatientReport(String idPatient){
+        String result = "";
+
+        mpConnection = new DBConnection();
+        mpConnection.openConnection();
+
+        try {
+            mpConnection.statement = mpConnection.connection.createStatement();
+            mpConnection.rs = mpConnection.statement.executeQuery("SELECT reportDate, reactionDate FROM Report WHERE Patient_idPatient = '" + idPatient + "'");
+
+            result = "Report Date: " + mpConnection.rs.getString("reportDate") + "\n\nReactionDate: " + mpConnection.rs.getString("reactionDate");
+
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+            mpConnection.closeConnection();
+        } finally {
+            mpConnection.closeConnection();
+        }
+
+        return result;
+    }
 }
