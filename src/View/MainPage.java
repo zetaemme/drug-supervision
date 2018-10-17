@@ -259,6 +259,7 @@ public class MainPage {
 
                 patientTable.getSelectionModel().selectLast();
 
+                // If the list is empty sets all labels to ""
                 if(patientTable.getSelectionModel().getSelectedItem() == null) {
                     patientBDay.setText("");
                     patientProvince.setText("");
