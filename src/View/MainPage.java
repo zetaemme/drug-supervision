@@ -257,15 +257,14 @@ public class MainPage {
 
                 patientTable.setItems(mpController.initPatientsList());
 
-                // If the only item in the list is deleted sets all the labels to ""
-                if(patientIdsList.isEmpty()) {
+                patientTable.getSelectionModel().selectLast();
+
+                if(patientTable.getSelectionModel().getSelectedItem() == null) {
                     patientBDay.setText("");
                     patientProvince.setText("");
                     patientProfession.setText("");
                     patientRiskFactor.setText("");
                     patientReport.setText("");
-                } else {
-                    patientTable.getSelectionModel().selectLast();
                 }
             }
             else{
