@@ -256,7 +256,17 @@ public class MainPage {
                 mpController.deletePatient(patientTable.getSelectionModel().getSelectedItem().getId());
 
                 patientTable.setItems(mpController.initPatientsList());
-                patientTable.getSelectionModel().selectLast();
+
+                // If the only item in the list is deleted sets all the labels to ""
+                if(patientIdsList.isEmpty()) {
+                    patientBDay.setText("");
+                    patientProvince.setText("");
+                    patientProfession.setText("");
+                    patientRiskFactor.setText("");
+                    patientReport.setText("");
+                } else {
+                    patientTable.getSelectionModel().selectLast();
+                }
             }
             else{
                 deleteAlert.close();
