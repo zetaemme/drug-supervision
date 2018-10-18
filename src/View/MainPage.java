@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class MainPage {
-    public MainPage(Stage primaryStage, LoginController loginController) {
+    public MainPage(Stage primaryStage, String username, LoginController loginController) {
         // Checks if a login is happened when this constructor is invoked
         assert loginController.isLogged() : "You shouldn't be here!";
 
@@ -234,17 +234,15 @@ public class MainPage {
             }
         });
 
-        // If clicked opens a new window that allows to add a new Patient
+        // If clicked opens a new window that allows to add a new patient
         miPatient.setOnAction(e -> {
-            NewPatient newPatient = new NewPatient(new Stage(), loginController.loginInstance, patientTable, mpController);
+            NewPatient newPatient = new NewPatient(new Stage(), username, patientTable, mpController);
         });
 
-        // If clicked opens a new window that allows to add a new Report
         miReport.setOnAction(e -> {
             NewReport newReport = new NewReport(new Stage(), patientTable, mpController);
         });
 
-        // If clicked deletes the selected patient
         miDelete.setOnAction(event -> {
             Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -258,8 +256,19 @@ public class MainPage {
                 mpController.deletePatient(patientTable.getSelectionModel().getSelectedItem().getId());
 
                 patientTable.setItems(mpController.initPatientsList());
+
                 patientTable.getSelectionModel().selectLast();
-            } else {
+
+                // If the list is empty sets all labels to ""
+                if(patientTable.getSelectionModel().getSelectedItem() == null) {
+                    patientBDay.setText("");
+                    patientProvince.setText("");
+                    patientProfession.setText("");
+                    patientRiskFactor.setText("");
+                    patientReport.setText("");
+                }
+            }
+            else{
                 deleteAlert.close();
             }
         });
