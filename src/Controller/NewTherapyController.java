@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class NewTherapyController {
     private DBConnection ntConnection;
 
+    // Adds a new therapy with the corresponding data
     public String addNewTherapy(String drugName, int dose, Date startingDate, Date endingDate, int dailyFrequency) {
         ntConnection = new DBConnection();
         ntConnection.openConnection();

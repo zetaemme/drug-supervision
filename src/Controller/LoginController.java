@@ -9,6 +9,7 @@ public class LoginController {
 
     public String loginInstance = null;
 
+    // Checks if the username/password tuple exists in the DB
     public boolean login(String username, String password) {
         loginConnection = new DBConnection();
         loginConnection.openConnection();
@@ -21,6 +22,7 @@ public class LoginController {
             String result = loginConnection.rs.getString("username");
 
             if(!loginConnection.rs.wasNull()) {
+                loginInstance = username;
                 return true;
             }
         } catch(SQLException sqle) {
@@ -33,6 +35,7 @@ public class LoginController {
         return false;
     }
 
+    // Checks if the login instance isn't null
     public boolean isLogged() {
         if(loginInstance != null) {
             return true;
@@ -41,6 +44,7 @@ public class LoginController {
         }
     }
 
+    // Set's the login instance as null
     public void logout() {
         loginInstance = null;
     }

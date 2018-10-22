@@ -4,7 +4,6 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.RiskFactor;
 import Model.Utils.DBConnection;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,6 +13,7 @@ import java.sql.Date;
 public class NewPatientController {
     private DBConnection npConnection;
 
+    // Adds a patient with the corresponding data
     public void addNewPatient(Date birthday, String province, String profession, String medic, int riskFactor, String description) {
         npConnection = new DBConnection();
         npConnection.openConnection();
@@ -41,6 +41,7 @@ public class NewPatientController {
         }
     }
 
+    // Initializes the list with all the RiskFactors
     public ObservableList<RiskFactor> initRiskFactorList() {
         final ObservableList<RiskFactor> riskFactors = FXCollections.observableArrayList();
 

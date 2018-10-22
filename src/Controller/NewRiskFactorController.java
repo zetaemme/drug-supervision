@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class NewRiskFactorController {
     private DBConnection npConnection;
 
+    // Adds a RiskFactor with the corresponding data
     public void addRiskFactor(int riskLevel, String description) {
         npConnection = new DBConnection();
         npConnection.openConnection();
