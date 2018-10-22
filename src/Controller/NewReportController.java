@@ -58,6 +58,5 @@ public class NewReportController {
         } finally {
             nrConnection.closeConnection();
         }
-
     }
 }

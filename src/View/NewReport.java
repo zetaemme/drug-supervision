@@ -182,6 +182,8 @@ public class NewReport {
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 
+                mpController.getReportNumber();
+
                 primaryStage.close();
             }
         });

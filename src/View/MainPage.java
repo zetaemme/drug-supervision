@@ -27,6 +27,9 @@ public class MainPage {
         // Connection with the controller
         final MainPageController mpController = new MainPageController();
 
+        // Checks how many reports i have in the corresponding table
+        int reportCounter = mpController.getReportNumber();
+
         VBox root = new VBox();
 
         // Root size settings
@@ -87,29 +90,25 @@ public class MainPage {
         column2.setHalignment(HPos.CENTER);
         column2.setPercentWidth(50);
 
-        RowConstraints idRow = new RowConstraints();
-        idRow.setValignment(VPos.CENTER);
-        idRow.setPercentHeight(100.0 / 6);
-
         RowConstraints bDayRow = new RowConstraints();
         bDayRow.setValignment(VPos.CENTER);
-        bDayRow.setPercentHeight(100.0 / 6);
+        bDayRow.setPercentHeight(100.0 / 5);
 
         RowConstraints provinceRow = new RowConstraints();
         provinceRow.setValignment(VPos.CENTER);
-        provinceRow.setPercentHeight(100.0 / 6);
+        provinceRow.setPercentHeight(100.0 / 5);
 
         RowConstraints professionRow = new RowConstraints();
         professionRow.setValignment(VPos.CENTER);
-        professionRow.setPercentHeight(100.0 / 6);
+        professionRow.setPercentHeight(100.0 / 5);
 
         RowConstraints riskFactorRow = new RowConstraints();
         riskFactorRow.setValignment(VPos.CENTER);
-        riskFactorRow.setPercentHeight(100.0 / 6);
+        riskFactorRow.setPercentHeight(100.0 / 5);
 
         RowConstraints reportRow = new RowConstraints();
         reportRow.setValignment(VPos.CENTER);
-        reportRow.setPercentHeight(100.0 / 6);
+        reportRow.setPercentHeight(100.0 / 5);
 
         final Label birthdayLabel = new Label("Birthday:");
         final Label provinceLabel = new Label("Province:");
@@ -125,23 +124,24 @@ public class MainPage {
         final Label patientReport = new Label();
 
         // Adds the labels on the relative position
-        patientInfo.add(birthdayLabel, 0, 1);
+        patientInfo.add(birthdayLabel, 0, 0);
         patientInfo.add(patientBDay, 1, 1);
 
-        patientInfo.add(provinceLabel, 0, 2);
-        patientInfo.add(patientProvince, 1, 2);
+        patientInfo.add(provinceLabel, 0, 1);
+        patientInfo.add(patientProvince, 1, 1);
 
-        patientInfo.add(professionLabel, 0, 3);
-        patientInfo.add(patientProfession, 1, 3);
+        patientInfo.add(professionLabel, 0, 2);
+        patientInfo.add(patientProfession, 1, 2);
 
-        patientInfo.add(riskFactorLabel, 0 , 4);
-        patientInfo.add(patientRiskFactor, 1 , 4);
+        patientInfo.add(riskFactorLabel, 0 , 3);
+        patientInfo.add(patientRiskFactor, 1 , 3);
 
-        patientInfo.add(reportLabel, 0 , 5);
-        patientInfo.add(patientReport, 1 , 5);
+        patientInfo.add(reportLabel, 0 , 4);
+        patientInfo.add(patientReport, 1 , 4);
+
         // Adds all to the GridPane
         patientInfo.getColumnConstraints().addAll(column1, column2);
-        patientInfo.getRowConstraints().addAll(idRow, bDayRow, provinceRow, professionRow, riskFactorRow, reportRow);
+        patientInfo.getRowConstraints().addAll(bDayRow, provinceRow, professionRow, riskFactorRow, reportRow);
 
         infoRoot.setCenter(patientInfo);
 
