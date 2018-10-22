@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class NewReportController {
     private DBConnection nrConnection;
 
+    // Initializes the list with all the IDs
     public ObservableList<String> initIdList() {
         nrConnection = new DBConnection();
         nrConnection.openConnection();
@@ -35,6 +36,7 @@ public class NewReportController {
         return patientIds;
     }
 
+    // Adds a new report with the corresponding data
     public void addNewReport(Date reactionDate, Date reportDate, Label therapyLabel, Label reactionLabel, ChoiceBox idPatient){
         nrConnection = new DBConnection();
         nrConnection.openConnection();
