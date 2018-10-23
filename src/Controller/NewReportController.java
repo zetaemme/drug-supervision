@@ -15,7 +15,7 @@ public class NewReportController {
     // Initializes the list with all the IDs
     public ObservableList<String> initIdList() {
         nrConnection = new DBConnection();
-        nrConnection.openConnection();
+        nrConnection.openConnection(); 
 
         final ObservableList<String> patientIds = FXCollections.observableArrayList();
 

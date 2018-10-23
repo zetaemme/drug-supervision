@@ -27,9 +27,6 @@ public class MainPage {
         // Connection with the controller
         final MainPageController mpController = new MainPageController();
 
-        // Checks how many reports i have in the corresponding table
-        int reportCounter = mpController.getReportNumber();
-
         VBox root = new VBox();
 
         // Root size settings
