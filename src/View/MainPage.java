@@ -210,8 +210,6 @@ public class MainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);

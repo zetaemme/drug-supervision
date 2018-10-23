@@ -1,21 +1,22 @@
 package Model;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Date;
 
 public class Report {
     private final SimpleObjectProperty<Patient> patient;
     private final SimpleObjectProperty<Reaction> reaction;
-    private final SimpleObjectProperty<Date> reportDate;
-    private final SimpleObjectProperty<Date> reactionDate;
+    private final SimpleStringProperty reportDate;
+    private final SimpleStringProperty reactionDate;
     private final SimpleObjectProperty<Therapy> therapy;
 
-    private Report(Patient patient, Reaction reaction, Date reportDate, Date reactionDate, Therapy therapy) {
+    public Report(Patient patient, Reaction reaction, String reportDate, String reactionDate, Therapy therapy) {
         this.patient = new SimpleObjectProperty<>(patient);
         this.reaction = new SimpleObjectProperty<>(reaction);
-        this.reportDate = new SimpleObjectProperty<>(reportDate);
-        this.reactionDate = new SimpleObjectProperty<>(reactionDate);
+        this.reportDate = new SimpleStringProperty(reportDate);
+        this.reactionDate = new SimpleStringProperty(reactionDate);
         this.therapy = new SimpleObjectProperty<>(therapy);
     }
 
@@ -48,27 +49,27 @@ public class Report {
         return reaction;
     }
 
-    public Date getReportDate() {
+    public String getReportDate() {
         return reportDate.get();
     }
 
-    public void setReportDate(Date reportDate) {
+    public void setReportDate(String reportDate) {
         this.reportDate.set(reportDate);
     }
 
-    public SimpleObjectProperty<Date> getReport_dateProperty() {
+    public SimpleStringProperty getReport_dateProperty() {
         return reportDate;
     }
 
-    public Date getReactionDate() {
+    public String getReactionDate() {
         return reactionDate.get();
     }
 
-    public void setReactionDate(Date reactionDate) {
+    public void setReactionDate(String reactionDate) {
         this.reactionDate.set(reactionDate);
     }
 
-    public SimpleObjectProperty<Date> getReactionDateProperty() {
+    public SimpleStringProperty getReactionDateProperty() {
         return reactionDate;
     }
 

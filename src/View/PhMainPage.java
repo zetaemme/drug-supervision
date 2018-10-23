@@ -6,9 +6,14 @@ import Model.Report;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -47,6 +52,7 @@ public class PhMainPage {
 
         SplitPane spPh = new SplitPane();
 
+        // The list that contains all the reports in the DB
         ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList());
 
         // Creates the reportTable TableView
@@ -57,16 +63,106 @@ public class PhMainPage {
         reportTable.setMinWidth(300);
         reportTable.setMaxWidth(300);
 
-        TableColumn<String, Report> reportColumn = new TableColumn<>("Report");
+        TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
 
-        // TODO Una volta finita la join della query settare le property
-        //reportColumn.cellValueFactoryProperty(cellData -> cellData.getValue())
+        // TODO Non va, potrebbe essere per il nome della reactionDescription
+        reportColumn.setCellValueFactory(cellData -> cellData.getValue().getPatient().getIdProperty());
+
+        reportTable.getColumns().add(reportColumn);
+
+        // Report info will be shown inside this BorderPane
+        BorderPane reportInfo = new BorderPane();
+
+        final Label titleLabel = new Label("Report Info");
+
+        final Label reactionDateLabel = new Label("Reaction Date:");
+        final Label reportDateLabel = new Label("Report Date:");
+        final Label patientLabel = new Label("Patient ID:");
+        final Label therapyLabel = new Label("Therapy ID:");
+
+        final Label reactionDateData = new Label();
+        final Label reportDateData = new Label();
+        final Label patientData = new Label();
+        final Label therapyData = new Label();
+
+        // titleLabel options
+        titleLabel.setId("titleLabel");
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+
+        reportInfo.setTop(titleLabel);
+
+        GridPane reportGridPane = new GridPane();
+
+        // reportGridPane columns
+        ColumnConstraints labelsColumn = new ColumnConstraints();
+        labelsColumn.setHalignment(HPos.CENTER);
+        labelsColumn.setPercentWidth(50);
+
+        ColumnConstraints reportLabelsColumn = new ColumnConstraints();
+        reportLabelsColumn.setHalignment(HPos.CENTER);
+        reportLabelsColumn.setPercentWidth(50);
+
+        // reportGridPane rows
+        RowConstraints reactionDateRow = new RowConstraints();
+        reactionDateRow.setValignment(VPos.CENTER);
+        reactionDateRow.setPercentHeight(100.0 / 4);
+
+        RowConstraints reportDateRow = new RowConstraints();
+        reportDateRow.setValignment(VPos.CENTER);
+        reportDateRow.setPercentHeight(100.0 / 4);
+
+        RowConstraints patientRow = new RowConstraints();
+        patientRow.setValignment(VPos.CENTER);
+        patientRow.setPercentHeight(100.0 / 4);
+
+        RowConstraints therapyRow = new RowConstraints();
+        therapyRow.setValignment(VPos.CENTER);
+        therapyRow.setPercentHeight(100.0 / 4);
+
+        // Adds rows and columns to the GridPane
+        reportGridPane.getColumnConstraints().addAll(labelsColumn, reportLabelsColumn);
+        reportGridPane.getRowConstraints().addAll(reactionDateRow, reportDateRow, patientRow, therapyRow);
+
+        // Adds all the nodes to the grid pane
+        reportGridPane.add(reactionDateLabel, 0, 0);
+        reportGridPane.add(reactionDateData, 1, 0);
+
+        reportGridPane.add(reportDateLabel, 0, 1);
+        reportGridPane.add(reportDateData, 1, 1);
+
+        reportGridPane.add(patientLabel, 0, 2);
+        reportGridPane.add(patientData, 1, 2);
+
+        reportGridPane.add(therapyLabel, 0, 3);
+        reportGridPane.add(therapyData, 1, 3);
+
+        reportInfo.setCenter(reportGridPane);
+
+        // Sets titleLabel alignment
+        BorderPane.setAlignment(titleLabel, Pos.CENTER);
+
+        // Adds the items to the split pane
+        spPh.getItems().addAll(reportTable, reportInfo);
 
         // Adds the menuBar to the root VBox
-        root.getChildren().addAll(menuBar);
+        root.getChildren().addAll(menuBar, spPh);
 
         Scene scene = new Scene(root, 1000, 600);
 
+        // Resize policy options
+        root.prefWidthProperty().bind(scene.widthProperty());
+        root.prefHeightProperty().bind(scene.heightProperty());
+
+        menuBar.prefWidthProperty().bind(root.widthProperty());
+
+        spPh.prefWidthProperty().bind(root.widthProperty());
+        spPh.prefHeightProperty().bind(root.heightProperty());
+
+        reportTable.prefHeightProperty().bind(spPh.heightProperty());
+
+        reportColumn.prefWidthProperty().bind(reportTable.widthProperty());
+
+        // primaryStage options
         primaryStage.setTitle("Drug Supervision - Pharmacologist Main Page");
         primaryStage.setScene(scene);
         primaryStage.show();
