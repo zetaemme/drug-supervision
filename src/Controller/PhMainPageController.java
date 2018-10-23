@@ -29,7 +29,7 @@ public class PhMainPageController {
 
             while(phMpConnection.rs.next()) {
                 // TODO Creare reports
-                reports.add(new Report());
+                //reports.add(new Report());
             }
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
