@@ -48,4 +48,15 @@ public class LoginController {
     public void logout() {
         loginInstance = null;
     }
+
+    // Gets user type(medic/pharmacologist)
+    public boolean getLoginType(String username) throws SQLException{
+        loginConnection = new DBConnection();
+        loginConnection.openConnection();
+
+        loginConnection.statement = loginConnection.connection.createStatement();
+        loginConnection.rs = loginConnection.statement.executeQuery("SELECT type FROM Users WHERE username = '" + username +"'");
+
+        return loginConnection.rs.getBoolean("type");
+    }
 }

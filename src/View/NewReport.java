@@ -130,8 +130,8 @@ public class NewReport {
 
         // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
-        root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow
-                                        ,reactionGridRow, reactionDateRow, reportDateRow, addRow);
+        root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow,reactionGridRow,
+                                        reactionDateRow, reportDateRow, addRow);
 
         // Adds columns and rows to the therapy and reaction GridPane
         therapyGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
