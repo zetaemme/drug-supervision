@@ -59,7 +59,8 @@ public class PhMainPage {
 
         TableColumn<String, Report> reportColumn = new TableColumn<>("Report");
 
-        reportColumn.cellValueFactoryProperty(cellData -> cellData.getValue())
+        // TODO Una volta finita la join della query settare le property
+        //reportColumn.cellValueFactoryProperty(cellData -> cellData.getValue())
 
         // Adds the menuBar to the root VBox
         root.getChildren().addAll(menuBar);
