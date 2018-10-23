@@ -53,6 +53,7 @@ public class PhMainPage {
         TableView<Report> reportTable = new TableView<>(reportList);
         reportTable.setId("patientTable");
 
+        // Sets max and min width fot the TableView
         reportTable.setMinWidth(300);
         reportTable.setMaxWidth(300);
 

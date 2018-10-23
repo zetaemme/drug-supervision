@@ -20,9 +20,15 @@ public class PhMainPageController {
         try {
             phMpConnection.statement = phMpConnection.connection.createStatement();
             // TODO Creare query
-            phMpConnection.rs = phMpConnection.statement.executeQuery("");
+            /*phMpConnection.rs = phMpConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, R.description, R.riskLevel " +
+                                                                            "FROM Patient JOIN Patient_has_RiskFactor P " +
+                                                                            "on Patient.idPatient = P.Patient_idPatient " +
+                                                                            "JOIN RiskFactor R on P.RiskFactor_idFactor = R.idFactor " +
+                                                                            "JOIN Report on Patient.idPatient = Report.Patient_idPatient " +
+                                                                            "WHERE idPatient = Report.Patient_idPatient");*/
 
             while(phMpConnection.rs.next()) {
+                // TODO Creare reports
                 reports.add(new Report());
             }
         } catch(SQLException sqle) {
