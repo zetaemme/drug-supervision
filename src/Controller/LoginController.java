@@ -59,4 +59,27 @@ public class LoginController {
 
         return loginConnection.rs.getBoolean("type");
     }
+
+    public int getReportNumber() {
+        loginConnection = new DBConnection();
+        loginConnection.openConnection();
+
+        int counter = 0;
+
+        try {
+            loginConnection.statement = loginConnection.connection.createStatement();
+            loginConnection.rs = loginConnection.statement.executeQuery("SELECT idReport FROM Report");
+
+            while(loginConnection.rs.next()) {
+                counter++;
+            }
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+            loginConnection.closeConnection();
+        } finally {
+            loginConnection.closeConnection();
+        }
+
+        return counter;
+    }
 }

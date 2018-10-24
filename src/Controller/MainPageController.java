@@ -99,27 +99,4 @@ public class MainPageController {
 
         return result;
     }
-
-    public int getReportNumber() {
-        mpConnection = new DBConnection();
-        mpConnection.openConnection();
-
-        int counter = 0;
-
-        try {
-            mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.rs = mpConnection.statement.executeQuery("SELECT idReport FROM Report");
-
-            while(mpConnection.rs.next()) {
-                counter++;
-            }
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            mpConnection.closeConnection();
-        } finally {
-            mpConnection.closeConnection();
-        }
-
-        return counter;
-    }
 }
