@@ -85,20 +85,10 @@ public class Login {
         loginButton.setOnAction(e -> {
             // Logs you in in case of correct username/password
             if (loginController.login(username.getText(), password.getText())) {
-                try {
-                    if (loginController.getLoginType(username.getText())) {
-                        MainPage mainPage = new MainPage(new Stage(), loginController);
-                    } else {
-                        PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
-                    }
-                } catch(SQLException sqle) {
-                    Alert sqlErrorAlert = new Alert(Alert.AlertType.WARNING);
-
-                    sqlErrorAlert.setTitle("Can't login");
-                    sqlErrorAlert.setHeaderText("An error is occurred!");
-                    sqlErrorAlert.setContentText("Can't log you in!");
-
-                    sqlErrorAlert.showAndWait();
+                if (loginController.getLoginType(username.getText())) {
+                    MainPage mainPage = new MainPage(new Stage(), loginController);
+                } else {
+                    PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
                 }
 
                 primaryStage.close();

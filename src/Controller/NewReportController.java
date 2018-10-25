@@ -47,7 +47,7 @@ public class NewReportController {
                                                     "VALUES ('" + reactionDate + "', '" + reportDate + "', (SELECT idTherapy FROM Therapy WHERE idTherapy = " +
                                                     "'" + therapyLabel.getText() + "'), (SELECT idPatient FROM Patient WHERE idPatient = " +
                                                     "'" + idPatient.getSelectionModel().getSelectedItem().toString() + "'));" +
-                                                    "INSERT INTO Report_has_Reaction (Report_idReport, Report_Therapy_idTherapy, Reaction_Reaction_name, Report_Patient_idPatient) " +
+                                                    "INSERT INTO Report_has_Reaction (Report_idReport, Therapy_idTherapy, Reaction_Reaction_name, Patient_idPatient) " +
                                                     "VALUES ((SELECT idReport FROM Report WHERE reactionDate = '" +reactionDate + "' AND " +
                                                     " reportDate = '" + reportDate + "' AND Therapy_idTherapy = '" + therapyLabel.getText() +
                                                     "' AND Patient_idPatient = '" + idPatient.getSelectionModel().getSelectedItem().toString() + "'), " +

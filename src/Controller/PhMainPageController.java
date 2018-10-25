@@ -26,7 +26,7 @@ public class PhMainPageController {
             phMpConnection.rs = phMpConnection.statement.executeQuery("SELECT reactionDate, reportDate, P.idPatient," +
                                                                             "P.birthday, P.province, P.profession, R.riskLevel, R.description," +
                                                                             "T.drugName_drug, T.dose, T.dailyFrequency, T.startingDate, T.endingDate," +
-                                                                            "R2.risk, R2.desctription " +
+                                                                            "R2.risk, R2.reactionDescription " +
                                                                             "FROM Report JOIN Patient P on P.idPatient = Report.Patient_idPatient " +
                                                                             "JOIN Patient_has_RiskFactor PR on P.idPatient = PR.Patient_idPatient " +
                                                                             "JOIN RiskFactor R on R.idFactor = PR.RiskFactor_idFactor " +

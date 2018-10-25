@@ -16,7 +16,7 @@ public class NewReactionController {
 
         try {
             nreConnection.statement = nreConnection.connection.createStatement();
-            nreConnection.statement.executeUpdate("INSERT INTO Reaction(Reaction_name, risk, desctription) " +
+            nreConnection.statement.executeUpdate("INSERT INTO Reaction(Reaction_name, risk, description) " +
                                                     "VALUES ('" + idRaction +"', '" + risk +"', '" + description + "')");
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());

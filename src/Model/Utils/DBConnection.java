@@ -11,8 +11,10 @@ public class DBConnection {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:src/DB/DrugDB.db");
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } catch (ClassNotFoundException cnfe) {
+            System.out.println("Error: " + cnfe.getMessage());
         }
     }
 
