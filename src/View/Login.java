@@ -85,7 +85,7 @@ public class Login {
         loginButton.setOnAction(e -> {
             // Logs you in in case of correct username/password
             if (loginController.login(username.getText(), password.getText())) {
-                if (loginController.getLoginType(username.getText())) {
+                if (loginController.userDao.getUser(username.getText()).getType()) {
                     MainPage mainPage = new MainPage(new Stage(), loginController);
                 } else {
                     PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
