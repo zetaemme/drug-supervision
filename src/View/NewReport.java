@@ -130,8 +130,8 @@ public class NewReport {
 
         // Adds columns and rows to the root GridPane
         root.getColumnConstraints().add(mainColumn);
-        root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow
-                                        ,reactionGridRow, reactionDateRow, reportDateRow, addRow);
+        root.getRowConstraints().addAll(titleRow, insertLabelRow, insertPatientRow, therapyGridRow,reactionGridRow,
+                                        reactionDateRow, reportDateRow, addRow);
 
         // Adds columns and rows to the therapy and reaction GridPane
         therapyGrid.getColumnConstraints().addAll(reportColumn1, reportColumn2);
@@ -182,7 +182,15 @@ public class NewReport {
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 
-                mpController.getReportNumber();
+                if(mpController.getReportNumber() >= 50) {
+                    Alert reportOverflowAlert = new Alert(Alert.AlertType.WARNING);
+
+                    reportOverflowAlert.setTitle("Report Overflow");
+                    reportOverflowAlert.setHeaderText("50 reports limit reached!");
+                    reportOverflowAlert.setContentText("A warning has been sent to the pharmacologist");
+
+                    reportOverflowAlert.showAndWait();
+                }
 
                 primaryStage.close();
             }

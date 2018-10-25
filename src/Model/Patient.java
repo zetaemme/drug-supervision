@@ -4,8 +4,6 @@ import Model.Exceptions.NullStringException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Random;
-
 public class Patient {
     private final SimpleStringProperty idPatient;
     private final SimpleStringProperty birthday;

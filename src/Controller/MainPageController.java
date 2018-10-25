@@ -57,18 +57,19 @@ public class MainPageController {
         mpConnection = new DBConnection();
         mpConnection.openConnection();
 
-
         try{
             mpConnection.statement = mpConnection.connection.createStatement();
 
             mpConnection.rs = mpConnection.statement.executeQuery("SELECT Therapy_idTherapy FROM Report WHERE Patient_idPatient = '" + idPatient + "'");
-            String idTherapy = mpConnection.rs.getString("Therapy_idTherapy");
 
-            mpConnection.statement.executeUpdate("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'; " +
+            while(mpConnection.rs.next()) {
+                mpConnection.statement.executeUpdate("DELETE FROM Therapy WHERE idTherapy = '" + mpConnection.rs.getString("Therapy_idTherapy") + "'");
+                mpConnection.rs.next();
+            }
+
+            /*mpConnection.statement.executeUpdate("DELETE FROM Patient WHERE idPatient = '" + idPatient + "'; " +
                                                       "DELETE FROM Report WHERE Patient_idPatient = '" + idPatient + "'; " +
-                                                      "DELETE FROM Therapy WHERE idTherapy = '" + idTherapy + "'; " +
-                                                      "DELETE FROM Report_has_Reaction WHERE Report_Patient_idPatient = '" + idPatient + "'");
-
+                                                      "DELETE FROM Report_has_Reaction WHERE Report_Patient_idPatient = '" + idPatient + "'");*/
         } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
             mpConnection.closeConnection();

@@ -10,10 +10,10 @@ public class Therapy {
     private final String drug;
     private final double dose;
     private final int daily_frequency;
-    private final Date starting_date;
-    private final Date ending_date;
+    private final String starting_date;
+    private final String ending_date;
 
-    private Therapy(String drug, double dose, int daily_frequency, Date starting_date, Date ending_date) throws NullStringException, NullDoseException, NullDailyFrequencyException {
+    public Therapy(String drug, double dose, int daily_frequency, String starting_date, String ending_date) throws NullStringException, NullDoseException, NullDailyFrequencyException {
         if(drug.length() == 0) {
             throw new NullStringException();
         } else if(dose < 1) {
@@ -41,11 +41,11 @@ public class Therapy {
         return daily_frequency;
     }
 
-    public Date getStarting_date() {
+    public String getStarting_date() {
         return starting_date;
     }
 
-    public Date getEnding_date() {
+    public String getEnding_date() {
         return ending_date;
     }
 }

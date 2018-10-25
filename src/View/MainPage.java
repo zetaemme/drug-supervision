@@ -27,9 +27,6 @@ public class MainPage {
         // Connection with the controller
         final MainPageController mpController = new MainPageController();
 
-        // Checks how many reports i have in the corresponding table
-        int reportCounter = mpController.getReportNumber();
-
         VBox root = new VBox();
 
         // Root size settings
@@ -212,8 +209,6 @@ public class MainPage {
         primaryStage.setTitle("Drug Supervision");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
 
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {

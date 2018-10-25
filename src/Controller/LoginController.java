@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Utils.DBConnection;
+import javafx.scene.control.Alert;
 
 import java.sql.SQLException;
 
@@ -47,5 +48,30 @@ public class LoginController {
     // Set's the login instance as null
     public void logout() {
         loginInstance = null;
+    }
+
+    // Gets user type(medic/pharmacologist)
+    public boolean getLoginType(String username) {
+        loginConnection = new DBConnection();
+        loginConnection.openConnection();
+
+        try {
+            loginConnection.statement = loginConnection.connection.createStatement();
+            loginConnection.rs = loginConnection.statement.executeQuery("SELECT type FROM Users WHERE username = '" + username + "'");
+
+            return loginConnection.rs.getBoolean("type");
+        } catch (SQLException sqle) {
+            Alert sqlErrorAlert = new Alert(Alert.AlertType.WARNING);
+
+            sqlErrorAlert.setTitle("Can't login");
+            sqlErrorAlert.setHeaderText("An error is occurred!");
+            sqlErrorAlert.setContentText("Can't log you in!");
+
+            sqlErrorAlert.showAndWait();
+        } finally {
+            loginConnection.closeConnection();
+        }
+
+        return true;
     }
 }

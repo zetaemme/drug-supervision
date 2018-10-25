@@ -13,6 +13,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Login {
     private LoginController loginController = new LoginController();
 
@@ -83,7 +85,12 @@ public class Login {
         loginButton.setOnAction(e -> {
             // Logs you in in case of correct username/password
             if (loginController.login(username.getText(), password.getText())) {
-                MainPage mainPage = new MainPage(new Stage(), loginController);
+                if (loginController.getLoginType(username.getText())) {
+                    MainPage mainPage = new MainPage(new Stage(), loginController);
+                } else {
+                    PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
+                }
+
                 primaryStage.close();
             } else if(username.getText().equals("") || password.getText().equals("")) {
                 // Alert window in case of empty username/password

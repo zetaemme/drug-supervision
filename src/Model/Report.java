@@ -1,44 +1,87 @@
 package Model;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Date;
 
 public class Report {
-    private final Patient patient;
-    private final Reaction reaction;
-    private final Date report_date;
-    private final Date reaction_date;
-    private final Therapy therapy;
+    private final SimpleObjectProperty<Patient> patient;
+    private final SimpleObjectProperty<Reaction> reaction;
+    private final SimpleStringProperty reportDate;
+    private final SimpleStringProperty reactionDate;
+    private final SimpleObjectProperty<Therapy> therapy;
 
-    private Report(Patient patient, Reaction reaction, Date report_date, Date reaction_date, Therapy therapy) {
-        this.patient = patient;
-        this.reaction = reaction;
-        this.report_date = report_date;
-        this.reaction_date = reaction_date;
-        this.therapy = therapy;
+    public Report(Patient patient, Reaction reaction, String reportDate, String reactionDate, Therapy therapy) {
+        this.patient = new SimpleObjectProperty<>(patient);
+        this.reaction = new SimpleObjectProperty<>(reaction);
+        this.reportDate = new SimpleStringProperty(reportDate);
+        this.reactionDate = new SimpleStringProperty(reactionDate);
+        this.therapy = new SimpleObjectProperty<>(therapy);
     }
 
     @Override
     public int hashCode() {
-        return patient.hashCode() ^ reaction.hashCode() ^ report_date.hashCode() ^ reaction_date.hashCode() ^ therapy.hashCode();
+        return patient.hashCode() ^ reaction.hashCode() ^ reportDate.hashCode() ^ reactionDate.hashCode() ^ therapy.hashCode();
     }
 
     public Patient getPatient() {
+        return patient.get();
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient.set(patient);
+    }
+
+    public SimpleObjectProperty<Patient> getPatientProperty() {
         return patient;
     }
 
     public Reaction getReaction() {
+        return reaction.get();
+    }
+
+    public void setReaction(Reaction reaction) {
+        this.reaction.set(reaction);
+    }
+
+    public SimpleObjectProperty<Reaction> getReactionProperty() {
         return reaction;
     }
 
-    public Date getReport_date() {
-        return report_date;
+    public String getReportDate() {
+        return reportDate.get();
     }
 
-    public Date getReaction_date() {
-        return reaction_date;
+    public void setReportDate(String reportDate) {
+        this.reportDate.set(reportDate);
+    }
+
+    public SimpleStringProperty getReport_dateProperty() {
+        return reportDate;
+    }
+
+    public String getReactionDate() {
+        return reactionDate.get();
+    }
+
+    public void setReactionDate(String reactionDate) {
+        this.reactionDate.set(reactionDate);
+    }
+
+    public SimpleStringProperty getReactionDateProperty() {
+        return reactionDate;
     }
 
     public Therapy getTherapy() {
+        return therapy.get();
+    }
+
+    public void setTherapy(Therapy therapy) {
+        this.therapy.set(therapy);
+    }
+
+    public SimpleObjectProperty<Therapy> getTherapyProperty() {
         return therapy;
     }
 }
