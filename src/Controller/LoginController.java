@@ -3,13 +3,15 @@ package Controller;
 import Model.User;
 import Model.Utils.DaoImpl.UserDaoImpl;
 
+import java.sql.SQLException;
+
 public class LoginController {
     public UserDaoImpl userDao;
 
     public String loginInstance = null;
 
     // Checks if the username/password tuple exists in the DB
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws SQLException {
         userDao = new UserDaoImpl();
 
         User user = userDao.getUser(username);

@@ -84,24 +84,28 @@ public class Login {
         // Log you in if username/password is correct
         loginButton.setOnAction(e -> {
             // Logs you in in case of correct username/password
-            if (loginController.login(username.getText(), password.getText())) {
-                if (loginController.userDao.getUser(username.getText()).getType()) {
-                    MainPage mainPage = new MainPage(new Stage(), loginController);
-                } else {
-                    PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
+            try {
+                if (loginController.login(username.getText(), password.getText())) {
+                    if (loginController.userDao.getUser(username.getText()).getType()) {
+                        MainPage mainPage = new MainPage(new Stage(), loginController);
+                    } else {
+                        PhMainPage phMainPage = new PhMainPage(new Stage(), loginController);
+                    }
+
+                    primaryStage.close();
+                } else if (username.getText().equals("") || password.getText().equals("")) {
+                    // Alert window in case of empty username/password
+                    Alert emptyUserPassAlert = new Alert(Alert.AlertType.WARNING);
+
+                    emptyUserPassAlert.setTitle("Error!");
+                    emptyUserPassAlert.setHeaderText("Empty username/password");
+                    emptyUserPassAlert.setContentText("Please, insert both username and password.");
+
+                    emptyUserPassAlert.showAndWait();
                 }
+            }catch(SQLException sqle) {
+                System.out.println("Error: " + sqle.getMessage());
 
-                primaryStage.close();
-            } else if(username.getText().equals("") || password.getText().equals("")) {
-                // Alert window in case of empty username/password
-                Alert emptyUserPassAlert = new Alert(Alert.AlertType.WARNING);
-
-                emptyUserPassAlert.setTitle("Error!");
-                emptyUserPassAlert.setHeaderText("Empty username/password");
-                emptyUserPassAlert.setContentText("Please, insert both username and password.");
-
-                emptyUserPassAlert.showAndWait();
-            } else {
                 // Alert window in case of wrong username/password
                 Alert loginFailedAlert = new Alert(Alert.AlertType.WARNING);
 

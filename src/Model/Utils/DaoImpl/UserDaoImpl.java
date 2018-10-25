@@ -36,23 +36,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUser(String username) {
+    public User getUser(String username) throws SQLException {
         userConnection = new DBConnection();
         userConnection.openConnection();
 
-        User user = null;
+        userConnection.statement = userConnection.connection.createStatement();
+        userConnection.rs = userConnection.statement.executeQuery("SELECT username, password, type FROM Users WHERE username = '" + username + "'");
 
-        try {
-            userConnection.statement = userConnection.connection.createStatement();
-            userConnection.rs = userConnection.statement.executeQuery("SELECT username FROM Users WHERE username = '" + username + "'");
+        User user = new User(userConnection.rs.getString("username"), userConnection.rs.getString("password"),
+                                userConnection.rs.getBoolean("type"));
 
-            user = new User(userConnection.rs.getString("username"), userConnection.rs.getString("password"),
-                                    userConnection.rs.getBoolean("type"));
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-        } finally {
-            userConnection.closeConnection();
-        }
+        userConnection.closeConnection();
 
         return user;
     }

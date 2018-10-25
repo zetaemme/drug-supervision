@@ -15,23 +15,11 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword() {
-        this.password = password;
-    }
-
     public boolean getType() {
         return type;
-    }
-
-    public void setType(boolean type) {
-        this.type = type;
     }
 }
