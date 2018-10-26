@@ -3,54 +3,41 @@ package Controller;
 import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.Patient;
-import Model.RiskFactor;
 import Model.Utils.DBConnection;
+import Model.Utils.DaoImpl.PatientDaoImpl;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainPageController {
     private DBConnection mpConnection;
 
-    // Initialize the patients list
-    public ObservableList<Patient> initPatientsList() {
-        final ObservableList<Patient> patients = FXCollections.observableArrayList();
+    public PatientDaoImpl patientDao;
 
-        mpConnection = new DBConnection();
-        mpConnection.openConnection();
+    // Returns an ObservableArrayList that contains all the patients in the DB
+    public ObservableList<Patient> initPatientsList() {
+        ObservableList<Patient> patientsOAL = FXCollections.observableArrayList();
+
+        List<Patient> patients = new ArrayList<>();
 
         try {
-            mpConnection.statement = mpConnection.connection.createStatement();
-            mpConnection.rs = mpConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, R.description, R.riskLevel " +
-                                                                     "FROM Patient JOIN Patient_has_RiskFactor P " +
-                                                                     "on Patient.idPatient = P.Patient_idPatient " +
-                                                                     "JOIN RiskFactor R on P.RiskFactor_idFactor = R.idFactor " +
-                                                                     "JOIN Report on Patient.idPatient = Report.Patient_idPatient " +
-                                                                     "WHERE idPatient = Report.Patient_idPatient");
-
-            while(mpConnection.rs.next()) {
-                patients.add(new Patient(mpConnection.rs.getString("idPatient"),
-                                         mpConnection.rs.getString("birthday"),
-                                         mpConnection.rs.getString("province"),
-                                         mpConnection.rs.getString("profession"),
-                                         new RiskFactor(mpConnection.rs.getString("description"), mpConnection.rs.getInt("riskLevel"))));
-            }
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            mpConnection.closeConnection();
+            // TODO Lancia NullPointer
+            patients = patientDao.getAllPatients();
+        } catch (SQLException sqle) {
+            System.out.println("SQL Error: " + sqle.getMessage());
         } catch (IllegalRiskValueException irve) {
             System.out.println("Risk Value Error: " + irve.getMessage());
-            mpConnection.closeConnection();
         } catch (NullStringException nse) {
             System.out.println("String Error: " + nse.getMessage());
-            mpConnection.closeConnection();
-        } finally {
-            mpConnection.closeConnection();
         }
 
-        return patients;
+        patientsOAL.addAll(patients);
+
+        return patientsOAL;
     }
 
     public void deletePatient(String idPatient){
