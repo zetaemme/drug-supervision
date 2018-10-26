@@ -175,10 +175,10 @@ public class NewReport {
 
                 newPatientAlert.showAndWait();
             } else {
-                java.sql.Date sqlReactionDate = java.sql.Date.valueOf(reactionDate.getValue());
-                java.sql.Date sqlReportDate = java.sql.Date.valueOf(reportDate.getValue());
-
-                nrController.addNewReport(sqlReactionDate, sqlReportDate, therapyLabel, reactionLabel, patientBox);
+                nrController.addNewReport(
+                        patientBox.getSelectionModel().getSelectedItem().toString(), reactionLabel.getText(),
+                        reportDate.getValue().toString(), reactionDate.getValue().toString(), therapyLabel.getText()
+                );
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 

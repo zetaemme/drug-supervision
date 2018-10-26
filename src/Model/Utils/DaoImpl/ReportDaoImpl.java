@@ -76,4 +76,27 @@ public class ReportDaoImpl implements ReportDao {
 
         return reports;
     }
+
+    @Override
+    public void createReport(String idPatient, String Reaction_name, String reportDate, String reactionDate, String idTherapy) {
+        rpConnection = new DBConnection();
+        rpConnection.openConnection();
+
+        try {
+            rpConnection.statement = rpConnection.connection.createStatement();
+            rpConnection.statement.executeUpdate(
+                    "INSERT INTO Report (reactionDate, reportDate, Patient_idPatient, Therapy_idTherapy) VALUES " +
+                            "('" + reactionDate + "', '" + reportDate + "', '" + idPatient + "', '" + idTherapy +"');" +
+                            "INSERT INTO Report_has_Reaction(Report_idReport, Therapy_idTherapy, Patient_idPatient, Reaction_Reaction_name) VALUES " +
+                            "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "', reportDate = '" + reportDate +
+                            "', Patient_idPatient = '" + idPatient + "', Therapy_idTherapy = '" + idTherapy + "'), " +
+                            "Therapy_idTherapy = '" + idTherapy + "', Patient_idPatient = '" + idPatient + "', " +
+                            "Reaction_Reaction_name = '" + Reaction_name + "');"
+            );
+        } catch (SQLException sqle) {
+            System.out.println("SQL Error: " + sqle.getMessage());
+        } finally {
+            rpConnection.closeConnection();
+        }
+    }
 }
