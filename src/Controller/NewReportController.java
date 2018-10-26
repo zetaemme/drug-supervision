@@ -1,6 +1,10 @@
 package Controller;
 
+import Model.Exceptions.IllegalRiskValueException;
+import Model.Exceptions.NullStringException;
+import Model.Patient;
 import Model.Utils.DBConnection;
+import Model.Utils.DaoImpl.PatientDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
@@ -8,29 +12,34 @@ import javafx.scene.control.Label;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class NewReportController {
     private DBConnection nrConnection;
 
+    public PatientDaoImpl patientDao;
+
     // Initializes the list with all the IDs
     public ObservableList<String> initIdList() {
         nrConnection = new DBConnection();
-        nrConnection.openConnection(); 
+        nrConnection.openConnection();
+
+        patientDao = new PatientDaoImpl();
 
         final ObservableList<String> patientIds = FXCollections.observableArrayList();
 
         try {
-            nrConnection.statement = nrConnection.connection.createStatement();
-            nrConnection.rs = nrConnection.statement.executeQuery("SELECT idPatient FROM Patient");
+            List<Patient> patients = patientDao.getAllPatients();
 
-            while (nrConnection.rs.next()) {
-                patientIds.add(nrConnection.rs.getString("idPatient"));
+            for(Patient p : patients) {
+                patientIds.add(p.getId());
             }
         } catch (SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            nrConnection.closeConnection();
-        } finally {
-            nrConnection.closeConnection();
+            System.out.println("SQL Error: " + sqle.getMessage());
+        } catch (IllegalRiskValueException irve) {
+            System.out.println("Risk Factor Error: " + irve.getMessage());
+        } catch (NullStringException nse) {
+            System.out.println("String Error: " + nse.getMessage());
         }
 
         return patientIds;

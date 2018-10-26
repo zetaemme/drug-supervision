@@ -4,11 +4,10 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.Patient;
 import Model.RiskFactor;
-import Model.Therapy;
 import Model.Utils.DAOs.PatientDao;
 import Model.Utils.DBConnection;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,13 @@ public class PatientDaoImpl implements PatientDao {
         List<Patient> patients = new ArrayList<>();
 
         patientConnection.statement = patientConnection.connection.createStatement();
-        patientConnection.rs = patientConnection.statement.executeQuery("SELECT idPatient, birthday, province, " +
-                                                                            "profession, riskLevel, description " +
-                                                                            "FROM Patient JOIN  Patient_has_RiskFactor PR " +
-                                                                            "on Patient.idPatient = PR.Patient_idPatient " +
-                                                                            "JOIN RiskFactor R on PR.RiskFactor_idFactor = R.idFactor");
+        patientConnection.rs = patientConnection.statement.executeQuery(
+                "SELECT idPatient, birthday, province, " +
+                    "profession, riskLevel, description " +
+                    "FROM Patient JOIN  Patient_has_RiskFactor PR " +
+                    "on Patient.idPatient = PR.Patient_idPatient " +
+                    "JOIN RiskFactor R on PR.RiskFactor_idFactor = R.idFactor"
+        );
 
         while(patientConnection.rs.next()) {
             patients.add(new Patient(
@@ -55,12 +56,14 @@ public class PatientDaoImpl implements PatientDao {
         patientConnection.openConnection();
 
         patientConnection.statement = patientConnection.connection.createStatement();
-        patientConnection.rs = patientConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, " +
-                                                                            "description, riskLevel FROM Patient JOIN " +
-                                                                            "Patient_has_RiskFactor PR on Patient.idPatient = " +
-                                                                            "PR.Patient_idPatient JOIN RiskFactor R on " +
-                                                                            "PR.RiskFactor_idFactor = R.idFactor WHERE " +
-                                                                            "idPatient = '" + idPatient + "'");
+        patientConnection.rs = patientConnection.statement.executeQuery(
+                "SELECT idPatient, birthday, province, profession, " +
+                    "description, riskLevel FROM Patient JOIN " +
+                    "Patient_has_RiskFactor PR on Patient.idPatient = " +
+                    "PR.Patient_idPatient JOIN RiskFactor R on " +
+                    "PR.RiskFactor_idFactor = R.idFactor WHERE " +
+                    "idPatient = '" + idPatient + "'"
+        );
 
         Patient patient = null;
 
@@ -113,6 +116,27 @@ public class PatientDaoImpl implements PatientDao {
                 patientConnection.statement.executeUpdate("DELETE FROM Report WHERE Therapy_idTherapy = '" + t + "'");
             }
         } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            patientConnection.closeConnection();
+        }
+    }
+
+    @Override
+    public void createPatient(String idPatient, Date birthday, String province, String profession, String medic, int riskFactor, String description) {
+        patientConnection.openConnection();
+
+        try {
+            patientConnection.statement = patientConnection.connection.createStatement();
+            patientConnection.statement.executeUpdate(
+                    "INSERT INTO Patient (idPatient, birthday, province, profession, Medic_MedicUsername) " +
+                    "VALUES ('" + idPatient  + "', '" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "');" +
+                    "INSERT INTO  Patient_has_RiskFactor (Patient_idPatient, RiskFactor_idFactor) VALUES " +
+                    "((SELECT idPatient FROM Patient WHERE birthday = '" + birthday + "' AND province = '" +
+                    province + "' AND profession = '" + profession + "'), (SELECT idFactor FROM RiskFactor " +
+                    "WHERE riskLevel = '" + riskFactor + "' AND description = '" + description + "'));"
+            );
+        } catch(SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
         } finally {
             patientConnection.closeConnection();

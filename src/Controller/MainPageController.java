@@ -22,7 +22,7 @@ public class MainPageController {
     public ObservableList<Patient> initPatientsList() {
         patientDao = new PatientDaoImpl();
 
-        ObservableList<Patient> patientsOAL = FXCollections.observableArrayList();
+        final ObservableList<Patient> patientsOAL = FXCollections.observableArrayList();
 
         List<Patient> patients = new ArrayList<>();
 

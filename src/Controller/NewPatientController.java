@@ -4,6 +4,7 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.RiskFactor;
 import Model.Utils.DBConnection;
+import Model.Utils.DaoImpl.PatientDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,32 +14,16 @@ import java.sql.Date;
 public class NewPatientController {
     private DBConnection npConnection;
 
+    public PatientDaoImpl patientDao;
+
     // Adds a patient with the corresponding data
     public void addNewPatient(Date birthday, String province, String profession, String medic, int riskFactor, String description) {
-        npConnection = new DBConnection();
-        npConnection.openConnection();
-
+        patientDao = new PatientDaoImpl();
 
         String idPatient = province + birthday.toString().replace("-", "")
                            + profession.substring(0 , 3).toUpperCase();
 
-        try {
-            npConnection.statement = npConnection.connection.createStatement();
-            npConnection.statement.executeUpdate(
-                    "INSERT INTO Patient (idPatient, birthday, province, profession, Medic_MedicUsername) " +
-                        "VALUES ('" + idPatient  + "', '" + birthday + "', '" + province + "', '" + profession + "', '" + medic + "');" +
-                        "INSERT INTO  Patient_has_RiskFactor (Patient_idPatient, RiskFactor_idFactor) VALUES " +
-                        "((SELECT idPatient FROM Patient WHERE birthday = '" + birthday + "' AND province = '" +
-                        province + "' AND profession = '" + profession + "'), (SELECT idFactor FROM RiskFactor " +
-                        "WHERE riskLevel = '" + riskFactor + "' AND description = '" + description + "'));"
-            );
-
-        } catch(SQLException sqle) {
-            System.out.println("Error: " + sqle.getMessage());
-            npConnection.closeConnection();
-        } finally {
-            npConnection.closeConnection();
-        }
+        patientDao.createPatient(idPatient, birthday, province, profession, medic,riskFactor, description);
     }
 
     // Initializes the list with all the RiskFactors
