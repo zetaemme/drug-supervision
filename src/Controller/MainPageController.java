@@ -20,6 +20,8 @@ public class MainPageController {
 
     // Returns an ObservableArrayList that contains all the patients in the DB
     public ObservableList<Patient> initPatientsList() {
+        patientDao = new PatientDaoImpl();
+
         ObservableList<Patient> patientsOAL = FXCollections.observableArrayList();
 
         List<Patient> patients = new ArrayList<>();
