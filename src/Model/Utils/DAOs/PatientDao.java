@@ -10,4 +10,5 @@ import java.util.List;
 public interface PatientDao {
     List<Patient> getAllPatients() throws SQLException, IllegalRiskValueException, NullStringException;
     Patient getPatient(String idPatient) throws SQLException;
+    void deletePatient(String idPatient);
 }

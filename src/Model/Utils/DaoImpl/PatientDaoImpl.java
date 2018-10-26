@@ -4,6 +4,7 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.Patient;
 import Model.RiskFactor;
+import Model.Therapy;
 import Model.Utils.DAOs.PatientDao;
 import Model.Utils.DBConnection;
 
@@ -55,11 +56,11 @@ public class PatientDaoImpl implements PatientDao {
 
         patientConnection.statement = patientConnection.connection.createStatement();
         patientConnection.rs = patientConnection.statement.executeQuery("SELECT idPatient, birthday, province, profession, " +
-                                                                            "description, riskLevel FROM Patient JOIN  " +
-                                                                            "Patient_has_RiskFactor PR on Patient.idPatient =" +
-                                                                            "PR.Patient_idPatient JOIN RiskFactor R on" +
-                                                                            " PR.RiskFactor_idFactor = R.idFactor WHERE" +
-                                                                            " idPatient = '" + idPatient + "'");
+                                                                            "description, riskLevel FROM Patient JOIN " +
+                                                                            "Patient_has_RiskFactor PR on Patient.idPatient = " +
+                                                                            "PR.Patient_idPatient JOIN RiskFactor R on " +
+                                                                            "PR.RiskFactor_idFactor = R.idFactor WHERE " +
+                                                                            "idPatient = '" + idPatient + "'");
 
         Patient patient = null;
 
@@ -83,5 +84,38 @@ public class PatientDaoImpl implements PatientDao {
         }
 
         return patient;
+    }
+
+    @Override
+    public void deletePatient(String idPatient) {
+        patientConnection.openConnection();
+
+        try {
+            patientConnection.statement = patientConnection.connection.createStatement();
+            patientConnection.statement.executeUpdate(
+                    "DELETE FROM Patient WHERE idPatient = '" + idPatient + "' AND birthday = '" + getPatient(idPatient).getBirthday() +
+                            "' AND province = '" + getPatient(idPatient).getProvince() + "' AND profession = '" +
+                            getPatient(idPatient).getProfession() + "';" +
+                            "DELETE FROM Report WHERE Patient_idPatient = '" + idPatient + "';" +
+                            "DELETE FROM Report_has_Reaction WHERE Patient_idPatient = '" + idPatient + "';"
+            );
+
+            List<String> therapies = new ArrayList<>();
+
+            patientConnection.rs = patientConnection.statement.executeQuery("SELECT Therapy_idTherapy FROM Report " +
+                                                                                    "WHERE Patient_idPatient = '" + idPatient + "'");
+
+            while(patientConnection.rs.next()) {
+                therapies.add(patientConnection.rs.getString("Therapy_idTherapy"));
+            }
+
+            for(String t : therapies) {
+                patientConnection.statement.executeUpdate("DELETE FROM Report WHERE Therapy_idTherapy = '" + t + "'");
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            patientConnection.closeConnection();
+        }
     }
 }
