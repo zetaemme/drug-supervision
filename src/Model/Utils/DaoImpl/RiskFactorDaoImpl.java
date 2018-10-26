@@ -42,4 +42,21 @@ public class RiskFactorDaoImpl implements RiskFactorDao {
 
         return riskFactors;
     }
+
+    @Override
+    public void createRiskFactor(String description, int riskLevel) {
+        rfConnection = new DBConnection();
+        rfConnection.openConnection();
+
+        try {
+            rfConnection.statement = rfConnection.connection.createStatement();
+            rfConnection.statement.executeUpdate(
+                    "INSERT INTO RiskFactor (description, riskLevel) VALUES ('" + description + "','" + riskLevel + "')"
+            );
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            rfConnection.closeConnection();
+        }
+    }
 }

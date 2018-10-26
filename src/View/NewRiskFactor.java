@@ -91,7 +91,7 @@ public class NewRiskFactor {
 
         // If clicked adds a new RiskFactor to the DB
         addButton.setOnAction(e -> {
-            riskFactorController.addRiskFactor(Integer.valueOf(riskLevelField.getText()), descriptionField.getText());
+            riskFactorController.addRiskFactor(descriptionField.getText(), Integer.valueOf(riskLevelField.getText()));
             riskFactorBox.setItems(npController.initRiskFactorList());
             riskFactorBox.getSelectionModel().selectLast();
             primaryStage.close();

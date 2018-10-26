@@ -1,18 +1,14 @@
 package Controller;
 
 import Model.RiskFactor;
-import Model.Utils.DBConnection;
 import Model.Utils.DaoImpl.PatientDaoImpl;
 import Model.Utils.DaoImpl.RiskFactorDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.SQLException;
 import java.sql.Date;
-import java.util.List;
 
 public class NewPatientController {
-    private DBConnection npConnection;
 
     public PatientDaoImpl patientDao;
     public RiskFactorDaoImpl riskFactorDao;
