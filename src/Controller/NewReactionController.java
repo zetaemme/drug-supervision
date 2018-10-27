@@ -7,6 +7,7 @@ public class NewReactionController {
 
     // Adds a new reaction with the corresponding data
     public String addNewReaction(int risk, String description) {
+        reactionDao = new ReactionDaoImpl();
 
         String Reaction_name = risk + description.substring(0, 5).toUpperCase().replace(" ", "");
 
