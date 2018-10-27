@@ -124,6 +124,7 @@ public class PatientDaoImpl implements PatientDao {
 
     @Override
     public void createPatient(String idPatient, Date birthday, String province, String profession, String medic, int riskFactor, String description) {
+        patientConnection = new DBConnection();
         patientConnection.openConnection();
 
         try {
