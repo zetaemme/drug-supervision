@@ -1,5 +1,4 @@
 import View.Login;
-import View.NewReport;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -9,5 +8,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) { Login login = new Login(primaryStage); }
+    public void start(Stage primaryStage) {
+        Login login = new Login(primaryStage);
+    }
 }

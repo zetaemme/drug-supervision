@@ -24,11 +24,6 @@ public class Patient {
         this.risk_factor = new SimpleObjectProperty<>(risk_factor);
     }
 
-    @Override
-    public int hashCode() {
-        return birthday.get().hashCode() ^ province.get().hashCode() ^ profession.get().hashCode();
-    }
-
     public String getId() {
         return idPatient.get();
     }

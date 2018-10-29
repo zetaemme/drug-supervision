@@ -65,7 +65,6 @@ public class PhMainPage {
 
         TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
 
-        // TODO Non va, potrebbe essere per il nome della reactionDescription
         reportColumn.setCellValueFactory(cellData -> cellData.getValue().getPatient().getIdProperty());
 
         reportTable.getColumns().add(reportColumn);

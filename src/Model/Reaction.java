@@ -4,8 +4,8 @@ import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 
 public class Reaction {
-    private final int risk;
-    private final String description;
+    private int risk;
+    private String description;
 
     public Reaction(int risk, String description) throws IllegalRiskValueException, NullStringException {
         if(risk < 1 || risk > 5) {
@@ -18,8 +18,19 @@ public class Reaction {
         this.description = description;
     }
 
-    @Override
-    public int hashCode() {
-        return risk ^ description.hashCode();
+    public int getRisk() {
+        return risk;
+    }
+
+    public void setRisk(int risk) {
+        this.risk = risk;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
