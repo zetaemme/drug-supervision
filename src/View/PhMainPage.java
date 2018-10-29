@@ -166,6 +166,16 @@ public class PhMainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        if(loginController.getReportNumber() > 1){
+            Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            mpLogoutAlert.setTitle("report ");
+            mpLogoutAlert.setHeaderText("You will exit the program");
+            mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
+
+            Optional<ButtonType> result = mpLogoutAlert.showAndWait();
+        }
+
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
