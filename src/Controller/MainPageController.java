@@ -26,7 +26,7 @@ public class MainPageController {
         List<Patient> patients = new ArrayList<>();
 
         try {
-            patients = patientDao.getAllPatients();
+            patients = patientDao.getAllPatientsWithReport();
         } catch (SQLException sqle) {
             System.out.println("SQL Error: " + sqle.getMessage());
         } catch (IllegalRiskValueException irve) {
