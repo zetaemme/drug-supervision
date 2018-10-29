@@ -51,6 +51,44 @@ public class PatientDaoImpl implements PatientDao {
     }
 
     @Override
+    public List<Patient> getAllPatientsWithReport() throws SQLException, IllegalRiskValueException, NullStringException{
+        patientConnection = new DBConnection();
+        patientConnection.openConnection();
+
+        List<Patient> patients = new ArrayList<>();
+
+        patientConnection.statement = patientConnection.connection.createStatement();
+        patientConnection.rs = patientConnection.statement.executeQuery(
+                "SELECT idPatient, birthday, province, " +
+                        "profession, riskLevel, description " +
+                        "FROM Patient JOIN  Patient_has_RiskFactor PR " +
+                        "on Patient.idPatient = PR.Patient_idPatient " +
+                        "JOIN RiskFactor R on PR.RiskFactor_idFactor = R.idFactor " +
+                        "JOIN Report on Patient.idPatient = Report.Patient_idPatient " +
+                        "WHERE idPatient = Report.Patient_idPatient"
+        );
+
+        while(patientConnection.rs.next()) {
+            patients.add(new Patient(
+                            patientConnection.rs.getString("idPatient"),
+                            patientConnection.rs.getString("birthday"),
+                            patientConnection.rs.getString("province"),
+                            patientConnection.rs.getString("profession"),
+                            new RiskFactor(
+                                    patientConnection.rs.getString("description"),
+                                    patientConnection.rs.getInt("riskLevel")
+                            )
+                    )
+            );
+        }
+
+        patientConnection.closeConnection();
+
+        return patients;
+    }
+
+
+    @Override
     public Patient getPatient(String idPatient) throws SQLException {
         patientConnection = new DBConnection();
         patientConnection.openConnection();
