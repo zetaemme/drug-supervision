@@ -77,6 +77,28 @@ public class ReportDaoImpl implements ReportDao {
         return reports;
     }
 
+    public String getReport(String idPatient) {
+        rpConnection = new DBConnection();
+        rpConnection.openConnection();
+
+        String result = "";
+
+        try {
+            rpConnection.statement = rpConnection.connection.createStatement();
+            rpConnection.rs = rpConnection.statement.executeQuery(
+                    "SELECT reportDate, reactionDate FROM Report WHERE Patient_idPatient = '" + idPatient + "'"
+            );
+
+            result = "Report Date: " + rpConnection.rs.getString("reportDate") + "\n\nReaction Date: " + rpConnection.rs.getString("reactionDate");
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            rpConnection.closeConnection();
+        }
+
+        return result;
+    }
+
     @Override
     public void createReport(String idPatient, String Reaction_name, String reportDate, String reactionDate, String idTherapy) {
         rpConnection = new DBConnection();
@@ -86,17 +108,42 @@ public class ReportDaoImpl implements ReportDao {
             rpConnection.statement = rpConnection.connection.createStatement();
             rpConnection.statement.executeUpdate(
                     "INSERT INTO Report (reactionDate, reportDate, Patient_idPatient, Therapy_idTherapy) VALUES " +
-                            "('" + reactionDate + "', '" + reportDate + "', '" + idPatient + "', '" + idTherapy +"');" +
-                            "INSERT INTO Report_has_Reaction(Report_idReport, Therapy_idTherapy, Patient_idPatient, Reaction_Reaction_name) VALUES " +
-                            "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "', reportDate = '" + reportDate +
-                            "', Patient_idPatient = '" + idPatient + "', Therapy_idTherapy = '" + idTherapy + "'), " +
-                            "Therapy_idTherapy = '" + idTherapy + "', Patient_idPatient = '" + idPatient + "', " +
-                            "Reaction_Reaction_name = '" + Reaction_name + "');"
+                        "('" + reactionDate + "', '" + reportDate + "', '" + idPatient + "', '" + idTherapy +"');" +
+                        "INSERT INTO Report_has_Reaction(Report_idReport, Therapy_idTherapy, Patient_idPatient, Reaction_Reaction_name) VALUES " +
+                        "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "', reportDate = '" + reportDate +
+                        "', Patient_idPatient = '" + idPatient + "', Therapy_idTherapy = '" + idTherapy + "'), " +
+                        "Therapy_idTherapy = '" + idTherapy + "', Patient_idPatient = '" + idPatient + "', " +
+                        "Reaction_Reaction_name = '" + Reaction_name + "');"
             );
         } catch (SQLException sqle) {
             System.out.println("SQL Error: " + sqle.getMessage());
         } finally {
             rpConnection.closeConnection();
         }
+    }
+
+    @Override
+    public int getReportNumber() {
+        rpConnection = new DBConnection();
+        rpConnection.openConnection();
+
+        int counter = 0;
+
+        try {
+            rpConnection.statement = rpConnection.connection.createStatement();
+            rpConnection.rs = rpConnection.statement.executeQuery(
+                    "SELECT idReport FROM Report"
+            );
+
+            while(rpConnection.rs.next()) {
+                counter++;
+            }
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            rpConnection.closeConnection();
+        }
+
+        return counter;
     }
 }
