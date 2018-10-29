@@ -7,11 +7,11 @@ import Model.Exceptions.NullStringException;
 import java.util.Date;
 
 public class Therapy {
-    private final String drug;
-    private final double dose;
-    private final int daily_frequency;
-    private final String starting_date;
-    private final String ending_date;
+    private String drug;
+    private double dose;
+    private int daily_frequency;
+    private String starting_date;
+    private String ending_date;
 
     public Therapy(String drug, double dose, int daily_frequency, String starting_date, String ending_date) throws NullStringException, NullDoseException, NullDailyFrequencyException {
         if(drug.length() == 0) {

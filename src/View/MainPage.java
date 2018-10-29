@@ -46,7 +46,10 @@ public class MainPage {
         Menu miNew = new Menu("New");
         MenuItem miPatient = new MenuItem("Patient");
         MenuItem miReport = new MenuItem("Report");
+
+        // Adds the New parameters
         miNew.getItems().addAll(miPatient, miReport);
+
         MenuItem miDelete = new MenuItem("Delete");
         SeparatorMenuItem separator = new SeparatorMenuItem();
         MenuItem miLogout = new MenuItem("Logout");

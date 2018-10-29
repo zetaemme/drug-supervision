@@ -20,11 +20,6 @@ public class Report {
         this.therapy = new SimpleObjectProperty<>(therapy);
     }
 
-    @Override
-    public int hashCode() {
-        return patient.hashCode() ^ reaction.hashCode() ^ reportDate.hashCode() ^ reactionDate.hashCode() ^ therapy.hashCode();
-    }
-
     public Patient getPatient() {
         return patient.get();
     }

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.NewTherapyController;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -14,7 +15,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
-
 
 public class NewTherapy {
     private NewTherapyController ntController = new NewTherapyController();
@@ -121,11 +121,10 @@ public class NewTherapy {
 
                 ntAlert.showAndWait();
             } else {
-                java.sql.Date querySDate = java.sql.Date.valueOf(startingDate.getValue());
-                java.sql.Date queryEDate = java.sql.Date.valueOf(endingDate.getValue());
-                therapyLabel.setText(ntController.addNewTherapy(drugField.getText(), Integer.valueOf(doseField.getText()),
-                                                                querySDate, queryEDate,
-                                                                Integer.valueOf(dailyFrequencyField.getText())));
+                therapyLabel.setText(ntController.addNewTherapy(
+                        drugField.getText(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
+                        endingDate.getValue().toString(), Integer.valueOf(dailyFrequencyField.getText()))
+            );
 
                 primaryStage.close();
             }
