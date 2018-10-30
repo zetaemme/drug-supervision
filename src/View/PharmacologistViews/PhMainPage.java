@@ -1,9 +1,11 @@
-package View;
+package View.PharmacologistViews;
 
 import Controller.LoginController;
-import Controller.PhMainPageController;
+import Controller.PharmacologistControllers.PhMainPageController;
 import Model.Report;
 
+import View.About;
+import View.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;

@@ -1,7 +1,7 @@
-package View;
+package View.MedicViews;
 
-import Controller.MainPageController;
-import Controller.NewReportController;
+import Controller.MedicControllers.MainPageController;
+import Controller.MedicControllers.NewReportController;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

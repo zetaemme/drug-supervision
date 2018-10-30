@@ -1,11 +1,9 @@
-package View;
+package View.MedicViews;
 
-import Controller.MainPageController;
-import Controller.NewPatientController;
+import Controller.MedicControllers.MainPageController;
+import Controller.MedicControllers.NewPatientController;
 import Model.RiskFactor;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;

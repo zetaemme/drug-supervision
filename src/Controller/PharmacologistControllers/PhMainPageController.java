@@ -1,4 +1,4 @@
-package Controller;
+package Controller.PharmacologistControllers;
 
 import Model.Report;
 import Model.Utils.DaoImpl.ReportDaoImpl;

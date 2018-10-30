@@ -1,9 +1,11 @@
-package View;
+package View.MedicViews;
 
 import Controller.LoginController;
-import Controller.MainPageController;
+import Controller.MedicControllers.MainPageController;
 import Model.Patient;
 
+import View.About;
+import View.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
