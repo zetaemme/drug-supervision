@@ -104,38 +104,107 @@ public class PhMainPage {
         reportLabelsColumn.setPercentWidth(50);
 
         // reportGridPane rows
-        RowConstraints reactionDateRow = new RowConstraints();
-        reactionDateRow.setValignment(VPos.CENTER);
-        reactionDateRow.setPercentHeight(100.0 / 4);
+        RowConstraints reactionAndReportDateRow = new RowConstraints();
+        reactionAndReportDateRow.setValignment(VPos.CENTER);
+        reactionAndReportDateRow.setPercentHeight(50);
 
-        RowConstraints reportDateRow = new RowConstraints();
-        reportDateRow.setValignment(VPos.CENTER);
-        reportDateRow.setPercentHeight(100.0 / 4);
+        RowConstraints patientAndTherapyRow = new RowConstraints();
+        patientAndTherapyRow.setValignment(VPos.CENTER);
+        patientAndTherapyRow.setPercentHeight(50);
+
+        // Reaction Columns/Row
+        GridPane reactionGrid = new GridPane();
+
+        RowConstraints reactionRow = new RowConstraints();
+        reactionRow.setValignment(VPos.CENTER);
+        reactionRow.setPercentHeight(100);
+
+        ColumnConstraints reactionDateColumn = new ColumnConstraints();
+        reactionDateColumn.setHalignment(HPos.CENTER);
+        reactionDateColumn.setPercentWidth(50);
+
+        ColumnConstraints reactionDateLabelColumn = new ColumnConstraints();
+        reactionDateLabelColumn.setHalignment(HPos.CENTER);
+        reactionDateLabelColumn.setPercentWidth(50);
+
+        reactionGrid.getRowConstraints().add(reactionRow);
+        reactionGrid.getColumnConstraints().addAll(reactionDateColumn, reactionDateLabelColumn);
+
+        reactionGrid.add(reactionDateLabel, 0, 0);
+        reactionGrid.add(reactionDateData, 1, 0);
+
+        // Report Columns/Row
+        GridPane reportGrid = new GridPane();
+
+        RowConstraints reportRow = new RowConstraints();
+        reportRow.setValignment(VPos.CENTER);
+        reportRow.setPercentHeight(100);
+
+        ColumnConstraints reportDateColumn = new ColumnConstraints();
+        reportDateColumn.setHalignment(HPos.CENTER);
+        reportDateColumn.setPercentWidth(50);
+
+        ColumnConstraints reportDateLabelColumn = new ColumnConstraints();
+        reportDateLabelColumn.setHalignment(HPos.CENTER);
+        reportDateLabelColumn.setPercentWidth(50);
+
+        reportGrid.getRowConstraints().add(reportRow);
+        reportGrid.getColumnConstraints().addAll(reportDateColumn, reportDateLabelColumn);
+
+        reportGrid.add(reportDateLabel, 0, 0);
+        reportGrid.add(reportDateData, 1, 0);
+
+        // Patient Columns/Row
+        GridPane patientGrid = new GridPane();
 
         RowConstraints patientRow = new RowConstraints();
         patientRow.setValignment(VPos.CENTER);
-        patientRow.setPercentHeight(100.0 / 4);
+        patientRow.setPercentHeight(100);
+
+        ColumnConstraints patientLabelColumn = new ColumnConstraints();
+        patientLabelColumn.setHalignment(HPos.CENTER);
+        patientLabelColumn.setPercentWidth(50);
+
+        ColumnConstraints patientDataColumn = new ColumnConstraints();
+        patientDataColumn.setHalignment(HPos.CENTER);
+        patientDataColumn.setPercentWidth(50);
+
+        patientGrid.getRowConstraints().add(patientRow);
+        patientGrid.getColumnConstraints().addAll(patientLabelColumn, patientDataColumn);
+
+        patientGrid.add(patientLabel, 0, 0);
+        patientGrid.add(patientData, 1, 0);
+
+        // Therapy Columns/Row
+        GridPane therapyGrid = new GridPane();
 
         RowConstraints therapyRow = new RowConstraints();
         therapyRow.setValignment(VPos.CENTER);
-        therapyRow.setPercentHeight(100.0 / 4);
+        therapyRow.setPercentHeight(100);
+
+        ColumnConstraints therapyLabelColumn = new ColumnConstraints();
+        therapyLabelColumn.setHalignment(HPos.CENTER);
+        therapyLabelColumn.setPercentWidth(50);
+
+        ColumnConstraints therapyDataColumn = new ColumnConstraints();
+        therapyDataColumn.setHalignment(HPos.CENTER);
+        therapyDataColumn.setPercentWidth(50);
+
+        therapyGrid.getRowConstraints().add(therapyRow);
+        therapyGrid.getColumnConstraints().addAll(therapyLabelColumn, therapyDataColumn);
+
+        therapyGrid.add(therapyLabel, 0, 0);
+        therapyGrid.add(therapyData, 1, 0);
 
         // Adds rows and columns to the GridPane
         reportGridPane.getColumnConstraints().addAll(labelsColumn, reportLabelsColumn);
-        reportGridPane.getRowConstraints().addAll(reactionDateRow, reportDateRow, patientRow, therapyRow);
+        reportGridPane.getRowConstraints().addAll(reactionAndReportDateRow, patientAndTherapyRow);
 
-        // Adds all the nodes to the grid pane
-        reportGridPane.add(reactionDateLabel, 0, 0);
-        reportGridPane.add(reactionDateData, 1, 0);
-
-        reportGridPane.add(reportDateLabel, 0, 1);
-        reportGridPane.add(reportDateData, 1, 1);
-
-        reportGridPane.add(patientLabel, 0, 2);
-        reportGridPane.add(patientData, 1, 2);
-
-        reportGridPane.add(therapyLabel, 0, 3);
-        reportGridPane.add(therapyData, 1, 3);
+        // Adds all the nodes to the reportGridPane
+        reportGridPane.add(reactionGrid, 0, 0);
+        reportGridPane.add(reportGrid, 0, 1);
+        reportGridPane.add(patientGrid, 1, 0);
+        reportGridPane.add(therapyGrid, 1, 1);
 
         reportInfo.setCenter(reportGridPane);
 
