@@ -24,6 +24,7 @@ public class ReportDaoImpl implements ReportDao {
 
         try {
             rpConnection.statement = rpConnection.connection.createStatement();
+            // TODO L'errore è nella query, provata in SQLBrowser, torna 0 righe
             rpConnection.rs = rpConnection.statement.executeQuery(
                     "SELECT * FROM Report JOIN Patient P on Report.Patient_idPatient = P.idPatient JOIN " +
                         "Report_has_Reaction RR on Report.idReport = RR.Report_idReport JOIN Reaction R on " +
