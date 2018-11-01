@@ -9,6 +9,7 @@ import View.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -74,6 +75,8 @@ public class PhMainPage {
         // Report info will be shown inside this BorderPane
         BorderPane reportInfo = new BorderPane();
 
+        reportInfo.setPadding(new Insets(0, 0, 50, 0));
+
         final Label titleLabel = new Label("Report Info");
 
         final Label reactionDateLabel = new Label("Reaction Date:");
@@ -86,12 +89,45 @@ public class PhMainPage {
         final Label patientData = new Label();
         final Label therapyData = new Label();
 
+        final Button removeButton = new Button("Remove");
+        final Button inspectButton = new Button("Inspect");
+        final Button closeButton = new Button("Close Monitor");
+
         // titleLabel options
         titleLabel.setId("titleLabel");
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
         reportInfo.setTop(titleLabel);
 
+        // Buttons GridPane
+        GridPane buttonGrid = new GridPane();
+
+        RowConstraints buttonRow = new RowConstraints();
+        buttonRow.setValignment(VPos.CENTER);
+        buttonRow.setPercentHeight(100);
+
+        ColumnConstraints removeColumn = new ColumnConstraints();
+        removeColumn.setHalignment(HPos.CENTER);
+        removeColumn.setPercentWidth(100.0 / 3);
+
+        ColumnConstraints inspectColumn = new ColumnConstraints();
+        inspectColumn.setHalignment(HPos.CENTER);
+        inspectColumn.setPercentWidth(100.0 / 3);
+
+        ColumnConstraints closeColumn = new ColumnConstraints();
+        closeColumn.setHalignment(HPos.CENTER);
+        closeColumn.setPercentWidth(100.0 / 3);
+
+        buttonGrid.getRowConstraints().add(buttonRow);
+        buttonGrid.getColumnConstraints().addAll(removeColumn, inspectColumn, closeColumn);
+
+        buttonGrid.add(removeButton, 0, 0);
+        buttonGrid.add(inspectButton, 1, 0);
+        buttonGrid.add(closeButton, 2, 0);
+
+        reportInfo.setBottom(buttonGrid);
+
+        // Center GridPane
         GridPane reportGridPane = new GridPane();
 
         // reportGridPane columns
@@ -279,6 +315,18 @@ public class PhMainPage {
         // If clicked opens a new about window
         miAbout.setOnAction(e -> {
             About about = new About(new Stage());
+        });
+
+        removeButton.setOnAction(e -> {
+            // TODO Implementare funzionalità removeDrug
+        });
+
+        inspectButton.setOnAction(e -> {
+            // TODO Implementare funzionalità inspectDrug
+        });
+
+        closeButton.setOnAction(e -> {
+            // TODO Implementare funzionalità closeMonitor
         });
     }
 }
