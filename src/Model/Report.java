@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.Date;
 
 public class Report {
+    private final SimpleStringProperty id;
     private final SimpleObjectProperty<Patient> patient;
     private final SimpleObjectProperty<Reaction> reaction;
     private final SimpleStringProperty reportDate;
@@ -13,11 +14,19 @@ public class Report {
     private final SimpleObjectProperty<Therapy> therapy;
 
     public Report(Patient patient, Reaction reaction, String reportDate, String reactionDate, Therapy therapy) {
+        this.id = new SimpleStringProperty(
+                patient.getId().substring(0, 3) + reaction.getReactionName().substring(0, 4) +
+                therapy.getId().substring(0, 4)
+        );
         this.patient = new SimpleObjectProperty<>(patient);
         this.reaction = new SimpleObjectProperty<>(reaction);
         this.reportDate = new SimpleStringProperty(reportDate);
         this.reactionDate = new SimpleStringProperty(reactionDate);
         this.therapy = new SimpleObjectProperty<>(therapy);
+    }
+
+    public SimpleStringProperty getId() {
+        return id;
     }
 
     public Patient getPatient() {
