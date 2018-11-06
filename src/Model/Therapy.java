@@ -29,6 +29,11 @@ public class Therapy {
         this.ending_date = ending_date;
     }
 
+    public String getId() {
+        return drug.substring(0, 3).toUpperCase() + dose + starting_date.replace("-", "")
+                + ending_date.replace("-", "") + daily_frequency;
+    }
+
     public String getDrug() {
         return drug;
     }

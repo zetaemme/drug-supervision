@@ -73,7 +73,7 @@ public class MainPage {
         GridPane patientInfo = new GridPane();
 
         // Padding settings
-        infoRoot.setPadding(new Insets(10));
+        infoRoot.setPadding(new Insets(20));
 
         // Title label and settings
         final Label title = new Label("Patient Info");

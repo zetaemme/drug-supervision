@@ -68,14 +68,16 @@ public class PhMainPage {
 
         TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
 
-        reportColumn.setCellValueFactory(cellData -> cellData.getValue().getPatient().getIdProperty());
+        reportColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
+
+        reportTable.getSelectionModel().selectFirst();
 
         reportTable.getColumns().add(reportColumn);
 
         // Report info will be shown inside this BorderPane
         BorderPane reportInfo = new BorderPane();
 
-        reportInfo.setPadding(new Insets(0, 0, 50, 0));
+        reportInfo.setPadding(new Insets(20, 0, 50, 0));
 
         final Label titleLabel = new Label("Report Info");
 
@@ -254,6 +256,7 @@ public class PhMainPage {
         root.getChildren().addAll(menuBar, spPh);
 
         Scene scene = new Scene(root, 1000, 600);
+        scene.getStylesheets().add("CSS/style.css");
 
         // Resize policy options
         root.prefWidthProperty().bind(scene.widthProperty());
@@ -272,6 +275,16 @@ public class PhMainPage {
         primaryStage.setTitle("Drug Supervision - Pharmacologist Main Page");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        if(phMpController.reportDao.getReportNumber() > 1){
+            Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            mpLogoutAlert.setTitle("Report ");
+            mpLogoutAlert.setHeaderText("You will exit the program");
+            mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
+
+            Optional<ButtonType> result = mpLogoutAlert.showAndWait();
+        }
 
         // Shows an alert to check if you want to close the window
         primaryStage.setOnCloseRequest(e -> {

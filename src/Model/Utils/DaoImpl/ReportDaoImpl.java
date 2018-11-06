@@ -117,10 +117,9 @@ public class ReportDaoImpl implements ReportDao {
                         "('" + reactionDate + "', '" + reportDate + "', '" + idPatient + "', '" + idTherapy +"');" +
 
                         "INSERT INTO Report_has_Reaction(Report_idReport, Therapy_idTherapy, Patient_idPatient, Reaction_Reaction_name) VALUES " +
-                        "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "', reportDate = '" + reportDate +
-                        "', Patient_idPatient = '" + idPatient + "', Therapy_idTherapy = '" + idTherapy + "'), " +
-                        "Therapy_idTherapy = '" + idTherapy + "', Patient_idPatient = '" + idPatient + "', " +
-                        "Reaction_Reaction_name = '" + Reaction_name + "');"
+                        "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "' AND reportDate = '" + reportDate + "'AND " +
+                        "Patient_idPatient = '" + idPatient + "' AND Therapy_idTherapy = '" + idTherapy + "'), " +
+                        "'" + idTherapy + "', '" + idPatient + "', '" + Reaction_name + "');"
             );
         } catch (SQLException sqle) {
             System.out.println("SQL Error: " + sqle.getMessage());
