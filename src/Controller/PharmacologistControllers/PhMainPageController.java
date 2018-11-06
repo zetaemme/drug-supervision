@@ -1,4 +1,4 @@
-package Controller;
+package Controller.PharmacologistControllers;
 
 import Model.Report;
 import Model.Utils.DaoImpl.ReportDaoImpl;
@@ -6,6 +6,7 @@ import Model.Utils.DaoImpl.ReportDaoImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PhMainPageController {

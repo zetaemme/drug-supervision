@@ -1,6 +1,6 @@
-package View;
+package View.MedicViews;
 
-import Controller.NewTherapyController;
+import Controller.MedicControllers.NewTherapyController;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

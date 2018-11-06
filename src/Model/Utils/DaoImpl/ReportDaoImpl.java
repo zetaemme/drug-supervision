@@ -24,12 +24,18 @@ public class ReportDaoImpl implements ReportDao {
 
         try {
             rpConnection.statement = rpConnection.connection.createStatement();
+            // TODO L'errore è nella query, provata in SQLBrowser, torna 0 righe
             rpConnection.rs = rpConnection.statement.executeQuery(
-                    "SELECT * FROM Report JOIN Patient P on Report.Patient_idPatient = P.idPatient JOIN " +
-                        "Report_has_Reaction RR on Report.idReport = RR.Report_idReport JOIN Reaction R on " +
-                        "RR.Reaction_Reaction_name = R.Reaction_name JOIN Therapy T on Report.Therapy_idTherapy = T.idTherapy " +
-                        "JOIN Patient_has_RiskFactor PR on P.idPatient = PR.Patient_idPatient JOIN RiskFactor RF on " +
-                        "PR.RiskFactor_idFactor = RF.idFactor"
+                    "SELECT idPatient, birthday, province, province, profession, description, riskLevel, risk, " +
+                        "reactionDescription, reportDate, reactionDate, drugName_drug, dose, dailyFrequency, " +
+                        "startingDate, endingDate " +
+                        "FROM Report " +
+                        "JOIN Patient on Report.Patient_idPatient = Patient.idPatient " +
+                        "JOIN Report_has_Reaction on Report.idReport = Report_has_Reaction.Report_idReport " +
+                        "JOIN Reaction on Report_has_Reaction.Reaction_Reaction_name = Reaction.Reaction_name " +
+                        "JOIN Therapy on Report.Therapy_idTherapy = Therapy.idTherapy " +
+                        "JOIN Patient_has_RiskFactor on Patient.idPatient = Patient_has_RiskFactor.Patient_idPatient " +
+                        "JOIN RiskFactor on Patient_has_RiskFactor.RiskFactor_idFactor = RiskFactor.idFactor"
             );
 
             while(rpConnection.rs.next()) {
@@ -109,6 +115,7 @@ public class ReportDaoImpl implements ReportDao {
             rpConnection.statement.executeUpdate(
                     "INSERT INTO Report (reactionDate, reportDate, Patient_idPatient, Therapy_idTherapy) VALUES " +
                         "('" + reactionDate + "', '" + reportDate + "', '" + idPatient + "', '" + idTherapy +"');" +
+
                         "INSERT INTO Report_has_Reaction(Report_idReport, Therapy_idTherapy, Patient_idPatient, Reaction_Reaction_name) VALUES " +
                         "((SELECT idReport FROM Report WHERE reactionDate = '" + reactionDate + "', reportDate = '" + reportDate +
                         "', Patient_idPatient = '" + idPatient + "', Therapy_idTherapy = '" + idTherapy + "'), " +

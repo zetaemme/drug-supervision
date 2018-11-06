@@ -1,4 +1,4 @@
-package Controller;
+package Controller.MedicControllers;
 
 import Model.RiskFactor;
 import Model.Utils.DaoImpl.PatientDaoImpl;

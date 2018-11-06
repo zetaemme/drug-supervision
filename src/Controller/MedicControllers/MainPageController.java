@@ -1,4 +1,4 @@
-package Controller;
+package Controller.MedicControllers;
 
 import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
