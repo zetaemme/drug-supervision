@@ -55,25 +55,6 @@ public class PhMainPage {
 
         SplitPane spPh = new SplitPane();
 
-        // The list that contains all the reports in the DB
-        ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList());
-
-        // Creates the reportTable TableView
-        TableView<Report> reportTable = new TableView<>(reportList);
-        reportTable.setId("patientTable");
-
-        // Sets max and min width fot the TableView
-        reportTable.setMinWidth(300);
-        reportTable.setMaxWidth(300);
-
-        TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
-
-        reportColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
-
-        reportTable.getSelectionModel().selectFirst();
-
-        reportTable.getColumns().add(reportColumn);
-
         // Report info will be shown inside this BorderPane
         BorderPane reportInfo = new BorderPane();
 
@@ -188,7 +169,38 @@ public class PhMainPage {
         reportGridPane.add(dailyFrequencyLabel, 0, 5);
         reportGridPane.add(dailyfrequencyData, 1, 5);
 
+        // Sets the reportGridPane at the center of the BorderPane
         reportInfo.setCenter(reportGridPane);
+
+        // The list that contains all the reports in the DB
+        ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList());
+
+        // Creates the reportTable TableView
+        TableView<Report> reportTable = new TableView<>(reportList);
+        reportTable.setId("patientTable");
+
+        // Sets max and min width fot the TableView
+        reportTable.setMinWidth(300);
+        reportTable.setMaxWidth(300);
+
+        TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
+
+        reportColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
+
+        reportTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
+            if(newSelection != null) {
+                reactionDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReactionDate());
+                reportDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReportDate());
+                therapyData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getId());
+                drugData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDrug());
+                doseData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDose()));
+                dailyfrequencyData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDaily_frequency()));
+            }
+        });
+
+        reportTable.getSelectionModel().selectFirst();
+
+        reportTable.getColumns().add(reportColumn);
 
         // Sets titleLabel alignment
         BorderPane.setAlignment(titleLabel, Pos.CENTER);

@@ -170,7 +170,7 @@ public class MainPage {
         patientTable.getColumns().setAll(idColumn);
 
         // Sets the default selected value
-        patientTable.getSelectionModel().selectedItemProperty().addListener((newSelection) -> {
+        patientTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
             if(newSelection != null){
                 patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
