@@ -33,6 +33,27 @@ public class DrugDaoImpl implements DrugDao {
             ));
         }
 
+        drugConnection.closeConnection();
+
         return drugList;
+    }
+
+    public Drug getDrug(String drugName) throws SQLException, NullStringException {
+        drugConnection = new DBConnection();
+        drugConnection.openConnection();
+
+        drugConnection.statement = drugConnection.connection.createStatement();
+        drugConnection.rs = drugConnection.statement.executeQuery(
+                "SELECT * FROM Drug WHERE drugName = '" + drugName + "'"
+        );
+
+        drugConnection.closeConnection();
+
+        return new Drug(
+                drugConnection.rs.getString("drugName"),
+                drugConnection.rs.getBoolean("removalSuggestion"),
+                drugConnection.rs.getBoolean("inspectionSuggestion"),
+                drugConnection.rs.getBoolean("closeMonitorSuggestion")
+        );
     }
 }
