@@ -129,7 +129,13 @@ public class ReportDaoImpl implements ReportDao {
     }
 
     @Override
-    public int getReportNumber() {
+    public int getReportNumber(){
+        return getReportNumber(null);
+    }
+
+
+    @Override
+    public int getReportNumber(String drugName) {
         rpConnection = new DBConnection();
         rpConnection.openConnection();
 
@@ -137,9 +143,19 @@ public class ReportDaoImpl implements ReportDao {
 
         try {
             rpConnection.statement = rpConnection.connection.createStatement();
-            rpConnection.rs = rpConnection.statement.executeQuery(
-                    "SELECT idReport FROM Report"
-            );
+            if(drugName == null){
+                rpConnection.rs = rpConnection.statement.executeQuery(
+                        "SELECT idReport FROM Report"
+                );
+            }
+            else{
+                rpConnection.rs = rpConnection.statement.executeQuery(
+                        "SELECT idReport FROM Report " +
+                           "JOIN Therapy on Report.Therapy_idTherapy = Therapy.idTherapy " +
+                           "WHERE Therapy.drugName_drug = '" + drugName + "'"
+                );
+            }
+
 
             while(rpConnection.rs.next()) {
                 counter++;

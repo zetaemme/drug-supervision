@@ -60,6 +60,10 @@ public class PhMainPage {
 
         reportInfo.setPadding(new Insets(10, 0, 25, 0));
 
+        final ChoiceBox drugChoiceBox = new ChoiceBox();
+        drugChoiceBox.setPrefWidth(300);
+
+        final Label drugTitleLabel = new Label("Select drug:");
         final Label titleLabel = new Label("Report Info");
 
         final Label reactionDateLabel = new Label("Reaction Date:");
@@ -80,11 +84,38 @@ public class PhMainPage {
         final Button inspectButton = new Button("Inspect");
         final Button closeButton = new Button("Close Monitor");
 
+        drugTitleLabel.setTranslateX(-30);
+        drugChoiceBox.setTranslateX(30);
+
         // titleLabel options
         titleLabel.setId("titleLabel");
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
         reportInfo.setTop(titleLabel);
+
+        //Drug Choicebox GridPane
+        GridPane drugChoiceBoxGrid = new GridPane();
+        drugChoiceBoxGrid.setPadding(new Insets(15));
+        drugChoiceBoxGrid.setPrefHeight(100);
+
+        ColumnConstraints selectDrugColumn = new ColumnConstraints();
+        selectDrugColumn.setHalignment(HPos.RIGHT);
+        selectDrugColumn.setPercentWidth(45);
+
+        ColumnConstraints drugChoiceBoxColumn = new ColumnConstraints();
+        drugChoiceBoxColumn.setHalignment(HPos.LEFT);
+        drugChoiceBoxColumn.setPercentWidth(55);
+
+        RowConstraints row1 = new RowConstraints();
+        row1.setValignment(VPos.CENTER);
+        row1.setPercentHeight(100);
+
+        drugChoiceBoxGrid.getColumnConstraints().addAll(selectDrugColumn, drugChoiceBoxColumn);
+        drugChoiceBoxGrid.getRowConstraints().add(row1);
+
+        drugChoiceBoxGrid.add(drugTitleLabel, 0, 0);
+        drugChoiceBoxGrid.add(drugChoiceBox, 1, 0);
+
 
         // Buttons GridPane
         GridPane buttonGrid = new GridPane();
@@ -209,7 +240,7 @@ public class PhMainPage {
         spPh.getItems().addAll(reportTable, reportInfo);
 
         // Adds the menuBar to the root VBox
-        root.getChildren().addAll(menuBar, spPh);
+        root.getChildren().addAll(menuBar, drugChoiceBoxGrid, spPh);
 
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add("CSS/style.css");

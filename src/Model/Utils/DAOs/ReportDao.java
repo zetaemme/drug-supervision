@@ -8,5 +8,6 @@ public interface ReportDao {
     List<Report> getAllReports();
     String getReport(String idPatient);
     void createReport(String idPatient, String Reaction_name, String reportDate, String reactionDate, String idTherapy);
+    int getReportNumber(String drugName);
     int getReportNumber();
 }
