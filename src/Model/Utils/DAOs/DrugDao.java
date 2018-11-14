@@ -9,4 +9,7 @@ import java.util.List;
 public interface DrugDao {
     List<Drug> getAllDrugs() throws SQLException, NullStringException;
     Drug getDrug(String drugName) throws SQLException, NullStringException;
+    void updateRemoval(String drugName);
+    void updateInspection(String drugName);
+    void updateCloseMonitor(String drugName);
 }

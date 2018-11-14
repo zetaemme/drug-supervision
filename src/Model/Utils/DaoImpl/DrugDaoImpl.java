@@ -48,6 +48,7 @@ public class DrugDaoImpl implements DrugDao {
         return drugList;
     }
 
+    @Override
     public Drug getDrug(String drugName) throws SQLException, NullStringException {
         drugConnection = new DBConnection();
         drugConnection.openConnection();
@@ -57,13 +58,66 @@ public class DrugDaoImpl implements DrugDao {
                 "SELECT * FROM Drug WHERE drugName = '" + drugName + "'"
         );
 
-        drugConnection.closeConnection();
-
-        return new Drug(
+        Drug drug = new Drug(
                 drugConnection.rs.getString("drugName"),
                 drugConnection.rs.getBoolean("removalSuggestion"),
                 drugConnection.rs.getBoolean("inspectionSuggestion"),
                 drugConnection.rs.getBoolean("closeMonitorSuggestion")
         );
+
+        drugConnection.closeConnection();
+
+        return drug;
+    }
+
+    @Override
+    public void updateRemoval(String drugName) {
+        drugConnection = new DBConnection();
+        drugConnection.openConnection();
+
+        try {
+            drugConnection.statement = drugConnection.connection.createStatement();
+            drugConnection.statement.executeQuery(
+                    "UPDATE Drug SET removalSuggestion = true WHERE drugName = '" + drugName + "'"
+            );
+        }catch(SQLException sqle) {
+            System.out.println("SQL Error: " + sqle.getMessage());
+        } finally {
+            drugConnection.closeConnection();
+        }
+    }
+
+    @Override
+    public void updateInspection(String drugName) {
+        drugConnection = new DBConnection();
+        drugConnection.openConnection();
+
+        try {
+            drugConnection.statement = drugConnection.connection.createStatement();
+            drugConnection.statement.executeQuery(
+                    "UPDATE Drug SET inspectionSuggestion = true WHERE drugName = '" + drugName + "'"
+            );
+        }catch(SQLException sqle) {
+            System.out.println("SQL Error: " + sqle.getMessage());
+        } finally {
+            drugConnection.closeConnection();
+        }
+    }
+
+    @Override
+    public void updateCloseMonitor(String drugName) {
+        drugConnection = new DBConnection();
+        drugConnection.openConnection();
+
+        try {
+            drugConnection.statement = drugConnection.connection.createStatement();
+            drugConnection.statement.executeQuery(
+                    "UPDATE Drug SET closeMonitorSuggestion = true WHERE drugName = '" + drugName + "'"
+            );
+        }catch(SQLException sqle) {
+            System.out.println("SQL Error: " + sqle.getMessage());
+        } finally {
+            drugConnection.closeConnection();
+        }
     }
 }

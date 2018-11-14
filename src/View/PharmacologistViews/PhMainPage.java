@@ -2,6 +2,7 @@ package View.PharmacologistViews;
 
 import Controller.LoginController;
 import Controller.PharmacologistControllers.PhMainPageController;
+import Model.Exceptions.NullStringException;
 import Model.Report;
 
 import View.About;
@@ -20,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class PhMainPage {
@@ -206,16 +208,13 @@ public class PhMainPage {
         // Sets the reportGridPane at the center of the BorderPane
         reportInfo.setCenter(reportGridPane);
 
+        // The list that contains all the reports in the DB
         ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList(drugChoiceBox.getSelectionModel().getSelectedItem().toString()));
 
-        // The list that contains all the reports in the DB
-        //TODO Aggiungere listener per il drugChoiceBox
-        /*drugChoiceBox.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
-            if(newSelection != null)
-                reportList = FXCollections.observableArrayList()
-        });*/
         // Creates the reportTable TableView
         TableView<Report> reportTable = new TableView<>(reportList);
+
+        // Sets the CSS id for the TableView
         reportTable.setId("patientTable");
 
         // Sets max and min width fot the TableView
@@ -225,6 +224,14 @@ public class PhMainPage {
         TableColumn<Report, String> reportColumn = new TableColumn<>("Report");
 
         reportColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
+
+        // Listener that updates the TableView if the drugName in the ChoiceBox is changed
+        drugChoiceBox.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
+            if(newSelection != null) {
+                reportTable.setItems(phMpController.initReportList(drugChoiceBox.getSelectionModel().getSelectedItem().toString()));
+                reportTable.getSelectionModel().selectFirst();
+            }
+        });
 
         reportTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
             if(newSelection != null) {
@@ -324,15 +331,15 @@ public class PhMainPage {
         });
 
         removeButton.setOnAction(e -> {
-            // TODO Implementare funzionalità removeDrug
+            phMpController.drugDao.updateRemoval(drugChoiceBox.getSelectionModel().getSelectedItem().toString());
         });
 
         inspectButton.setOnAction(e -> {
-            // TODO Implementare funzionalità inspectDrug
+            phMpController.drugDao.updateInspection(drugChoiceBox.getSelectionModel().getSelectedItem().toString());
         });
 
         closeButton.setOnAction(e -> {
-            // TODO Implementare funzionalità closeMonitor
+            phMpController.drugDao.updateCloseMonitor(drugChoiceBox.getSelectionModel().getSelectedItem().toString());
         });
     }
 }
