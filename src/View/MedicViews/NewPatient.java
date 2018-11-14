@@ -147,7 +147,6 @@ public class NewPatient {
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
-                // TODO Fixare funzione che visualizza idPatient solo se ha dei Report
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 

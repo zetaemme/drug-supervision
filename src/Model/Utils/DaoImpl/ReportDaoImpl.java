@@ -16,7 +16,7 @@ public class ReportDaoImpl implements ReportDao {
     private DBConnection rpConnection;
 
     @Override
-    public List<Report> getAllReports() {
+    public List<Report> getAllReports(String drugName) {
         rpConnection = new DBConnection();
         rpConnection.openConnection();
 
@@ -24,7 +24,6 @@ public class ReportDaoImpl implements ReportDao {
 
         try {
             rpConnection.statement = rpConnection.connection.createStatement();
-            // TODO L'errore è nella query, provata in SQLBrowser, torna 0 righe
             rpConnection.rs = rpConnection.statement.executeQuery(
                     "SELECT idPatient, birthday, province, province, profession, description, riskLevel, risk, " +
                         "reactionDescription, reportDate, reactionDate, drugName_drug, dose, dailyFrequency, " +
@@ -35,7 +34,8 @@ public class ReportDaoImpl implements ReportDao {
                         "JOIN Reaction on Report_has_Reaction.Reaction_Reaction_name = Reaction.Reaction_name " +
                         "JOIN Therapy on Report.Therapy_idTherapy = Therapy.idTherapy " +
                         "JOIN Patient_has_RiskFactor on Patient.idPatient = Patient_has_RiskFactor.Patient_idPatient " +
-                        "JOIN RiskFactor on Patient_has_RiskFactor.RiskFactor_idFactor = RiskFactor.idFactor"
+                        "JOIN RiskFactor on Patient_has_RiskFactor.RiskFactor_idFactor = RiskFactor.idFactor " +
+                        "WHERE drugName_drug = '" + drugName + "'"
             );
 
             while(rpConnection.rs.next()) {

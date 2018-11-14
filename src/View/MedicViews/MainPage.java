@@ -73,23 +73,16 @@ public class MainPage {
         GridPane patientInfo = new GridPane();
 
         // Padding settings
-        infoRoot.setPadding(new Insets(20));
-
-        // Title label and settings
-        final Label title = new Label("Patient Info");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-        title.setId("titleLabel");
-
-        infoRoot.setTop(title);
+        infoRoot.setPadding(new Insets(0,0,0,25));
 
         // Static labels column
         ColumnConstraints column1 = new ColumnConstraints();
-        column1.setHalignment(HPos.CENTER);
+        column1.setHalignment(HPos.LEFT);
         column1.setPercentWidth(50);
 
         // Dynamic labels column
         ColumnConstraints column2 = new ColumnConstraints();
-        column2.setHalignment(HPos.CENTER);
+        column2.setHalignment(HPos.LEFT);
         column2.setPercentWidth(50);
 
         RowConstraints bDayRow = new RowConstraints();
@@ -146,9 +139,6 @@ public class MainPage {
         patientInfo.getRowConstraints().addAll(bDayRow, provinceRow, professionRow, riskFactorRow, reportRow);
 
         infoRoot.setCenter(patientInfo);
-
-        // Sets the title alignment
-        BorderPane.setAlignment(title, Pos.CENTER);
 
         // Initialize the patientList
         ObservableList<Patient> patientIdsList = FXCollections.observableArrayList(mpController.initPatientsList());

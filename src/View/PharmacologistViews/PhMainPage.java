@@ -6,6 +6,7 @@ import Model.Report;
 
 import View.About;
 import View.Login;
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -60,11 +61,9 @@ public class PhMainPage {
 
         reportInfo.setPadding(new Insets(10, 0, 25, 0));
 
-        final ChoiceBox drugChoiceBox = new ChoiceBox();
-        drugChoiceBox.setPrefWidth(300);
+        final ChoiceBox drugChoiceBox = new ChoiceBox(phMpController.initDrugList());
 
         final Label drugTitleLabel = new Label("Select drug:");
-        final Label titleLabel = new Label("Report Info");
 
         final Label reactionDateLabel = new Label("Reaction Date:");
         final Label reportDateLabel = new Label("Report Date:");
@@ -87,11 +86,14 @@ public class PhMainPage {
         drugTitleLabel.setTranslateX(-30);
         drugChoiceBox.setTranslateX(30);
 
-        // titleLabel options
-        titleLabel.setId("titleLabel");
-        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        drugChoiceBox.setPrefWidth(300);
 
-        reportInfo.setTop(titleLabel);
+        drugChoiceBox.getSelectionModel().selectLast();
+
+        // titleLabel options
+        drugTitleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+
+        //reportInfo.setTop(titleLabel);
 
         //Drug Choicebox GridPane
         GridPane drugChoiceBoxGrid = new GridPane();
@@ -147,14 +149,15 @@ public class PhMainPage {
 
         // Center GridPane
         GridPane reportGridPane = new GridPane();
+        reportGridPane.setPadding(new Insets(0,0,0,25));
 
         // reportGridPane columns
         ColumnConstraints reportLabelsColumn = new ColumnConstraints();
-        reportLabelsColumn.setHalignment(HPos.CENTER);
+        reportLabelsColumn.setHalignment(HPos.LEFT);
         reportLabelsColumn.setPercentWidth(50);
 
         ColumnConstraints reportDataColumn = new ColumnConstraints();
-        reportDataColumn.setHalignment(HPos.CENTER);
+        reportDataColumn.setHalignment(HPos.LEFT);
         reportDataColumn.setPercentWidth(50);
 
         // reportGridPane rows
@@ -203,9 +206,14 @@ public class PhMainPage {
         // Sets the reportGridPane at the center of the BorderPane
         reportInfo.setCenter(reportGridPane);
 
-        // The list that contains all the reports in the DB
-        ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList());
+        ObservableList<Report> reportList = FXCollections.observableArrayList(phMpController.initReportList(drugChoiceBox.getSelectionModel().getSelectedItem().toString()));
 
+        // The list that contains all the reports in the DB
+        //TODO Aggiungere listener per il drugChoiceBox
+        /*drugChoiceBox.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
+            if(newSelection != null)
+                reportList = FXCollections.observableArrayList()
+        });*/
         // Creates the reportTable TableView
         TableView<Report> reportTable = new TableView<>(reportList);
         reportTable.setId("patientTable");
@@ -233,8 +241,6 @@ public class PhMainPage {
 
         reportTable.getColumns().add(reportColumn);
 
-        // Sets titleLabel alignment
-        BorderPane.setAlignment(titleLabel, Pos.CENTER);
 
         // Adds the items to the split pane
         spPh.getItems().addAll(reportTable, reportInfo);
@@ -263,10 +269,10 @@ public class PhMainPage {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        if(phMpController.reportDao.getReportNumber() > 1){
+        if(phMpController.reportDao.getReportNumber() >= 50){
             Alert mpLogoutAlert = new Alert(Alert.AlertType.CONFIRMATION);
 
-            mpLogoutAlert.setTitle("Report ");
+            mpLogoutAlert.setTitle("Report");
             mpLogoutAlert.setHeaderText("You will exit the program");
             mpLogoutAlert.setContentText("Closing this window will log you out.\nYou want to continue?");
 
