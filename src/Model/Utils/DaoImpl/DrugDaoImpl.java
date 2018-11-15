@@ -49,28 +49,6 @@ public class DrugDaoImpl implements DrugDao {
     }
 
     @Override
-    public Drug getDrug(String drugName) throws SQLException, NullStringException {
-        drugConnection = new DBConnection();
-        drugConnection.openConnection();
-
-        drugConnection.statement = drugConnection.connection.createStatement();
-        drugConnection.rs = drugConnection.statement.executeQuery(
-                "SELECT * FROM Drug WHERE drugName = '" + drugName + "'"
-        );
-
-        Drug drug = new Drug(
-                drugConnection.rs.getString("drugName"),
-                drugConnection.rs.getBoolean("removalSuggestion"),
-                drugConnection.rs.getBoolean("inspectionSuggestion"),
-                drugConnection.rs.getBoolean("closeMonitorSuggestion")
-        );
-
-        drugConnection.closeConnection();
-
-        return drug;
-    }
-
-    @Override
     public void updateRemoval(String drugName) {
         drugConnection = new DBConnection();
         drugConnection.openConnection();

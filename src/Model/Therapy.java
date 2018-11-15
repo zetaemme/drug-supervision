@@ -45,12 +45,4 @@ public class Therapy {
     public int getDaily_frequency() {
         return daily_frequency;
     }
-
-    public String getStarting_date() {
-        return starting_date;
-    }
-
-    public String getEnding_date() {
-        return ending_date;
-    }
 }
