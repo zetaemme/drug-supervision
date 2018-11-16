@@ -1,16 +1,95 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 11pt]{article}
 \usepackage[italian]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{calc}
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[a4paper]{geometry}
+\usepackage[section]{placeins}
+\usepackage{lmodern}
+%\usepackage[scaled=.85]{beramono}
+\usepackage{array}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor  = blue,
+}
+%\geometry{hmargin=2.3cm}
 
-\topmargin = 0.45in
-\evensidemargin = 0in
-\oddsidemargin = 0in
-\textwidth = 6.25in
-\textheight = 9in
-\headsep = 0.25in
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.25in
+\textheight=9in
+\headsep=0.25in
+
+\usepackage[normalem]{ulem} % [normalem] prevents the package from changing the default behavior of `\emph` to underline.
+\usepackage{fancyhdr}
+\usepackage{array}
+
+\renewcommand{\baselinestretch}{1.1} 
+
+\newcommand{\hmwkTitle}{Drug Supervision}
+
+\pagestyle{fancy}
+\lhead{\nouppercase{\leftmark}}
+\rhead{\nouppercase{\rightmark}}
+\chead{\hmwkTitle}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
 
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newcolumntype{L}{>{\fontseries{l}\selectfont\arraybackslash}p{0.7\textwidth}}
+
+\newcommand{\safeImage} [2] [\textwidth]{%
+	\begin{figure}[H]
+		\centering
+		\IfFileExists{#2}{\includegraphics[width={#1},keepaspectratio]{#2}}{\includegraphics{example-image-a}}
+	\end{figure}
+}
+
+\newcommand{\breakcell}[2][l]{\begin{tabular}[t]{@{}#1@{}}#2\end{tabular}}
+
+\newcommand{\usecase}[5]{%
+	\begin{table}[H]
+		%\vspace*{0.5 cm}
+		\centering
+		\renewcommand{\familydefault}{\ttdefault}\normalfont
+		\begin{tabular}{| >{\fontseries{b}\selectfont} p{0.2\textwidth} | L |}
+			\hline
+			ID&{#1}\\\hline
+			Attori&{#2}\\\hline
+			Precondizioni&{#3}\\\hline
+			Sequenza&{#4}\\\hline
+			Postcondizioni&{#5}\\\hline
+		\end{tabular}
+	\end{table}
+	
+}
 
 \begin{document}
 	\clearpage
@@ -46,14 +125,141 @@
 		
 		In questa relazione ci proponiamo di raccolgiere la documentazione sviluppata e di fornire spiegazioni dettagliate sulle scelte progettuali ed implementative.
 	\section{Requisiti}
-		Di seguito viene riportata la consegna dell'elaborato.
-		
+		Di seguito viene riportata la consegna dell'elaborato.	
 	\begin{changemargin}{1cm}{0.5cm}
-		Si vuole progettare un sistema software per gestire le segnalazioni di reazioni avverse (ad esempio, asma, dermatiti, insufficienza renale, ...) da farmaci. Ogni segnalazione e' caratterizzata da un codice univoco, dall'indicazione del paziente a cui fa riferimento, dall'indicazione della reazione avversa, dalla data della reazione avversa, dalla data di segnalazione, e dalle terapie farmacologiche in atto al momento della reazione avversa. Per ogni paziente sono memorizzati: un codice univoco, l'anno di nascita, la provincia di residenza e la professione. Per ogni paziente e' possibile memorizzare gli eventuali fattori di rischio presenti (paziente fumatore, iperteso, sovrappeso, ...), anche piu' d'uno. Ogni fattore di rischio e' caratterizzato da un nome univoco, unadescrizione e il livello di rischio associato. Ogni terapia farmacologica e' caratterizzata da: paziente a cui si riferisce, segnalazioni a cui e' legata, farmaco somministrato, dose, frequenza giornaliera, data di inizio e data di fine della terapia stessa. Per ogni reazione avversa sono memorizzati un nome univoco, un livello di gravita' (da 1 a 5) e una descrizione generale, espressa in linguaggio naturale. Una reazione avversa puo' essere legata a molte segnalazioni. Per ogni paziente sono memorizzati per ogni anno il numero di reazioni avverse segnalate ed il numero di terapie farmacologiche relative. Il sistema deve supportare i medici che effettuano la segnalazione. Dopo opportuna autenticazione, il medico viene introdotto ad una interfaccia che permette l'inserimento dei dati delle reazioni avverse e dei pazienti. Il codice univoco dei pazienti e' gestito dal sistema, che tiene traccia dei pazienti indicati da ogni medico. Ogni medico vede solo i codici identificativi dei pazienti, dei quali ha gia' segnalato qualche reazione avversa. Ad ogni fine settimana o quando il numero di segnalazioni raggiunge la soglia di 50, il sistema manda un avviso ad uno dei farmacologi responsabili della gestione delle segnalazioni di reazioni avverse. Il farmacologo, dopo autenticazione, accede alle segnalazioni e puo' effettuare alcune analisi di base (quante segnalazioni per farmaco, quante segnalazioni gravi in settimana, ...). Il sistema, inoltre, avvisa il farmacologo quando un farmaco ha accumulato nell'anno oltre 10 segnalazioni di gravita' superiore a 3. In base alle segnalazioni e agli avvisi del sistema, il farmacologo puo' proporre di ritirare il farmaco dal commercio immediatamente, di attivare una fase di controllo del farmaco, di mettere il farmaco fra quelli che richiedono un monitoraggio piu' attento. Tali proposte vengono registrate dal sistema, che tiene traccia di tutte le proposte relative ai farmaci segnalati.
+		\textit{Si vuole progettare un sistema software per gestire le segnalazioni di reazioni avverse (ad esempio, asma, dermatiti, insufficienza renale, ...) da farmaci.\newline Ogni segnalazione e' caratterizzata da un codice univoco, dall'indicazione del paziente a cui fa riferimento, dall'indicazione della reazione avversa, dalla data della reazione avversa, dalla data di segnalazione, e dalle terapie farmacologiche in atto al momento della reazione avversa.\newline Per ogni paziente sono memorizzati: un codice univoco, l'anno di nascita, la provincia di residenza e la professione. Per ogni paziente e' possibile memorizzare gli eventuali fattori di rischio presenti (paziente fumatore, iperteso, sovrappeso, ...), anche piu' d'uno. Ogni fattore di rischio e' caratterizzato da un nome univoco, unadescrizione e il livello di rischio associato.\newline Ogni terapia farmacologica e' caratterizzata da: paziente a cui si riferisce, segnalazioni a cui e' legata, farmaco somministrato, dose, frequenza giornaliera, data di inizio e data di fine della terapia stessa. Per ogni reazione avversa sono memorizzati un nome univoco, un livello di gravita' (da 1 a 5) e una descrizione generale, espressa in linguaggio naturale. Una reazione avversa puo' essere legata a molte segnalazioni. Per ogni paziente sono memorizzati per ogni anno il numero di reazioni avverse segnalate ed il numero di terapie farmacologiche relative.\newline Il sistema deve supportare i medici che effettuano la segnalazione. Dopo opportuna autenticazione, il medico viene introdotto ad una interfaccia che permette l'inserimento dei dati delle reazioni avverse e dei pazienti. Il codice univoco dei pazienti e' gestito dal sistema, che tiene traccia dei pazienti indicati da ogni medico. Ogni medico vede solo i codici identificativi dei pazienti, dei quali ha gia' segnalato qualche reazione avversa.\newline Ad ogni fine settimana o quando il numero di segnalazioni raggiunge la soglia di 50, il sistema manda un avviso ad uno dei farmacologi responsabili della gestione delle segnalazioni di reazioni avverse. Il farmacologo, dopo autenticazione, accede alle segnalazioni e puo' effettuare alcune analisi di base (quante segnalazioni per farmaco, quante segnalazioni gravi in settimana, ...). Il sistema, inoltre, avvisa il farmacologo quando un farmaco ha accumulato nell'anno oltre 10 segnalazioni di gravita' superiore a 3.\newline In base alle segnalazioni e agli avvisi del sistema, il farmacologo puo' proporre di ritirare il farmaco dal commercio immediatamente, di attivare una fase di controllo del farmaco, di mettere il farmaco fra quelli che richiedono un monitoraggio piu' attento. Tali proposte vengono registrate dal sistema, che tiene traccia di tutte le proposte relative ai farmaci segnalati.}
 	\end{changemargin}
 	
 	\section{UML}
 		In questa sezione sono presentati i diagrammi richiesti per la documentazione del prototipo.
 		
+		\subsection{Use Cases}
+			Gli use case sono stati suddivisi in due macroaree definite dalla tipologia di utente che effettua il login.\newline Esse possono essere suddivise in base alla GUI:
+			
+			\begin{enumerate}[nosep]
+				\item Vista del medico di base.
+				\item Vista del farmacologo.
+			\end{enumerate}
+		
+		Di seguito alcune schede che descrittive degli use case sopracitati.
+		
+		% Creare immagini per usecases
+		
+		\usecase{UC1: Inserimento paziente.}
+		{Medico}
+		{Il medico deve aver effettuato il login.}
+		{%
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Il medico apre il menù "File", sposta il cursore sopra la voce "New" scegliendo la voce "Patient". Viene visualizzato il dialog corrispondente.
+				\item Inserisce i dati relativi alla persone e gli eventuali Risk Factor.
+				\item Se il medico preme " New" in corrispondenza della riga "Risk Factor":
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Inserisce i dati relativi al nuovo Risk Factor.
+					\item Se il medico preme "Add":
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+						\begin{enumerate}[label*=\arabic*., nosep]
+							\item Il Risk Factor viene aggiunto al Database.
+							\item Il dialog viene chiuso.
+						\end{enumerate}
+					\end{enumerate}
+				\end{enumerate}
+				\item Se il medico preme "Add":				
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Il paziente viene aggiunto al Database.
+						\item Il dialog viene chiuso.
+					\end{enumerate}
+				\end{enumerate}
+			\end{enumerate}
+		}
+		{Nuovo paziente aggiunto correttamente.}
+		
+		\usecase{UC2: Inserimento report.}
+		{Medico}
+		{Il medico deve aver effettuato il login.}
+		{%
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Il medico apre il menù "File", sposta il cursore sopra la voce "New" scegliendo la voce "Report". Viene visualizzato il dialog corrispondente.
+				\item Inserisce i dati relativi al report, alla reaction e alla terapia farmacologica.
+				\item Se il medico preme "New" in corrispondenza della riga Reaction: 
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Inserisce i dati relativi alla nuova reaction.
+					\item Se il medico preme "Add":
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+						\begin{enumerate}[label*=\arabic*., nosep]
+							\item La reaction viene aggiunta al Database.
+							\item Il dialog viene chiuso.
+						\end{enumerate}
+					\end{enumerate}
+				\end{enumerate}
+				\item Se il medico preme "New" in corrispondenza della riga Therapy: 
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Inserisce i dati relativi alla nuova terapia farmacologica.
+					\item Se il medico preme "Add":
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+						\begin{enumerate}[label*=\arabic*., nosep]
+							\item La terapia farmacologica viene aggiunta al Database.
+							\item Il dialog viene chiuso.
+						\end{enumerate}
+					\end{enumerate}
+				\end{enumerate}
+				\item Se il medico preme "Add":				
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Il report viene aggiunto al Database.
+						\item Il dialog viene chiuso.
+					\end{enumerate}
+				\end{enumerate}
+			\end{enumerate}
+		}
+		{Nuovo report aggiunto correttamente.}
+		
+		\usecase{UC3: Cancella paziente.}
+		{Medico}
+		{Il medico deve aver effettuato il login.}
+		{%
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Il medico apre il menù "File" e sceglie la voce "Delete"
+				\item Viene mostrato un dialog che chiede di confermare la scelta.
+				\item Se il medico preme "Ok":
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Il paziente viene eliminato dal Database.
+					\item Il dialog viene chiuso.
+				\end{enumerate}					
+			\end{enumerate}
+		}
+		{Paziente eliminato correttamente.}
+		
+		\usecase{UC4: Visualizzare report relativi ad un certo farmaco.}
+		{Farmacologo}
+		{Il farmacologo deve aver effettuato il login}
+		{%
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Il farmacologo può scegliere un determinato farmaco attraverso la ChoiceBox.
+				\item Vengono mostrati i report relativi a quel farmaco nella TableView
+				\item Se il farmacologo sceglie "Remove":
+				\begin{enumerate}[label*=\arabic*., nosep]
+					\item Viene settato a "true"  l'opzione di rimozione nel Database.
+				\end{enumerate}
+			\item Se il farmacologo sceglie "Inspect":
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Viene settato a "true"  l'opzione d'ispezione nel Database.
+			\end{enumerate}
+			\item Se il farmacologo sceglie "Close Monitor":
+			\begin{enumerate}[label*=\arabic*., nosep]
+				\item Viene settato a "true"  l'opzione di chiusura del monitoraggio nel Database.
+			\end{enumerate}
+			\end{enumerate}
+		}
+		{I farmaci possono essere rimossi, ispezionati o ne può essere chiuso il monitoraggio.}
+		\newpage
+		
+		\subsection{Activity Diagram}
+		Gli activity diagram di seguito servono a esplicitare meglio il flusso d'esecuzione degli use case descritti in precedenza.
 		
 \end{document}
