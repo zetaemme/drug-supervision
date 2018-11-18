@@ -1,6 +1,6 @@
-package View;
+package View.MedicViews;
 
-import Controller.NewReactionController;
+import Controller.MedicControllers.NewReactionController;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

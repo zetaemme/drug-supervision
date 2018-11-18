@@ -18,6 +18,8 @@ public class Reaction {
         this.description = description;
     }
 
+    public String getReactionName() { return risk + description.substring(0, 5).toUpperCase().replace(" ", "");}
+
     public int getRisk() {
         return risk;
     }

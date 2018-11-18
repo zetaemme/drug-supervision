@@ -1,7 +1,7 @@
-package View;
+package View.MedicViews;
 
-import Controller.NewPatientController;
-import Controller.NewRiskFactorController;
+import Controller.MedicControllers.NewPatientController;
+import Controller.MedicControllers.NewRiskFactorController;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

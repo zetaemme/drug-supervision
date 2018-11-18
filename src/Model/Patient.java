@@ -28,10 +28,6 @@ public class Patient {
         return idPatient.get();
     }
 
-    public void setId(String first_name) {
-        this.idPatient.set(first_name);
-    }
-
     public SimpleStringProperty getIdProperty() {
         return idPatient;
     }
@@ -40,47 +36,15 @@ public class Patient {
         return birthday.get(); 
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday.set(birthday);
-    }
-    
-    public SimpleStringProperty getBirthdayProperty() {
-        return birthday;
-    }
-
     public String getProvince() {
         return province.get();
-    }
-
-    public void setProvince(String province) {
-        this.province.set(province);
-    }
-
-    public SimpleStringProperty getProvinceProperty() {
-        return province;
     }
 
     public String getProfession() {
         return profession.get();
     }
 
-    public void setProfession(String profession) {
-        this.profession.set(profession);
-    }
-
-    public SimpleStringProperty getProfessionProperty() {
-        return profession;
-    }
-
     public RiskFactor getRisk_factor() { 
         return risk_factor.get(); 
-    }
-
-    public void setRiskFactor(RiskFactor risk_factor) {
-        this.risk_factor.set(risk_factor);
-    }
-
-    public SimpleObjectProperty<RiskFactor> getRiskFactorProperty() {
-        return risk_factor;
     }
 }

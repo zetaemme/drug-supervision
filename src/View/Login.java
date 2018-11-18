@@ -1,6 +1,8 @@
 package View;
 
 import Controller.LoginController;
+import View.MedicViews.MainPage;
+import View.PharmacologistViews.PhMainPage;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;

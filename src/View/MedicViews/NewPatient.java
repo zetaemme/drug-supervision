@@ -1,11 +1,9 @@
-package View;
+package View.MedicViews;
 
-import Controller.MainPageController;
-import Controller.NewPatientController;
+import Controller.MedicControllers.MainPageController;
+import Controller.MedicControllers.NewPatientController;
 import Model.RiskFactor;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -149,7 +147,6 @@ public class NewPatient {
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
-                // TODO Fixare funzione che visualizza idPatient solo se ha dei Report
                 patientTable.setItems(mpController.initPatientsList());
                 patientTable.getSelectionModel().selectLast();
 
