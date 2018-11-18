@@ -123,10 +123,28 @@ public class PatientDaoImpl implements PatientDao {
 
     @Override
     public void deletePatient(String idPatient) {
+        patientConnection = new DBConnection();
         patientConnection.openConnection();
 
         try {
             patientConnection.statement = patientConnection.connection.createStatement();
+
+            List<String> therapies = new ArrayList<>();
+
+            patientConnection.rs = patientConnection.statement.executeQuery(
+                    "SELECT idTherapy " +
+                        "FROM Therapy JOIN Report on Report.Therapy_idTherapy = Therapy.idTherapy " +
+                        "WHERE Patient_idPatient = '" + idPatient + "'"
+            );
+
+            while(patientConnection.rs.next()) {
+                therapies.add(patientConnection.rs.getString("idTherapy"));
+            }
+
+            for(String t : therapies) {
+                patientConnection.statement.executeUpdate("DELETE FROM Therapy WHERE idTherapy = '" + t + "'");
+            }
+
             patientConnection.statement.executeUpdate(
                     "DELETE FROM Patient WHERE idPatient = '" + idPatient + "' AND birthday = '" + getPatient(idPatient).getBirthday() +
                         "' AND province = '" + getPatient(idPatient).getProvince() + "' AND profession = '" +
@@ -136,21 +154,6 @@ public class PatientDaoImpl implements PatientDao {
 
                         "DELETE FROM Report_has_Reaction WHERE Patient_idPatient = '" + idPatient + "';"
             );
-
-            List<String> therapies = new ArrayList<>();
-
-            patientConnection.rs = patientConnection.statement.executeQuery(
-                    "SELECT Therapy_idTherapy FROM Report " +
-                        "WHERE Patient_idPatient = '" + idPatient + "'"
-            );
-
-            while(patientConnection.rs.next()) {
-                therapies.add(patientConnection.rs.getString("Therapy_idTherapy"));
-            }
-
-            for(String t : therapies) {
-                patientConnection.statement.executeUpdate("DELETE FROM Report WHERE Therapy_idTherapy = '" + t + "'");
-            }
         } catch (SQLException sqle) {
             System.out.println("Error: " + sqle.getMessage());
         } finally {
