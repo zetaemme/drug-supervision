@@ -2,11 +2,15 @@ package View.MedicViews;
 
 import Controller.MedicControllers.NewTherapyController;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -26,16 +30,18 @@ public class NewTherapy {
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Insert new Therapy");
-        final TextField drugField = new TextField();
+        final ChoiceBox<ObservableList> drugChoiceBox = new ChoiceBox(ntController.initDrugList());
         final TextField doseField = new TextField();
         final DatePicker startingDate = new DatePicker();
         final DatePicker endingDate = new DatePicker();
         final TextField dailyFrequencyField = new TextField();
         final Button addButton = new Button("Add");
 
+        drugChoiceBox.setPrefWidth(500);
+        drugChoiceBox.getSelectionModel().selectFirst();
+
         // Prompt texts for the TextFields
-        drugField.setPromptText("Drug name");
-        doseField.setPromptText("Drug dose");
+        doseField.setPromptText("Drug dose (mg/ml)");
         startingDate.setPromptText("Therapy starting date");
         endingDate.setPromptText("Therapy ending date");
         dailyFrequencyField.setPromptText("Daily frequency");
@@ -83,7 +89,7 @@ public class NewTherapy {
 
         // Add all nodes to the GridPane
         root.add(titleLabel, 0 ,0);
-        root.add(drugField, 0,1);
+        root.add(drugChoiceBox, 0,1);
         root.add(doseField, 0 ,2);
         root.add(startingDate, 0,3);
         root.add(endingDate, 0,4 );
@@ -111,7 +117,7 @@ public class NewTherapy {
 
         // If clicked adds the therapy into the DB
         addButton.setOnAction(e -> {
-            if(drugField.getText().equals("") || doseField.getText().equals("") || startingDate.getValue() == null
+            if(drugChoiceBox.getSelectionModel().isEmpty() || doseField.getText().equals("") || startingDate.getValue() == null
                 || endingDate.getValue() == null || dailyFrequencyField.getText().equals("")) {
                 Alert ntAlert = new Alert(Alert.AlertType.WARNING);
 
@@ -122,7 +128,7 @@ public class NewTherapy {
                 ntAlert.showAndWait();
             } else {
                 therapyLabel.setText(ntController.addNewTherapy(
-                        drugField.getText(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
+                        drugChoiceBox.getSelectionModel().getSelectedItem().toString(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
                         endingDate.getValue().toString(), Integer.valueOf(dailyFrequencyField.getText()))
             );
 

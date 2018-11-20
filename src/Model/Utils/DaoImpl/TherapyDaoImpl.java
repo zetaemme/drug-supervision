@@ -1,9 +1,13 @@
 package Model.Utils.DaoImpl;
 
+import Model.Drug;
+import Model.Exceptions.NullStringException;
 import Model.Utils.DAOs.TherapyDao;
 import Model.Utils.DBConnection;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TherapyDaoImpl implements TherapyDao {
     private DBConnection thConnection;
@@ -28,4 +32,5 @@ public class TherapyDaoImpl implements TherapyDao {
             thConnection.closeConnection();
         }
     }
+
 }
