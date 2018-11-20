@@ -2,17 +2,14 @@ package View.PharmacologistViews;
 
 import Controller.LoginController;
 import Controller.PharmacologistControllers.PhMainPageController;
-import Model.Exceptions.NullStringException;
 import Model.Report;
 
 import View.About;
 import View.Login;
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,7 +18,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 public class PhMainPage {

@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class NewReportController {
-    private DBConnection nrConnection;
-
     public PatientDaoImpl patientDao;
     public ReportDaoImpl reportDao;
 

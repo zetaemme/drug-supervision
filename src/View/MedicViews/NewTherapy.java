@@ -2,7 +2,6 @@ package View.MedicViews;
 
 import Controller.MedicControllers.NewTherapyController;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -30,7 +29,7 @@ public class NewTherapy {
         root.setPadding(new Insets(10));
 
         final Label titleLabel = new Label("Insert new Therapy");
-        final ChoiceBox<ObservableList> drugChoiceBox = new ChoiceBox(ntController.initDrugList());
+        final ChoiceBox<String> drugChoiceBox = new ChoiceBox(ntController.initDrugList());
         final TextField doseField = new TextField();
         final DatePicker startingDate = new DatePicker();
         final DatePicker endingDate = new DatePicker();
@@ -128,7 +127,7 @@ public class NewTherapy {
                 ntAlert.showAndWait();
             } else {
                 therapyLabel.setText(ntController.addNewTherapy(
-                        drugChoiceBox.getSelectionModel().getSelectedItem().toString(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
+                        drugChoiceBox.getSelectionModel().getSelectedItem(), Integer.valueOf(doseField.getText()), startingDate.getValue().toString(),
                         endingDate.getValue().toString(), Integer.valueOf(dailyFrequencyField.getText()))
             );
 
