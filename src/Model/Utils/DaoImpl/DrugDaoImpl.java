@@ -4,6 +4,8 @@ import Model.Drug;
 import Model.Exceptions.NullStringException;
 import Model.Utils.DAOs.DrugDao;
 import Model.Utils.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class DrugDaoImpl implements DrugDao {
         drugConnection = new DBConnection();
         drugConnection.openConnection();
 
-        List<Drug> drugList = new ArrayList<>();
+        List<Drug> drugList = new ArrayList();
 
         try {
             drugConnection.statement = drugConnection.connection.createStatement();

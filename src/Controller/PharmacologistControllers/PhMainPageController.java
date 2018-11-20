@@ -27,7 +27,7 @@ public class PhMainPageController {
         return reports;
     }
 
-    public ObservableList<String> initDrugList(){
+    public ObservableList<String> initDrugList() {
         drugDao = new DrugDaoImpl();
 
         final ObservableList<String> drugNames = FXCollections.observableArrayList();
@@ -40,4 +40,5 @@ public class PhMainPageController {
 
         return drugNames;
     }
+
 }

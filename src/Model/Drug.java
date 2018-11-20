@@ -23,4 +23,6 @@ public class Drug {
     public String getDrugName() {
         return drugName.get();
     }
+
+
 }
