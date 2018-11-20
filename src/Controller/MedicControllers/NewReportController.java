@@ -14,16 +14,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class NewReportController {
-    private DBConnection nrConnection;
-
     public PatientDaoImpl patientDao;
     public ReportDaoImpl reportDao;
 
     // Initializes the list with all the IDs
     public ObservableList<String> initIdList() {
-        nrConnection = new DBConnection();
-        nrConnection.openConnection();
-
         patientDao = new PatientDaoImpl();
 
         final ObservableList<String> patientIds = FXCollections.observableArrayList();

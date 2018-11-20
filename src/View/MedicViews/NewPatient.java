@@ -35,7 +35,7 @@ public class NewPatient {
         final Button riskButton = new Button("New");
 
         // RiskFactor ChoiceBox preferences
-        riskFactorBox.setPrefWidth(1000);
+        riskFactorBox.setPrefWidth(500);
         riskFactorBox.getSelectionModel().selectFirst();
 
         // Sets tileLabel font

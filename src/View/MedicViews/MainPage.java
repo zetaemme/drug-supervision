@@ -10,13 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -167,6 +164,12 @@ public class MainPage {
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
                 patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
                 patientReport.setText(mpController.getPatientReport(patientTable.getSelectionModel().getSelectedItem().getId()));
+            } else if(idColumn.getCellObservableValue(0).getValue().equals("")) {
+                patientBDay.setText("");
+                patientProvince.setText("");
+                patientProfession.setText("");
+                patientRiskFactor.setText("");
+                patientReport.setText("");
             }
         });
 
