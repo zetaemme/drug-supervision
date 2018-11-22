@@ -237,6 +237,13 @@ public class PhMainPage {
                 drugData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDrug());
                 doseData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDose()));
                 dailyfrequencyData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDaily_frequency()));
+            } else {
+                reactionDateData.setText("");
+                reportDateData.setText("");
+                therapyData.setText("");
+                drugData.setText("");
+                doseData.setText("");
+                dailyfrequencyData.setText("");
             }
         });
 
