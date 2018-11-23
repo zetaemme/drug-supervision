@@ -230,7 +230,7 @@ public class PhMainPage {
         });
 
         reportTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
-            if(newSelection != null) {
+            if(reportTable.getSelectionModel().getSelectedItem() != null) {
                 reactionDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReactionDate());
                 reportDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReportDate());
                 therapyData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getId());

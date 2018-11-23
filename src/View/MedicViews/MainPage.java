@@ -158,7 +158,7 @@ public class MainPage {
 
         // Sets the default selected value
         patientTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
-            if(newSelection != null){
+            if(patientTable.getSelectionModel().getSelectedItem() != null){
                 patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
