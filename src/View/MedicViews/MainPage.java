@@ -158,13 +158,13 @@ public class MainPage {
 
         // Sets the default selected value
         patientTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
-            if(newSelection != null){
+            if(patientTable.getSelectionModel().getSelectedItem() != null){
                 patientBDay.setText(patientTable.getSelectionModel().getSelectedItem().getBirthday());
                 patientProvince.setText(patientTable.getSelectionModel().getSelectedItem().getProvince());
                 patientProfession.setText(patientTable.getSelectionModel().getSelectedItem().getProfession());
                 patientRiskFactor.setText(patientTable.getSelectionModel().getSelectedItem().getRisk_factor().toString());
                 patientReport.setText(mpController.getPatientReport(patientTable.getSelectionModel().getSelectedItem().getId()));
-            } else if(idColumn.getCellObservableValue(0).getValue().equals("")) {
+            } else {
                 patientBDay.setText("");
                 patientProvince.setText("");
                 patientProfession.setText("");

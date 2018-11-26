@@ -230,20 +230,26 @@ public class PhMainPage {
         });
 
         reportTable.getSelectionModel().selectedItemProperty().addListener(newSelection -> {
-            if(newSelection != null) {
+            if(reportTable.getSelectionModel().getSelectedItem() != null) {
                 reactionDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReactionDate());
                 reportDateData.setText(reportTable.getSelectionModel().getSelectedItem().getReportDate());
                 therapyData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getId());
                 drugData.setText(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDrug());
                 doseData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDose()));
                 dailyfrequencyData.setText(String.valueOf(reportTable.getSelectionModel().getSelectedItem().getTherapy().getDaily_frequency()));
+            } else {
+                reactionDateData.setText("");
+                reportDateData.setText("");
+                therapyData.setText("");
+                drugData.setText("");
+                doseData.setText("");
+                dailyfrequencyData.setText("");
             }
         });
 
         reportTable.getSelectionModel().selectFirst();
 
         reportTable.getColumns().add(reportColumn);
-
 
         // Adds the items to the split pane
         spPh.getItems().addAll(reportTable, reportInfo);
