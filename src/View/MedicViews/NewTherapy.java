@@ -30,6 +30,7 @@ public class NewTherapy {
 
         final Label titleLabel = new Label("Insert new Therapy");
         final ChoiceBox<String> drugChoiceBox = new ChoiceBox(ntController.initDrugList());
+        final Button addDrugButton = new Button("New");
         final TextField doseField = new TextField();
         final DatePicker startingDate = new DatePicker();
         final DatePicker endingDate = new DatePicker();
@@ -51,6 +52,29 @@ public class NewTherapy {
         // Sets titleLabel Id and Font
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 25));
         titleLabel.setId("titleLabel");
+
+        GridPane drugGridPane = new GridPane();
+
+        // drugGridPane columns
+        ColumnConstraints choiceBoxColumn = new ColumnConstraints();
+        choiceBoxColumn.setPercentWidth(70);
+        choiceBoxColumn.setHalignment(HPos.CENTER);
+
+        ColumnConstraints addDrugColumn = new ColumnConstraints();
+        addDrugColumn.setPercentWidth(30);
+        addDrugColumn.setHalignment(HPos.CENTER);
+
+        // drugGridPane row
+        RowConstraints drugGridPaneRow = new RowConstraints();
+        drugGridPaneRow.setPercentHeight(100);
+        drugGridPaneRow.setValignment(VPos.CENTER);
+
+        // Adds all nodes to drugGridPane
+        drugGridPane.add(drugChoiceBox, 0, 0);
+        drugGridPane.add(addDrugButton, 1, 0);
+
+        drugGridPane.getColumnConstraints().addAll(choiceBoxColumn, addDrugColumn);
+        drugGridPane.getRowConstraints().add(drugGridPaneRow);
 
         // GridPane's column
         ColumnConstraints mainColumn = new ColumnConstraints();
@@ -88,7 +112,7 @@ public class NewTherapy {
 
         // Add all nodes to the GridPane
         root.add(titleLabel, 0 ,0);
-        root.add(drugChoiceBox, 0,1);
+        root.add(drugGridPane, 0,1);
         root.add(doseField, 0 ,2);
         root.add(startingDate, 0,3);
         root.add(endingDate, 0,4 );
@@ -133,6 +157,10 @@ public class NewTherapy {
 
                 primaryStage.close();
             }
+        });
+
+        addDrugButton.setOnAction(e -> {
+            NewDrug newDrug = new NewDrug(new Stage(), drugChoiceBox, ntController);
         });
     }
 }

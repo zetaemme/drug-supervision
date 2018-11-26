@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import java.sql.Date;
 
 public class NewPatientController {
-
     public PatientDaoImpl patientDao;
     public RiskFactorDaoImpl riskFactorDao;
 

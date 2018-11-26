@@ -51,6 +51,24 @@ public class DrugDaoImpl implements DrugDao {
     }
 
     @Override
+    public void createDrug(String drugName) {
+        drugConnection = new DBConnection();
+        drugConnection.openConnection();
+
+        try {
+            drugConnection.statement = drugConnection.connection.createStatement();
+            drugConnection.statement.executeUpdate(
+                    "INSERT INTO Drug(drugName, removalSuggestion, inspectionSuggestion, closeMonitorSuggestion) " +
+                        "VALUES('" + drugName  + "', false, false, false)"
+            );
+        } catch(SQLException sqle) {
+            System.out.println("Error: " + sqle.getMessage());
+        } finally {
+            drugConnection.closeConnection();
+        }
+    }
+
+    @Override
     public void updateRemoval(String drugName) {
         drugConnection = new DBConnection();
         drugConnection.openConnection();

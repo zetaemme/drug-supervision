@@ -251,7 +251,6 @@ public class PhMainPage {
 
         reportTable.getColumns().add(reportColumn);
 
-
         // Adds the items to the split pane
         spPh.getItems().addAll(reportTable, reportInfo);
 
