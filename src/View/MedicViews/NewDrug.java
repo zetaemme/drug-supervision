@@ -57,6 +57,7 @@ public class NewDrug {
         root.getColumnConstraints().add(mainColumn);
         root.getRowConstraints().addAll(titleRow, textFieldRow, buttonRow);
 
+        // Scene for the primaryStage
         Scene scene = new Scene(root, 400, 220);
         scene.getStylesheets().add("CSS/style.css");
 

@@ -79,7 +79,7 @@
 		%\vspace*{0.5 cm}
 		\centering
 		\renewcommand{\familydefault}{\ttdefault}\normalfont
-		\begin{tabular}{| >{\fontseries{b}\selectfont} p{0.2\textwidth} | L |}
+		\begin{tabular}{| >{\fontseries{b}\selectfont} p{0.3\textwidth} | L |}
 			\hline
 			ID&{#1}\\\hline
 			Attori&{#2}\\\hline
@@ -201,6 +201,18 @@
 				\item Se il medico preme "New" in corrispondenza della riga Therapy: 
 				\begin{enumerate}[label*=\arabic*., nosep]
 					\item Inserisce i dati relativi alla nuova terapia farmacologica.
+					\item Se il medico premo "New" in corrispondenza della riga Drug:
+					\begin{enumerate}[label*=\arabic*., nosep]
+						\item Inserisce il nome del nuovo farmaco.
+						\item Se il medico preme "Add":
+						\begin{enumerate}[label*=\arabic*., nosep]
+							\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
+							\begin{enumerate}[label*=\arabic*., nosep]
+								\item Il farmaco viene aggiunto al Database.
+								\item Il dialog viene chiuso.
+							\end{enumerate}
+						\end{enumerate}
+					\end{enumerate}
 					\item Se il medico preme "Add":
 					\begin{enumerate}[label*=\arabic*., nosep]
 						\item Viene effettuata la validazione dei dati immessi. Se sono validi:	
@@ -265,6 +277,14 @@
 		\subsection{Activity Diagram}
 		Gli activity diagram di seguito servono a esplicitare meglio il flusso d'esecuzione degli use case descritti in precedenza.
 		
-		\safeImage[0.7\textwidth]{Inserisci_Paziente.png}
+		\safeImage[0.6\textwidth]{Inserisci_Paziente.png}
+		\safeImage[0.6\textwidth]{Inserisci_Report.png}
+		
+		\newpage
+		Come su può vedere nella corrispondente tabella, lo UC2 incorpora l'aggiunta di una nova terapia che a sua volta contiente la possibilità di aggiungere un nuovo farmaco e  l'aggiunta di una nuova reazione. Nonostante siano parte dello stesso Use Case abbiamo deciso di dargli degli Activity Diagram.
+		
+		\safeImage[0.6\textwidth]{Inserisci_Terapia.png}
+		\safeImage[0.6\textwidth]{Inserisci_Farmaco.png}
+		\safeImage[0.6\textwidth]{Inserisci_Reazione.png}
 		
 \end{document}
