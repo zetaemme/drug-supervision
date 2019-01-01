@@ -41,28 +41,12 @@ public class About {
 
         // Opens Andrea's GitHub profile
         asGit.setOnAction(e -> {
-            if(Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/Sogrea"));
-                } catch(IOException ioe) {
-                    System.out.println("I/O Error: " + ioe.getMessage());
-                } catch(URISyntaxException use) {
-                    System.out.println("URI Error: " + use.getMessage());
-                }
-            }
+            openWebpage("https://github.com/Sogrea");
         });
 
         // Opens Mattia's GitHub profile
         mzGit.setOnAction(e -> {
-            if(Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/zetaemme"));
-                } catch(IOException ioe) {
-                    System.out.println("I/O Error: " + ioe.getMessage());
-                } catch(URISyntaxException use) {
-                    System.out.println("URI Error: " + use.getMessage());
-                }
-            }
+            openWebpage("https://github.com/zetaemme");
         });
 
         // Sets Hyperlink border
@@ -173,5 +157,13 @@ public class About {
         // Better be not resizable for this particular window
         primaryStage.setResizable(false);
         primaryStage.show();
+    }
+
+    private static void openWebpage(String url) {
+        try {
+            new ProcessBuilder("x-www-browser", url).start();
+        } catch(IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
     }
 }

@@ -68,6 +68,9 @@ public class Login {
         // Sets the font of the title
         copyrightLabel.setFont(Font.font(12));
 
+        username.setPromptText("Username");
+        password.setPromptText("Password");
+
         // Adds al nodes to root
         root.add(title, 0, 0);
         root.add(username, 0 , 1);
