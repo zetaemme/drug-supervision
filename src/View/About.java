@@ -12,10 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 // Doesn't need a Controller because it's a static page
 public class About {
@@ -163,7 +160,7 @@ public class About {
         try {
             new ProcessBuilder("x-www-browser", url).start();
         } catch(IOException ioe) {
-            System.out.println(ioe.getMessage());
+            System.out.println("I/O Error: " + ioe.getMessage());
         }
     }
 }

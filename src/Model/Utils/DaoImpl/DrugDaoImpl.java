@@ -4,8 +4,6 @@ import Model.Drug;
 import Model.Exceptions.NullStringException;
 import Model.Utils.DAOs.DrugDao;
 import Model.Utils.DBConnection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

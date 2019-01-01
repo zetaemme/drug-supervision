@@ -2,7 +2,6 @@ package Controller.MedicControllers;
 
 import Model.Utils.DaoImpl.RiskFactorDaoImpl;
 
-
 public class NewRiskFactorController {
     public RiskFactorDaoImpl riskFactorDao;
 
