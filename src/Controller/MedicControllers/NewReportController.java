@@ -3,7 +3,6 @@ package Controller.MedicControllers;
 import Model.Exceptions.IllegalRiskValueException;
 import Model.Exceptions.NullStringException;
 import Model.Patient;
-import Model.Utils.DBConnection;
 import Model.Utils.DaoImpl.PatientDaoImpl;
 
 import Model.Utils.DaoImpl.ReportDaoImpl;

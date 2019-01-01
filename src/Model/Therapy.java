@@ -4,8 +4,6 @@ import Model.Exceptions.NullDailyFrequencyException;
 import Model.Exceptions.NullDoseException;
 import Model.Exceptions.NullStringException;
 
-import java.util.Date;
-
 public class Therapy {
     private String drug;
     private double dose;
