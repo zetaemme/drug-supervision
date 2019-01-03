@@ -5,3 +5,9 @@
 \contentsline {section}{\numberline {3}UML}{3}{section.3}
 \contentsline {subsection}{\numberline {3.1}Use Cases}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Activity Diagram}{7}{subsection.3.2}
+\contentsline {section}{\numberline {4}Scelte Progettuali}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sviluppo}{9}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Metodologia di Sviluppo}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Database}{10}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Organizzazione della GUI}{10}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}MVC Pattern}{10}{subsection.4.5}

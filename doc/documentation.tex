@@ -287,4 +287,27 @@
 		\safeImage[0.6\textwidth]{Inserisci_Farmaco.png}
 		\safeImage[0.6\textwidth]{Inserisci_Reazione.png}
 		
+	\section{Scelte Progettuali}
+		\subsection{Sviluppo}
+		Abbiamo scelto di sviluppare il prototipo utilizzando il linguaggio Java vista la sua grande flessibilità e la sua estesa diffusione in quello che è il mercato odierno. Nonostante questo, vista la nostra voglia di ampliare le nostre conoscenze del linguaggio al di fuori degli argomenti trattati a lezione, abbiamo deciso di utilizzare la libreria grafica JavaFX invece di Swing consapevoli del fatto che non avremmo potuto far uso di un designer di interfacce grafiche.\newline
+		La libreria supporta completamente gli stili CSS, da noi poco utilizzati in quanto soddisfatti del risultato ottenuto con lo stile standard dei componenti.
+		
+		\subsection{Metodologia di Sviluppo}
+		Il progetto è stato interamente sviluppato utilizzando Git come sistema di code versioning e GitHub per l'hosting del repository. Abbiamo seguito la metodologia di sviluppo Agile: il lavoro è stato diviso in due macroaree (area logica e GUI).\newline 
+		A sua volta ogni area è stata divisa in task più piccoli in modo da alleggerire il carico di lavoro e testati man mano che venivano inseriti nel codice. I design pattern sono stati scelti nella fase di sviluppo in base a quelle che erano le nostre necessità al fine di ottenere un codice performante ma allo stesso tempo leggibile.
+		
+		\subsection{Database}
+		Nel corso dello sviluppo del prototipo si è manifestata la necessità di mantenere i dati nel tempo, per questo abbiamo implementato un basilare Database appoggiandoci ad SQLite3. Purtroppo al momento dello sviluppo le nostre competenze in basi di dati si limitavano a quanto appreso durante gli anni di liceo, per questo più che essere utilizzato come un vero e proprio RDBMS  è stato implementato quasi come se i dati fossero organizzati in file.\newline
+		È stata creata una classe DBConnection per aprire e chiudere la connessione con il database e per ogni classe nel Model è stata creata un'apposita classe DAO al fine di accedere alla base di dati e creare liste che rappresentassero l'intero recordset di una determinata table.
+		 
+		\subsection{Organizzazione della GUI}
+		È possibile trovare tre sezioni principali della GUI del prototipo:
+		\begin{enumerate}[label*=(\alph*)., nosep]
+			\item Login: permette l'autenticazione del medico o del farmacologo, prerequisito per ogni Use-Case.
+			\item View Medico: il focus è sui pazienti legati al medico autenticato. In questa view è possibile aggiungere, eliminare o visualizzare i dati relativi ad un paziente.
+			\item View Farmacologo: il focus è sui report relativi alle terapie farmacologiche. Il farmacologo autenticato avrà la possibilità di monitorare gli effetti di un farmaco e, nel caso fosse dannoso, potrà rimuoverlo, ispezionarlo o chiuderne il monitoraggio. 
+		\end{enumerate}
+	
+		\subsection{MVC Pattern}
+		
 \end{document}
