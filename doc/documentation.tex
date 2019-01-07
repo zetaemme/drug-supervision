@@ -309,5 +309,21 @@
 		\end{enumerate}
 	
 		\subsection{MVC Pattern}
+		L'applicazione del pattern prevede la suddivisione logica delle classi in tre componenti: Model, View e Controller. \newline
+		
+		% Inserici immagine MVC
+		
+		\subsection{Singleton}
+		
+		\subsection{Data Access Object Pattern}
+		Per la gestione dei dati a database abbiamo ritenuto opportuno sfruttare il Data Access Object Pattern. Questo ci ha permesso di trattare ogni dato come fosse nativo di Java, senza dover passare a conversioni all'interno dei Controller. Il tutto è stato gestito tramite interfacce chiamate \textit{DAO} e implementazioni denominate \textit{DAOImpl}.
+		
+		\section{Validazione}
+		Per la validazione dei dati inseriti ci siamo appoggiati al sistema di Alert fornito da JavaFX. Vengono effettuati controlli tramite \textit{if statements} e \textit{try/catch} al fine di poter garantire una corretta esecuzione.\newline
+		Per quanto riguarda la GUI non ci è stato possibile testarla automaticamente, abbiamo quindi provveduto ad eseguire un test manuale delle funzionalità. Ci siamo inoltre appoggiati a colleghi ed amici al fine di raccogliere un feedback veritiero sulle prestazioni del prototipo.
+		
+		\section{Conclusioni}
+		Obiettivo del progetto non era quello di sviluppare un prodotto finito e completo ma di realizzare un prototipo rispettando le linee guida. Per questo non sono state implementate alcune funzionalità e l'interfaccia è rimasta ``grezza''. 
+		l progetto completo può essere trovato alla pagina di \href{https://github.com/zetaemme/drug-supervision}{Github}. 
 		
 \end{document}
