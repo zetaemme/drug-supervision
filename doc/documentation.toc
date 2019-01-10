@@ -11,7 +11,7 @@
 \contentsline {subsection}{\numberline {4.3}Database}{10}{subsection.4.3}
 \contentsline {subsection}{\numberline {4.4}Organizzazione della GUI}{10}{subsection.4.4}
 \contentsline {subsection}{\numberline {4.5}MVC Pattern}{12}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}Singleton}{12}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.6}Singleton Pattern}{12}{subsection.4.6}
 \contentsline {subsection}{\numberline {4.7}Data Access Object Pattern}{12}{subsection.4.7}
-\contentsline {section}{\numberline {5}Validazione}{12}{section.5}
-\contentsline {section}{\numberline {6}Conclusioni}{12}{section.6}
+\contentsline {section}{\numberline {5}Validazione}{13}{section.5}
+\contentsline {section}{\numberline {6}Conclusioni}{13}{section.6}
