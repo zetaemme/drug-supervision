@@ -10,6 +10,7 @@
 \BOOKMARK [2][-]{subsection.4.4}{Organizzazione della GUI}{section.4}% 10
 \BOOKMARK [2][-]{subsection.4.5}{MVC Pattern}{section.4}% 11
 \BOOKMARK [2][-]{subsection.4.6}{Singleton Pattern}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.7}{Data Access Object Pattern}{section.4}% 13
-\BOOKMARK [1][-]{section.5}{Validazione}{}% 14
-\BOOKMARK [1][-]{section.6}{Conclusioni}{}% 15
+\BOOKMARK [2][-]{subsection.4.7}{Observer Pattern}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.8}{Data Access Object Pattern}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Validazione}{}% 15
+\BOOKMARK [1][-]{section.6}{Conclusioni}{}% 16
