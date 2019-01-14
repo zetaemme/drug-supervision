@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.3)  14 JAN 2019 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.3)  14 JAN 2019 22:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -722,7 +722,7 @@ LaTeX Info: Redefining \nameref on input line 94.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<logo.png, id=72, 225.84375pt x 225.84375pt>
+<logo.png, id=76, 225.84375pt x 225.84375pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
 Package pdftex.def Info: logo.png  used on input line 101.
@@ -795,12 +795,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
-<Use-cases.png, id=111, 2007.5pt x 2007.5pt>
+<Use-cases.png, id=116, 2007.5pt x 2007.5pt>
 File: Use-cases.png Graphic file (type png)
 <use Use-cases.png>
 Package pdftex.def Info: Use-cases.png  used on input line 145.
 (pdftex.def)             Requested size: 316.17987pt x 316.18292pt.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 180.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 178.
 
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -808,47 +808,47 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Il medico apre il menù "File", sposta il cursore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \T1/lmtt/l/n/10.95 sopra la voce "New" scegliendo la voce "Patient".
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Inserisce i dati relativi alla persone e gli
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Se il medico preme " New" in corrispondenza della
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Inserisce i dati relativi al nuovo Risk
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei dati
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Il Risk Factor viene aggiunto al
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei dati
  []
 
 
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 180--180
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 178--178
  [][] 
  []
 
@@ -859,42 +859,42 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3 <./Use-cases.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Il medico apre il menù "File", sposta il cursore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 \T1/lmtt/l/n/10.95 sopra la voce "New" scegliendo la voce "Report".
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Inserisce i dati relativi al report, alla reaction
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Se il medico preme "New" in corrispondenza della
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei dati
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Se il medico preme "New" in corrispondenza della
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Inserisce i dati relativi alla nuova terapia
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Se il medico premo "New" in corrispondenza
  []
 
@@ -905,33 +905,33 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.235 		{Nuovo report aggiunto correttamente}
+l.233 		{Nuovo report aggiunto correttamente}
                                              
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei dati
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 La terapia farmacologica viene
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--235
+Underfull \hbox (badness 10000) in paragraph at lines 233--233
 []\T1/lmtt/l/n/10.95 Viene effettuata la validazione dei dati
  []
 
 
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 235--235
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 233--233
  [][] 
  []
 
@@ -942,17 +942,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
 []\T1/lmtt/l/n/10.95 Il medico apre il menù "File" e sceglie la voce
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
 []\T1/lmtt/l/n/10.95 Viene mostrato un dialog che chiede di confermare
  []
 
 
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 251--251
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 249--249
  [][] 
  []
 
@@ -963,42 +963,42 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\T1/lmtt/l/n/10.95 UC4: Visualizzare report relativi ad un certo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []\T1/lmtt/l/n/10.95 Il farmacologo può scegliere un determinato
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []\T1/lmtt/l/n/10.95 Vengono mostrati i report relativi a quel farmaco
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []\T1/lmtt/l/n/10.95 Viene settato a "true" l'opzione di rimozione
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []\T1/lmtt/l/n/10.95 Viene settato a "true" l'opzione d'ispezione
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []\T1/lmtt/l/n/10.95 Viene settato a "true" l'opzione di chiusura
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--274
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\T1/lmtt/l/n/10.95 I farmaci possono essere rimossi, ispezionati o ne può
  []
 
 
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 274--274
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 272--272
  [][] 
  []
 
@@ -1009,15 +1009,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-<Inserisci_Paziente.png, id=188, 2007.5pt x 2007.5pt>
+<Inserisci_Paziente.png, id=193, 2007.5pt x 2007.5pt>
 File: Inserisci_Paziente.png Graphic file (type png)
 <use Inserisci_Paziente.png>
-Package pdftex.def Info: Inserisci_Paziente.png  used on input line 280.
+Package pdftex.def Info: Inserisci_Paziente.png  used on input line 278.
 (pdftex.def)             Requested size: 271.01524pt x 271.00081pt.
-<Inserisci_Report.png, id=189, 2007.5pt x 2007.5pt>
+<Inserisci_Report.png, id=194, 2007.5pt x 2007.5pt>
 File: Inserisci_Report.png Graphic file (type png)
 <use Inserisci_Report.png>
-Package pdftex.def Info: Inserisci_Report.png  used on input line 281.
+Package pdftex.def Info: Inserisci_Report.png  used on input line 279.
 (pdftex.def)             Requested size: 271.01524pt x 271.00081pt.
 
 
@@ -1027,20 +1027,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [7 <./Inserisci_Paziente.png (PNG copy)> <./Inserisci_Report.png (PNG copy)>]
-<Inserisci_Terapia.png, id=196, 2007.5pt x 2007.5pt>
+<Inserisci_Terapia.png, id=201, 2007.5pt x 2007.5pt>
 File: Inserisci_Terapia.png Graphic file (type png)
 <use Inserisci_Terapia.png>
-Package pdftex.def Info: Inserisci_Terapia.png  used on input line 286.
+Package pdftex.def Info: Inserisci_Terapia.png  used on input line 284.
 (pdftex.def)             Requested size: 271.01524pt x 271.00081pt.
-<Inserisci_Farmaco.png, id=197, 2007.5pt x 2007.5pt>
+<Inserisci_Farmaco.png, id=202, 2007.5pt x 2007.5pt>
 File: Inserisci_Farmaco.png Graphic file (type png)
 <use Inserisci_Farmaco.png>
-Package pdftex.def Info: Inserisci_Farmaco.png  used on input line 287.
+Package pdftex.def Info: Inserisci_Farmaco.png  used on input line 285.
 (pdftex.def)             Requested size: 271.01524pt x 271.00081pt.
-<Inserisci_Reazione.png, id=198, 2007.5pt x 2007.5pt>
+<Inserisci_Reazione.png, id=203, 2007.5pt x 2007.5pt>
 File: Inserisci_Reazione.png Graphic file (type png)
 <use Inserisci_Reazione.png>
-Package pdftex.def Info: Inserisci_Reazione.png  used on input line 288.
+Package pdftex.def Info: Inserisci_Reazione.png  used on input line 286.
 (pdftex.def)             Requested size: 271.01524pt x 271.00081pt.
 
 
@@ -1050,21 +1050,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8 <./Inserisci_Terapia.png (PNG copy)> <./Inserisci_Farmaco.png (PNG copy)>]
-<Package_Model.png, id=205, 485.815pt x 406.51875pt>
+<Package_Model.png, id=210, 485.815pt x 406.51875pt>
 File: Package_Model.png Graphic file (type png)
 <use Package_Model.png>
-Package pdftex.def Info: Package_Model.png  used on input line 291.
+Package pdftex.def Info: Package_Model.png  used on input line 289.
 (pdftex.def)             Requested size: 271.01524pt x 226.77432pt.
-<Package_Utils.png, id=206, 1059.96pt x 164.615pt>
+<Package_Utils.png, id=211, 1059.96pt x 164.615pt>
 File: Package_Utils.png Graphic file (type png)
 <use Package_Utils.png>
-Package pdftex.def Info: Package_Utils.png  used on input line 292.
+Package pdftex.def Info: Package_Utils.png  used on input line 290.
 (pdftex.def)             Requested size: 271.01524pt x 42.08804pt.
-<View-Controller_Class_Diagram.png, id=207, 1163.34625pt x 746.79pt>
+<View-Controller_Class_Diagram.png, id=212, 1163.34625pt x 746.79pt>
 File: View-Controller_Class_Diagram.png Graphic file (type png)
 <use View-Controller_Class_Diagram.png>
 Package pdftex.def Info: View-Controller_Class_Diagram.png  used on input line 
-293.
+291.
 (pdftex.def)             Requested size: 451.6875pt x 289.95927pt.
 
 
@@ -1075,27 +1075,46 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [9 <./Inserisci_Reazione.png (PNG copy)> <./Package_Model.png (PNG copy)> <./Pa
 ckage_Utils.png (PNG copy)>]
+<SD_Login.png, id=220, 1927.2pt x 1084.05pt>
+File: SD_Login.png Graphic file (type png)
+<use SD_Login.png>
+Package pdftex.def Info: SD_Login.png  used on input line 294.
+(pdftex.def)             Requested size: 361.35136pt x 203.25888pt.
+<SD_V_Report.png, id=221, 1927.2pt x 1084.05pt>
+File: SD_V_Report.png Graphic file (type png)
+<use SD_V_Report.png>
+Package pdftex.def Info: SD_V_Report.png  used on input line 295.
+(pdftex.def)             Requested size: 361.35136pt x 203.25888pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./View-Controller_Class_Diagram.png (PNG copy)>]
-<Login-view.png, id=220, 415.5525pt x 443.6575pt>
+[10 <./View-Controller_Class_Diagram.png (PNG copy)> <./SD_Login.png (PNG copy)
+>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 13.59999pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <./SD_V_Report.png (PNG copy)>]
+<Login-view.png, id=233, 415.5525pt x 443.6575pt>
 File: Login-view.png Graphic file (type png)
 <use Login-view.png>
-Package pdftex.def Info: Login-view.png  used on input line 319.
+Package pdftex.def Info: Login-view.png  used on input line 321.
 (pdftex.def)             Requested size: 182.76756pt x 195.13098pt.
-<Medic-view.png, id=222, 1017.8025pt x 644.4075pt>
+<Medic-view.png, id=235, 1017.8025pt x 644.4075pt>
 File: Medic-view.png Graphic file (type png)
 <use Medic-view.png>
-Package pdftex.def Info: Medic-view.png  used on input line 325.
+Package pdftex.def Info: Medic-view.png  used on input line 327.
 (pdftex.def)             Requested size: 308.2007pt x 195.13098pt.
-<Pharmacologist-view.png, id=223, 1017.8025pt x 644.4075pt>
+<Pharmacologist-view.png, id=236, 1017.8025pt x 644.4075pt>
 File: Pharmacologist-view.png Graphic file (type png)
 <use Pharmacologist-view.png>
-Package pdftex.def Info: Pharmacologist-view.png  used on input line 331.
+Package pdftex.def Info: Pharmacologist-view.png  used on input line 333.
 (pdftex.def)             Requested size: 308.2007pt x 195.13098pt.
 
 
@@ -1104,8 +1123,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 337--338
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
 
  []
 
@@ -1115,11 +1134,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <./Login-view.png> <./Medic-view.png> <./Pharmacologist-view.png>]
-<MVC.png, id=240, 1204.5pt x 1324.95pt>
+[13 <./Login-view.png> <./Medic-view.png> <./Pharmacologist-view.png>]
+<MVC.png, id=253, 1204.5pt x 1324.95pt>
 File: MVC.png Graphic file (type png)
 <use MVC.png>
-Package pdftex.def Info: MVC.png  used on input line 339.
+Package pdftex.def Info: MVC.png  used on input line 341.
 (pdftex.def)             Requested size: 271.01524pt x 298.12111pt.
 
 
@@ -1128,7 +1147,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13 <./MVC.png>] 
+[14 <./MVC.png>] 
 AED: lastpage setting LastPage
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1136,20 +1155,24 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 358.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
+[15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 360.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 360.
  (./documentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 358.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 360.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 360.
 Package rerunfilecheck Info: File `documentation.out' has not changed.
-(rerunfilecheck)             Checksum: 7F15C4405F384AC7F16D4FD51EA8D185;992.
+(rerunfilecheck)             Checksum: D9FB5247A830AFD533F75B7C507DB48F;1058.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 12115 strings out of 494575
- 173289 string characters out of 6177327
+ 12130 strings out of 494575
+ 173533 string characters out of 6177327
  297906 words of memory out of 5000000
- 15408 multiletter control sequences out of 15000+600000
+ 15417 multiletter control sequences out of 15000+600000
  62560 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,12n,43p,2830b,857s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1160,10 +1183,10 @@ ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtl10.pfb>
-Output written on documentation.pdf (15 pages, 875872 bytes).
+Output written on documentation.pdf (16 pages, 966866 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
- 259 compressed objects within 3 object streams
- 102 named destinations out of 1000 (max. 500000)
- 207 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 321 PDF objects out of 1000 (max. 8388607)
+ 270 compressed objects within 3 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 225 words of extra memory for PDF output out of 10000 (max. 10000000)
 
