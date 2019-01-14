@@ -68,6 +68,7 @@ public class Login {
         // Sets the font of the title
         copyrightLabel.setFont(Font.font(12));
 
+        // Prompt text for the username-password fields
         username.setPromptText("Username");
         password.setPromptText("Password");
 

@@ -116,7 +116,7 @@
 		
 		{\Large \today\par}
 	\end{titlepage}
-	\thispagestyle{empty}
+
 	\newpage
 	\tableofcontents
 	\newpage
@@ -232,7 +232,7 @@
 				\end{enumerate}
 			\end{enumerate}
 		}
-		{Nuovo report aggiunto correttamente.}
+		{Nuovo report aggiunto correttamente}
 		
 		\usecase{UC3: Cancella paziente.}
 		{Medico}
@@ -286,6 +286,11 @@
 		\safeImage[0.6\textwidth]{Inserisci_Terapia.png}
 		\safeImage[0.6\textwidth]{Inserisci_Farmaco.png}
 		\safeImage[0.6\textwidth]{Inserisci_Reazione.png}
+
+		\subsection{Class Diagram}
+		\safeImage[0.6\textwidth]{Package_Model.png}
+		\safeImage[0.6\textwidth]{Package_Utils.png}
+		\safeImage[\textwidth]{View-Controller_Class_Diagram.png}
 		
 	\section{Scelte Progettuali}
 		\subsection{Sviluppo}
@@ -331,12 +336,16 @@
 		\subsection{MVC Pattern}
 		L'applicazione del pattern prevede la suddivisione logica delle classi in tre componenti: Model, View e Controller. \newline
 		
-		% Inserici immagine MVC
+		\safeImage[0.6\textwidth]{MVC.png}
 		
-		\subsection{Singleton}
+		\subsection{Singleton Pattern}
+		Per validare l'istanza dell'applicazione, secondo la nostra visione dell'elaborato, il pattern che meglio si addiceva alle nostre esigenze è il Singleton. Esso è stato utilizzato nella classe \textit{LoginController}. Tramite un istanza da noi chiamata \textit{loginInstance}, che memorizza lo username come stringa, permette di verificare l'avvenuto login tramite un metodo \textit{private} chiamato \textit{isLogged}. Questo restituisce un booleano, \textit{true} se loginInstance  ha un valore diverso da \textit{null}, \textit{false} altrimenti.    
 		
+		\subsection{Observer Pattern}
+		All'interno del codice non è stato implementato il modello teorico dell'Observer Pattern. Nonostante questo, il rapporto \textit{Listener-Controller} esegue lo stesso tipo di operazioni. Nella classe \textit{MainPage} viene creato un Listener che "ascolta" le variazioni all'inerno della TabelView, se ne rileva una provvede a modificare le Label all'interno della GridPane. Anche se non implementato direttamente da noi, l'uso fatto del Listener corrisponde a quello del metodo \textit{update()} nello schema teorico dell'Observer Pattern.
+
 		\subsection{Data Access Object Pattern}
-		Per la gestione dei dati a database abbiamo ritenuto opportuno sfruttare il Data Access Object Pattern. Questo ci ha permesso di trattare ogni dato come fosse nativo di Java, senza dover passare a conversioni all'interno dei Controller. Il tutto è stato gestito tramite interfacce chiamate \textit{DAO} e implementazioni denominate \textit{DAOImpl}.
+		Per la gestione dei dati a database abbiamo ritenuto opportuno sfruttare il Data Access Object Pattern. Questo ci ha permesso di trattare ogni dato come fosse nativo di Java, senza dover passare a conversioni all'interno dei Controller. Il tutto è stato gestito tramite interfacce chiamate \textit{DAO} e implementazioni denominate \textit{DAOImpl}, i cui metodi definiscono oggetti ottenuti tramite l'uso di basiche query SQL.
 		
 		\section{Validazione}
 		Per la validazione dei dati inseriti ci siamo appoggiati al sistema di Alert fornito da JavaFX. Vengono effettuati controlli tramite \textit{if statements} e \textit{try/catch} al fine di poter garantire una corretta esecuzione.\newline

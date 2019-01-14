@@ -144,6 +144,7 @@ public class NewPatient {
             } else {
                 // Converts from LocalDate to java.sql.Date
                 java.sql.Date queryBDayDate = java.sql.Date.valueOf(birthdayField.getValue());
+
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
