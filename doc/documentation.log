@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.3)  17 JAN 2019 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.1.3)  24 JAN 2019 14:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1087,10 +1087,15 @@ File: SD_Login.png Graphic file (type png)
 <use SD_Login.png>
 Package pdftex.def Info: SD_Login.png  used on input line 293.
 (pdftex.def)             Requested size: 361.35136pt x 203.25888pt.
-<SD_V_Report.png, id=225, 1927.2pt x 1084.05pt>
+<SD_Cancella.png, id=225, 1927.2pt x 1084.05pt>
+File: SD_Cancella.png Graphic file (type png)
+<use SD_Cancella.png>
+Package pdftex.def Info: SD_Cancella.png  used on input line 294.
+(pdftex.def)             Requested size: 361.35136pt x 203.25888pt.
+<SD_V_Report.png, id=226, 1927.2pt x 1084.05pt>
 File: SD_V_Report.png Graphic file (type png)
 <use SD_V_Report.png>
-Package pdftex.def Info: SD_V_Report.png  used on input line 294.
+Package pdftex.def Info: SD_V_Report.png  used on input line 295.
 (pdftex.def)             Requested size: 361.35136pt x 203.25888pt.
 
 
@@ -1107,21 +1112,21 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <./SD_V_Report.png (PNG copy)>]
-<Login-view.png, id=238, 415.5525pt x 443.6575pt>
+[12 <./SD_Cancella.png (PNG copy)> <./SD_V_Report.png (PNG copy)>]
+<Login-view.png, id=240, 415.5525pt x 443.6575pt>
 File: Login-view.png Graphic file (type png)
 <use Login-view.png>
-Package pdftex.def Info: Login-view.png  used on input line 320.
+Package pdftex.def Info: Login-view.png  used on input line 321.
 (pdftex.def)             Requested size: 182.76756pt x 195.13098pt.
-<Medic-view.png, id=240, 1017.8025pt x 644.4075pt>
+<Medic-view.png, id=242, 1017.8025pt x 644.4075pt>
 File: Medic-view.png Graphic file (type png)
 <use Medic-view.png>
-Package pdftex.def Info: Medic-view.png  used on input line 326.
+Package pdftex.def Info: Medic-view.png  used on input line 327.
 (pdftex.def)             Requested size: 308.2007pt x 195.13098pt.
-<Pharmacologist-view.png, id=241, 1017.8025pt x 644.4075pt>
+<Pharmacologist-view.png, id=243, 1017.8025pt x 644.4075pt>
 File: Pharmacologist-view.png Graphic file (type png)
 <use Pharmacologist-view.png>
-Package pdftex.def Info: Pharmacologist-view.png  used on input line 332.
+Package pdftex.def Info: Pharmacologist-view.png  used on input line 333.
 (pdftex.def)             Requested size: 308.2007pt x 195.13098pt.
 
 
@@ -1131,7 +1136,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 338--339
+Underfull \hbox (badness 10000) in paragraph at lines 339--340
 
  []
 
@@ -1142,10 +1147,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [14 <./Login-view.png> <./Medic-view.png> <./Pharmacologist-view.png>]
-<MVC.png, id=257, 1204.5pt x 1324.95pt>
+<MVC.png, id=259, 1204.5pt x 1324.95pt>
 File: MVC.png Graphic file (type png)
 <use MVC.png>
-Package pdftex.def Info: MVC.png  used on input line 340.
+Package pdftex.def Info: MVC.png  used on input line 341.
 (pdftex.def)             Requested size: 271.01524pt x 298.12111pt.
 
 
@@ -1163,23 +1168,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 359.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 359.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 360.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 360.
  (./documentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 359.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 359.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 360.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 360.
 Package rerunfilecheck Info: File `documentation.out' has not changed.
 (rerunfilecheck)             Checksum: D9FB5247A830AFD533F75B7C507DB48F;1058.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 12131 strings out of 494575
- 173540 string characters out of 6177327
+ 12137 strings out of 494575
+ 173651 string characters out of 6177327
  297906 words of memory out of 5000000
- 15417 multiletter control sequences out of 15000+600000
+ 15421 multiletter control sequences out of 15000+600000
  62560 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,12n,43p,2830b,857s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1190,10 +1191,10 @@ ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtl10.pfb>
-Output written on documentation.pdf (17 pages, 967031 bytes).
+Output written on documentation.pdf (17 pages, 1026295 bytes).
 PDF statistics:
- 325 PDF objects out of 1000 (max. 8388607)
- 273 compressed objects within 3 object streams
- 107 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 327 PDF objects out of 1000 (max. 8388607)
+ 274 compressed objects within 3 object streams
+ 108 named destinations out of 1000 (max. 500000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 
