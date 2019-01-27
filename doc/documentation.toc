@@ -5,16 +5,16 @@
 \contentsline {section}{\numberline {3}UML}{3}{section.3}
 \contentsline {subsection}{\numberline {3.1}Use Cases}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Activity Diagram}{7}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Class Diagram}{9}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Sequence Diagram}{10}{subsection.3.4}
-\contentsline {section}{\numberline {4}Scelte Progettuali}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Sviluppo}{11}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Metodologia di Sviluppo}{11}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Database}{11}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Organizzazione della GUI}{12}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}MVC Pattern}{14}{subsection.4.5}
-\contentsline {subsection}{\numberline {4.6}Singleton Pattern}{14}{subsection.4.6}
-\contentsline {subsection}{\numberline {4.7}Observer Pattern}{14}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Data Access Object Pattern}{15}{subsection.4.8}
-\contentsline {section}{\numberline {5}Validazione}{15}{section.5}
-\contentsline {section}{\numberline {6}Conclusioni}{15}{section.6}
+\contentsline {subsection}{\numberline {3.3}Class Diagram}{10}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Sequence Diagram}{11}{subsection.3.4}
+\contentsline {section}{\numberline {4}Scelte Progettuali}{12}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sviluppo}{12}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Metodologia di Sviluppo}{13}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Database}{13}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Organizzazione della GUI}{13}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}MVC Pattern}{15}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Singleton Pattern}{15}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Observer Pattern}{15}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Data Access Object Pattern}{16}{subsection.4.8}
+\contentsline {section}{\numberline {5}Validazione}{16}{section.5}
+\contentsline {section}{\numberline {6}Conclusioni}{16}{section.6}
