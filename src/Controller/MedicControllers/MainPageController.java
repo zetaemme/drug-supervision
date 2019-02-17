@@ -18,7 +18,7 @@ public class MainPageController {
     public ReportDaoImpl reportDao;
 
     // Returns an ObservableArrayList that contains all the patients in the DB
-    public ObservableList<Patient> initPatientsList() {
+    public ObservableList<Patient> initPatientsList(String username) {
         patientDao = new PatientDaoImpl();
 
         final ObservableList<Patient> patientsOAL = FXCollections.observableArrayList();
@@ -26,7 +26,7 @@ public class MainPageController {
         List<Patient> patients = new ArrayList<>();
 
         try {
-            patients = patientDao.getAllPatientsWithReport();
+            patients = patientDao.getAllPatientsWithReport(username);
         } catch (SQLException sqle) {
             System.out.println("SQL Error: " + sqle.getMessage());
         } catch (IllegalRiskValueException irve) {

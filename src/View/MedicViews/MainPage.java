@@ -138,7 +138,7 @@ public class MainPage {
         infoRoot.setCenter(patientInfo);
 
         // Initialize the patientList
-        ObservableList<Patient> patientIdsList = FXCollections.observableArrayList(mpController.initPatientsList());
+        ObservableList<Patient> patientIdsList = FXCollections.observableArrayList(mpController.initPatientsList(loginController.loginInstance));
 
         TableView<Patient> patientTable = new TableView<>(patientIdsList);
         patientTable.setId("patientTable");
@@ -234,7 +234,7 @@ public class MainPage {
 
         // If clicked opens a new window that allows to add a new Report
         miReport.setOnAction(e -> {
-            NewReport newReport = new NewReport(new Stage(), patientTable, mpController);
+            NewReport newReport = new NewReport(new Stage(), patientTable, mpController, loginController.loginInstance);
         });
 
         // If clicked deletes the selected patient
@@ -250,7 +250,7 @@ public class MainPage {
             if(result.get() == ButtonType.OK){
                 mpController.deletePatient(patientTable.getSelectionModel().getSelectedItem().getId());
 
-                patientTable.setItems(mpController.initPatientsList());
+                patientTable.setItems(mpController.initPatientsList(loginController.loginInstance));
 
                 patientTable.getSelectionModel().selectLast();
 

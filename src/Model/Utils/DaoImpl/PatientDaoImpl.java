@@ -49,7 +49,7 @@ public class PatientDaoImpl implements PatientDao {
     }
 
     @Override
-    public List<Patient> getAllPatientsWithReport() throws SQLException, IllegalRiskValueException, NullStringException{
+    public List<Patient> getAllPatientsWithReport(String username) throws SQLException, IllegalRiskValueException, NullStringException{
         patientConnection = new DBConnection();
         patientConnection.openConnection();
 
@@ -61,7 +61,7 @@ public class PatientDaoImpl implements PatientDao {
                     "JOIN  Patient_has_RiskFactor PR on Patient.idPatient = PR.Patient_idPatient " +
                     "JOIN RiskFactor R on PR.RiskFactor_idFactor = R.idFactor " +
                     "JOIN Report on Patient.idPatient = Report.Patient_idPatient " +
-                    "WHERE idPatient = Report.Patient_idPatient"
+                    "WHERE idPatient = Report.Patient_idPatient AND Medic_MedicUsername = '" + username + "'"
         );
 
         while(patientConnection.rs.next()) {

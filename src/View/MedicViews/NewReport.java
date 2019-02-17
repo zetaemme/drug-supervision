@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class NewReport {
     private NewReportController nrController = new NewReportController();
 
-    public NewReport(Stage primaryStage, TableView patientTable, MainPageController mpController) {
+    public NewReport(Stage primaryStage, TableView patientTable, MainPageController mpController, String username) {
         GridPane root = new GridPane();
         GridPane therapyGrid = new GridPane();
         GridPane reactionGrid = new GridPane();
@@ -179,7 +179,7 @@ public class NewReport {
                         patientBox.getSelectionModel().getSelectedItem().toString(), reactionLabel.getText(),
                         reportDate.getValue().toString(), reactionDate.getValue().toString(), therapyLabel.getText()
                 );
-                patientTable.setItems(mpController.initPatientsList());
+                patientTable.setItems(mpController.initPatientsList(username));
                 patientTable.getSelectionModel().selectLast();
 
                 if(mpController.getReportNumber() >= 50) {

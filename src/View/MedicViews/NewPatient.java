@@ -148,7 +148,7 @@ public class NewPatient {
                 npController.addNewPatient(queryBDayDate, provinceField.getText(), professionField.getText(), username,
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getRisk_level(),
                                             ((RiskFactor) riskFactorBox.getSelectionModel().getSelectedItem()).getDescription());
-                patientTable.setItems(mpController.initPatientsList());
+                patientTable.setItems(mpController.initPatientsList(username));
                 patientTable.getSelectionModel().selectLast();
 
                 primaryStage.close();
