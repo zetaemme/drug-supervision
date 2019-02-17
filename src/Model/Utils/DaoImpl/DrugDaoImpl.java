@@ -73,7 +73,7 @@ public class DrugDaoImpl implements DrugDao {
 
         try {
             drugConnection.statement = drugConnection.connection.createStatement();
-            drugConnection.statement.executeQuery(
+            drugConnection.statement.executeUpdate(
                     "UPDATE Drug SET removalSuggestion = true WHERE drugName = '" + drugName + "'"
             );
         }catch(SQLException sqle) {
@@ -90,7 +90,7 @@ public class DrugDaoImpl implements DrugDao {
 
         try {
             drugConnection.statement = drugConnection.connection.createStatement();
-            drugConnection.statement.executeQuery(
+            drugConnection.statement.executeUpdate(
                     "UPDATE Drug SET inspectionSuggestion = true WHERE drugName = '" + drugName + "'"
             );
         }catch(SQLException sqle) {
@@ -107,7 +107,7 @@ public class DrugDaoImpl implements DrugDao {
 
         try {
             drugConnection.statement = drugConnection.connection.createStatement();
-            drugConnection.statement.executeQuery(
+            drugConnection.statement.executeUpdate(
                     "UPDATE Drug SET closeMonitorSuggestion = true WHERE drugName = '" + drugName + "'"
             );
         }catch(SQLException sqle) {

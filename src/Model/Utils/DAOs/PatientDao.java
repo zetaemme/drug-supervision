@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PatientDao {
-    List<Patient> getAllPatients() throws SQLException, IllegalRiskValueException, NullStringException;
-    List<Patient> getAllPatientsWithReport() throws SQLException, IllegalRiskValueException, NullStringException;
+    List<Patient> getAllPatients(String username) throws SQLException, IllegalRiskValueException, NullStringException;
+    List<Patient> getAllPatientsWithReport(String username) throws SQLException, IllegalRiskValueException, NullStringException;
     Patient getPatient(String idPatient) throws SQLException;
     void deletePatient(String idPatient);
     void createPatient(String idPatient, Date birthday, String province, String profession, String medic, int riskFactor, String description);
