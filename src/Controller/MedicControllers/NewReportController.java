@@ -17,13 +17,13 @@ public class NewReportController {
     public ReportDaoImpl reportDao;
 
     // Initializes the list with all the IDs
-    public ObservableList<String> initIdList() {
+    public ObservableList<String> initIdList(String username) {
         patientDao = new PatientDaoImpl();
 
         final ObservableList<String> patientIds = FXCollections.observableArrayList();
 
         try {
-            List<Patient> patients = patientDao.getAllPatients();
+            List<Patient> patients = patientDao.getAllPatients(username);
 
             for(Patient p : patients) {
                 patientIds.add(p.getId());

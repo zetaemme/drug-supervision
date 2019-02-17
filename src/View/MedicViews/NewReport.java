@@ -30,7 +30,7 @@ public class NewReport {
 
         final Label titleLabel = new Label("Add new report");
         final Label insertLabel = new Label("New report data:");
-        final ChoiceBox patientBox = new ChoiceBox(nrController.initIdList());
+        final ChoiceBox patientBox = new ChoiceBox(nrController.initIdList(username));
         final Button newTherapyButton = new Button("Add Therapy");
         final Button newReactionButton = new Button("Add Reaction");
         final Label therapyLabel = new Label();
