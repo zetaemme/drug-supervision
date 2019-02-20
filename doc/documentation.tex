@@ -98,7 +98,7 @@
 		\centering
 		\vspace*{\fill}
 		
-		\includegraphics[width=0.15\textwidth]{logo.png}\par\vspace{1cm}
+		\includegraphics[width=0.15\textwidth]{pictures/logo.png}\par\vspace{1cm}
 		{\scshape\LARGE Universita' degli Studi di Verona \par}
 		\vspace{1cm}
 		
@@ -141,7 +141,7 @@
 				\item Vista del farmacologo.
 			\end{enumerate}
 		
-		\safeImage[0.7\textwidth]{Use-cases.png}
+		\safeImage[0.7\textwidth]{pictures/Use-cases.png}
 		
 		Di seguito alcune schede che descrittive degli use case sopracitati.
 		
@@ -274,27 +274,27 @@
 		\subsection{Activity Diagram}
 		Gli activity diagram di seguito servono a esplicitare meglio il flusso d'esecuzione degli use case descritti in precedenza.
 		
-		\safeImage[0.6\textwidth]{Inserisci_Paziente.png}
-		\safeImage[0.6\textwidth]{Inserisci_Report.png}
+		\safeImage[0.6\textwidth]{pictures/Activity_Diagrams/Inserisci_Paziente.png}
+		\safeImage[0.6\textwidth]{pictures/Activity_Diagrams/Inserisci_Report.png}
 		
 		\newpage
 		Come su può vedere nella corrispondente tabella, lo UC2 incorpora l'aggiunta di una nova terapia che a sua volta contiente la possibilità di aggiungere un nuovo farmaco e  l'aggiunta di una nuova reazione. Nonostante siano parte dello stesso Use Case abbiamo deciso di dargli degli Activity Diagram.
 		
-		\safeImage[0.6\textwidth]{Inserisci_Terapia.png}
-		\safeImage[0.6\textwidth]{Inserisci_Farmaco.png}
-		\safeImage[0.6\textwidth]{Inserisci_Reazione.png}
+		\safeImage[0.6\textwidth]{pictures/Activity_Diagrams/Inserisci_Terapia.png}
+		\safeImage[0.6\textwidth]{pictures/Activity_Diagrams/Inserisci_Farmaco.png}
+		\safeImage[0.6\textwidth]{pictures/Activity_Diagrams/Inserisci_Reazione.png}
 
 		\subsection{Class Diagram}
-		\safeImage[\textwidth]{Package_Model.png}
-		\safeImage[\textwidth]{Package_Utils.png}
-		\safeImage[\textwidth]{View-Controller_Class_Diagram.png}
+		\safeImage[\textwidth]{pictures/Class_Diagrams/Package_Model.png}
+		\safeImage[\textwidth]{pictures/Class_Diagrams/Package_Utils.png}
+		\safeImage[\textwidth]{pictures/Class_Diagrams/View-Controller_Class_Diagram.png}
 
 		\subsection{Sequence Diagram}
-		\safeImage[0.8\textwidth]{SD_Login.png}
-		\safeImage[0.8\textwidth]{SD_I_Paziente.png}
-		\safeImage[0.8\textwidth]{SD_I_Report.png}
-		\safeImage[0.8\textwidth]{SD_Cancella.png}		
-		\safeImage[0.8\textwidth]{SD_V_Report.png}
+		\safeImage[0.8\textwidth]{pictures/Sequence_Diagrams/SD_Login.png}
+		\safeImage[0.8\textwidth]{pictures/Sequence_Diagrams/SD_I_Paziente.png}
+		\safeImage[0.8\textwidth]{pictures/Sequence_Diagrams/SD_I_Report.png}
+		\safeImage[0.8\textwidth]{pictures/Sequence_Diagrams/SD_Cancella.png}		
+		\safeImage[0.8\textwidth]{pictures/Sequence_Diagrams/SD_V_Report.png}
 		
 	\section{Scelte Progettuali}
 		\subsection{Sviluppo}
@@ -320,19 +320,19 @@
 		\begin{figure}[H]
 			\begin{subfigure}[h]{\textwidth}
 				\centering
-				\includegraphics[height=0.3\textheight]{Login-view.png}
+				\includegraphics[height=0.3\textheight]{pictures/Views/Login-view.png}
 				\caption{Schermata di Login}
 			\end{subfigure}
 		
 			\begin{subfigure}[h]{\textwidth}
 				\centering
-				\includegraphics[height=0.3\textheight]{Medic-view.png}
+				\includegraphics[height=0.3\textheight]{pictures/Views/Medic-view.png}
 				\caption{Vista del Medico}
 			\end{subfigure}
 		
 			\begin{subfigure}[h]{\textwidth}
 				\centering
-				\includegraphics[height=0.3\textheight]{Pharmacologist-view.png}
+				\includegraphics[height=0.3\textheight]{pictures/Views/Pharmacologist-view.png}
 				\caption{Vista del Farmacologo}
 			\end{subfigure}
 		\end{figure}
@@ -340,7 +340,7 @@
 		\subsection{MVC Pattern}
 		L'applicazione del pattern prevede la suddivisione logica delle classi in tre componenti: Model, View e Controller. \newline
 		
-		\safeImage[0.6\textwidth]{MVC.png}
+		\safeImage[0.6\textwidth]{pictures/MVC.png}
 		
 		\subsection{Singleton Pattern}
 		Per validare l'istanza dell'applicazione, secondo la nostra visione dell'elaborato, il pattern che meglio si addiceva alle nostre esigenze è il Singleton. Esso è stato utilizzato nella classe \textit{LoginController}. Tramite un istanza da noi chiamata \textit{loginInstance}, che memorizza lo username come stringa, permette di verificare l'avvenuto login tramite un metodo \textit{private} chiamato \textit{isLogged}. Questo restituisce un booleano, \textit{true} se loginInstance  ha un valore diverso da \textit{null}, \textit{false} altrimenti.    
